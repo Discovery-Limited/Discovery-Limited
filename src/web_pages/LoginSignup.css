@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+  /* --background: #1e1e1e;
+  --container: #ffffff;
+  --text: #1e1e1e;
+  --primary: #333333;
+  --secondary: #6883BA; */
+
+  --container: #ffffff;
+  --background: #E5CFA2;
+  --text: #000000;
+  --primary: #403F4C;
+  --secondary: #348AA7;
+}
+
+* {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Oleo Script", system-ui;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--primary);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top:50%;
+  width: 600px;
+  background: var(--background);
+  padding-bottom: 30px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.text {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.underline {
+  width: 61px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 9px;
+}
+
+.all_inputs {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 400px;
+  height: 80px;
+  background: #eaeaea;
+  border-radius: 6px;
+}
+
+.input input {
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  width: 400px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #797979;
+  font-size: 19px;
+}
+
+.forgot-password {
+  display: flex;
+  justify-content: center;
+  /* padding-left: 62px; */
+  margin-top: 27px;
+  color: #797979;
+  font-size: 18px;
+}
+
+.forgot_password span {
+  color: var(--text);
+  cursor: pointer;
+}
+
+.submit_container {
+  display: flex;
+  gap: 30px;
+  margin: 60px auto;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 59px;
+  color: #FFF;
+  background: var(--background);
+  border-radius: 50px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gray {
+  background: #eaeaea;
+  color: #676767;
+}

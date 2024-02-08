@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+
+    <!-- <title>Account</title> -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="sign up or login" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="LoginSignup.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="text" id="action">Login</div>
+            <div class="underline"></div>
+        </div>
+        <div class="all_inputs">
+            <div id="nameInput" class="input" style="display:none;">
+                <input type="text" placeholder="Name" />
+            </div>
+
+            <div class="input">
+                <input type="email" placeholder="Email" />
+            </div>
+            <div class="input">
+                <input type="password" placeholder="Password" />
+            </div>
+        </div>
+        <div class="forgot_password">
+            Forgot Password?<span>Click here!</span>
+        </div>
+        <div class="submit_container">
+            <div class="submit" id="signUpButton" >Sign-up</div>
+            <div class="submit gray" id="loginButton" >Login</div>
+        </div>
+    </div>
+    <script src="Account.js"></script>
+    <!-- <script>
+        function setAction(action) {
+            document.getElementById('action').textContent = action;
+            var nameInput = document.getElementById('nameInput');
+            var forgotPassword = document.querySelector('.forgot-password');
+
+            if (action === 'Login') {
+                nameInput.style.display = 'none';
+                forgotPassword.style.display = 'block';
+            } else {
+                nameInput.style.display = 'block';
+                forgotPassword.style.display = 'none';
+            }
+        }
+
+        document.getElementById('signUpButton').addEventListener('click', function () {
+            setAction('Sign Up');
+            document.getElementById('signUpButton').classList.add('gray');
+            document.getElementById('loginButton').classList.remove('gray');
+        });
+
+        document.getElementById('loginButton').addEventListener('click', function () {
+            setAction('Login');
+            document.getElementById('loginButton').classList.add('gray');
+            document.getElementById('signUpButton').classList.remove('gray');
+        });
+    </script> -->
+</body>
+
+
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>LoginSignup</title>
+  <link rel="stylesheet" href="LoginSignup.css">
+</head>
+<body>
+  <div class="body">
+    <div class="container">
+      <div class="header">
+        <div class="text" id="action-text">Sign Up</div>
+        <div class="underline"></div>
+      </div>
+      <div class="inputs">
+        <div class="input name-input">
+          <input type="text" placeholder="Name" disabled>
+        </div>
+        <div class="input">
+          <input type="email" placeholder="Email">
+        </div>
+        <div class="input">
+          <input type="password" placeholder="Password">
+        </div>
+      </div>
+      <div class="forgot-password" id="forgot-password">Forgot Password? <span>Clicker here!</span></div>
+      <div class="submit-container">
+        <div class="submit" id="signup-button">Sign-up</div>
+        <div class="submit gray" id="login-button">Login</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html> -->
+
