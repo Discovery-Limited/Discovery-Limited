@@ -57,6 +57,12 @@ body {
     text-decoration: none;
 }
 
+#header a:hover{
+    transition: 250ms;
+    font-weight:bold;
+    cursor: pointer;
+}
+
 #header button {
     border: 0cm;
     border-radius: 10px;
