@@ -87,7 +87,7 @@ body {
   font-size: 19px;
 }
 
-.forgot-password {
+.forgot_password {
   display: flex;
   justify-content: center;
   /* padding-left: 62px; */
