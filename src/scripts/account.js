@@ -1,8 +1,8 @@
 
 function setAction(action) {
     document.getElementById('action').textContent = action;
-    var nameInput = document.getElementById('nameInput');
-    var forgotPassword = document.querySelector('.forgot_password');
+    let nameInput = document.getElementById('nameInput');
+    let forgotPassword = document.querySelector('.forgot_password');
 
     if (action === 'Login') {
         nameInput.style.display = 'none';
