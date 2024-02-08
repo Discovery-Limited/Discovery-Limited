@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Oleo Script", system-ui;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -96,7 +96,6 @@ input:hover {
 .forgot_password {
   display: flex;
   justify-content: center;
-  /* padding-left: 62px; */
   margin-top: 27px;
   color: #797979;
   font-size: 18px;
@@ -106,6 +105,12 @@ input:hover {
   display: flex;
   justify-content: center;
   color: var(--text);
+  cursor: pointer;
+}
+
+span:hover {
+  transition: 250ms;
+  font-weight:bold;
   cursor: pointer;
 }
 
