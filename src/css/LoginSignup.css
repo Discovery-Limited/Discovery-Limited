@@ -49,12 +49,13 @@ body {
 .text {
   font-size: 48px;
   font-weight: 700;
+  color: var(--primary);
 }
 
 .underline {
   width: 61px;
   height: 6px;
-  background: var(--primary);
+  background: var(--text);
   border-radius: 9px;
 }
 
@@ -134,18 +135,18 @@ input:hover {
   cursor: pointer;
 }
 
+.submit:hover {
+  transition: 250ms ease-in;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .gray {
   background: #eaeaea;
   color: #676767;
 }
 
-/* .googleSignin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
-.media-options a{
+.googleSignin a{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,3 +171,4 @@ a.google span{
   opacity: 0.6;
   color: #232836;
 }
+
