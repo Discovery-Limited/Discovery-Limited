@@ -6,9 +6,8 @@
   --text: #1e1e1e;
   --primary: #333333;
   --secondary: #6883BA; */
-
-  --container: #ffffff;
-  --background: #E5CFA2;
+  
+  --background: #FCF7F8;
   --text: #000000;
   --primary: #403F4C;
   --secondary: #348AA7;
@@ -115,7 +114,7 @@ body {
   width: 220px;
   height: 59px;
   color: #FFF;
-  background: var(--background);
+  background: var(--primary);
   border-radius: 50px;
   font-size: 19px;
   font-weight: 700;

@@ -25,7 +25,7 @@ body {
     z-index: 1;
     position: fixed;
     top: 2.5%;
-    background-color: var(--background);
+    background-color: var(--test);
     color: var(--text);
     width: 98vw;
     height: 10vh;
@@ -50,14 +50,14 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--background);
+    background-color: var(--test);
 }
 
 #header a {
     color: var(--text);
     display: flex;
     text-decoration: none;
-    background-color: var(--background);
+    background-color: var(--test);
 }
 
 #header a:hover{
@@ -70,7 +70,7 @@ body {
     border: 0cm;
     border-radius: 10px;
     background-color: var(--secondary);
-    color: var(--background);
+    color: var(--test);
     width: 7.5vw;
     height: 5vh;
 }
@@ -88,29 +88,29 @@ button:hover {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--background);
+    background-color: var(--test);
 }
 
 #intro {
     width: 100vw;
     height: 100vh;
-    background-color: var(--test);
+    background-color: var(--primary);
 }
 
 #services {
     width: 100vw;
     height: 100vh;
-    background-color: var(--test);
+    background-color: var(--primary);
 }
 
 #about {
     width: 100vw;
     height: 100vh;
-    background-color: var(--test);
+    background-color: var(--primary);
 }
 
 #contact {
     width: 100vw;
     height: 100vh;
-    background-color: var(--test);
+    background-color: var(--primary);
 }
