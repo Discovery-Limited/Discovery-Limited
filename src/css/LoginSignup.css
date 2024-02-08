@@ -75,6 +75,12 @@ body {
   border-radius: 6px;
 }
 
+input:hover {
+  transition: 250ms;
+  font-weight:bold;
+  cursor: pointer;
+}
+
 .input input {
   display: flex;
   justify-content: center;
@@ -97,6 +103,8 @@ body {
 }
 
 .forgot_password span {
+  display: flex;
+  justify-content: center;
   color: var(--text);
   cursor: pointer;
 }
