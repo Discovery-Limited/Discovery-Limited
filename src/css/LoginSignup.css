@@ -172,3 +172,21 @@ a.google span{
   color: #232836;
 }
 
+.line{
+  position: relative;
+  height: 1px;
+  width: 90%;
+  margin: 36px auto;
+  background-color: #d4d4d4;
+}
+
+.line::before{
+  content: 'Or';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--background);
+  color: #8b8b8b;
+  padding: 0 15px;
+}
