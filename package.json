@@ -1,0 +1,18 @@
+{
+  "name": "discovery-limited",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node --experimental-specifier-resolution=node index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser": "^0.2.6",
+    "browser-sync": "^3.0.2",
+    "express": "^4.18.2",
+    "open": "^10.0.3"
+  }
+}
