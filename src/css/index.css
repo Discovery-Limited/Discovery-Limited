@@ -100,7 +100,7 @@ button:hover {
 #services {
     width: 100vw;
     height: 100vh;
-    background-color: var(--test);
+    background-color: var(--primary);
 }
 
 #about {
@@ -112,5 +112,5 @@ button:hover {
 #contact {
     width: 100vw;
     height: 100vh;
-    background-color: var(--test);
+    background-color: var(--primary);
 }
