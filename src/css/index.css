@@ -1,112 +1,166 @@
 * {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    background-color: var(--primary);
-    color: var(--text);
-    z-index: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: var(--background);
+  color: var(--text);
+  z-index: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 :root {
-    --background: #FCF7F8;
-    --text: #000000;
-    --primary: #403F4C;
-    --secondary: #348AA7;
-    --test: #E5CFA2;
+  --background: #fcf7f8;
+  --text: #000000;
+  --primary: #403f4c;
+  --secondary: #348aa7;
 }
 
 #header {
-    z-index: 1;
-    position: fixed;
-    top: 2.5%;
-    background-color: var(--test);
-    color: var(--text);
-    width: 98vw;
-    height: 10vh;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 2px 2px var(--primary);
+  z-index: 1;
+  position: fixed;
+  top: 2.5%;
+  background-color: var(--background);
+  color: var(--text);
+  width: 98vw;
+  height: 12.5vh;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px 2px var(--primary);
 }
 
 #logo-container {
-    width: 7.5vh;
-    height: 7.5vh;
-    background-color: var(--text);
-    color: var(--text);
-    position: relative;
-    right: 17.5%;
+  width: 7.5vh;
+  height: 7.5vh;
+  background-color: var(--text);
+  color: var(--background);
+  position: relative;
+  right: 17.5%;
 }
 
 #header-wrapper {
-    min-width: 35vw;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--test);
+  min-width: 35vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #header a {
-    color: var(--text);
-    display: flex;
-    text-decoration: none;
-    background-color: var(--test);
+  color: var(--text);
+  display: flex;
+  text-decoration: none;
 }
 
-#header a:hover{
-    transition: 250ms;
-    font-weight:bold;
-    cursor: pointer;
+#header a:hover {
+  transition: 250ms;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #header button {
-    border: 0cm;
-    border-radius: 10px;
-    background-color: var(--secondary);
-    color: var(--background);
-    width: 7.5vw;
-    height: 5vh;
+  border: 0cm;
+  border-radius: 10px;
+  background-color: var(--secondary);
+  color: var(--background);
+  width: 7.5vw;
+  height: 5vh;
 }
 
 button:hover {
-    transition: 250ms ease-in;
-    transform: scale(1.1);
-    cursor: pointer;
-} 
+  transition: 500ms ease-in;
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
 #button-wrapper {
-    position: relative;
-    left: 17.5%;
-    min-width: 20vw;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--test);
+  position: relative;
+  left: 17.5%;
+  min-width: 20vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #intro {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary);
 }
 
 #services {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
 }
 
 #about {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents any overflow */
+}
+
+.about-container {
+  display: flex;
+  width: 100%; /* Take the full width of the parent */
+  height: 100%; /* Take the full height of the parent */
+  align-items: center; /* Center content vertically */
+}
+
+.about-image {
+  flex-basis: 50%;
+  height: 100%; /* Ensure image container takes full height */
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%; /* Image will fill its container */
+  object-fit: cover; /* Ensures image covers the area without distortion */
+}
+
+.about-text {
+  flex-basis: 50%;
+  padding: 2rem; /* Adjust padding as needed */
+  color: var(--text);
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center text content */
+}
+
+.about-text h1,
+.about-text p {
+  margin-bottom: 1rem;
+  /* Apply modern font styles as before */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    height: auto; /* Adjust height for stacked layout */
+  }
+
+  .about-image,
+  .about-text {
+    width: 100%;
+    flex-basis: auto; /* Reset basis for mobile */
+  }
 }
 
 #contact {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
 }
