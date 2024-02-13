@@ -138,8 +138,8 @@ button:hover {
 }
 
 #message-input {
-    max-width: 73vh;
-    min-width: 73vh;
+    max-width: 100vh;
+    min-width: 100vh;
     min-height: 20vh;
 }
 
