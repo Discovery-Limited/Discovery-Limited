@@ -100,6 +100,9 @@ button:hover {
 }
 
 #about {
+  --button-bg: var(--secondary);
+  --button-hover-bg: var(--secondary);
+
   width: 100vw;
   height: 100vh;
   background-color: var(--primary);
@@ -116,10 +119,11 @@ button:hover {
   width: 100%; /* Take the full width of the parent */
   height: 100%; /* Take the full height of the parent */
   align-items: center; /* Center content vertically */
+  background-color: var(--primary);
 }
 
 .about-image {
-  flex-basis: 50%;
+  flex-basis: 100%;
   height: 100%; /* Ensure image container takes full height */
 }
 
@@ -131,18 +135,56 @@ button:hover {
 
 .about-text {
   flex-basis: 50%;
-  padding: 2rem; /* Adjust padding as needed */
-  color: var(--text);
-  background-color: transparent;
+  padding: 7rem; /* More padding for the text side */
+  color: var(--background);
+  background-color: transparent; /* Keep the background from the parent */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center text content */
+  justify-content: center; /* Center text content vertically */
+  transform: translateX(50px); /* Start slightly to the right */
+  opacity: 0; /* Start invisible */
+  animation: enterText 1.5s forwards ease-out; /* Animation to bring text into view */
 }
 
-.about-text h1,
-.about-text p {
+.about-text h1 {
+  font-size: 3rem; /* Larger font size for headlines */
+  font-weight: 300; /* Lighter font-weight */
   margin-bottom: 1rem;
-  /* Apply modern font styles as before */
+  color: var(--secondary); /* White color for headline */
+  text-transform: uppercase; /* Make the headline uppercase */
+  letter-spacing: 2px; /* More spacing between letters */
+  background-color: var(--primary);
+}
+
+.about-text p {
+  font-size: 1.5rem; /* Medium font size for paragraphs */
+  margin-bottom: 2rem;
+  line-height: 1.6; /* Line height for better readability */
+  background-color: var(--primary);
+  color: var(--background);
+}
+
+.about-text button {
+  padding: 1rem 2rem;
+  background-color: var(--button-bg);
+  color: var(--background);
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px; /* Rounded corners for the button */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  align-self: start; /* Align the button to the start of the flex container */
+}
+
+.about-text button:hover {
+  background-color: var(--button-hover-bg); /* Change button color on hover */
+}
+
+@keyframes enterText {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* Responsive adjustments */
@@ -156,6 +198,11 @@ button:hover {
   .about-text {
     width: 100%;
     flex-basis: auto; /* Reset basis for mobile */
+    padding: 2rem;
+  }
+
+  .about-text {
+    order: 1; /* Bring text above the image on mobile */
   }
 }
 
