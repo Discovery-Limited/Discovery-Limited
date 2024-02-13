@@ -110,3 +110,64 @@ button:hover {
     height: 100vh;
     background-color: var(--background);
 }
+
+#contact-heading {
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    top: 20vh;
+}
+
+#contact-container {
+    position: relative;
+    top: 30vh;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#contact form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+#message-input, #submit-button {
+    grid-column: 1 / 3;
+}
+
+#message-input {
+    max-width: 73vh;
+    min-width: 73vh;
+    min-height: 20vh;
+}
+
+#name-input, #email-input, #message-input {
+    font-size: 25px;
+    padding: 8px 12px;
+    border: 1px solid #000000;
+    border-radius: 30px;
+}
+
+#submit-button {
+    background-color: var(--primary);
+    color: #FCF7F8;
+    font-size: 25px;
+    border-radius: 60px;
+    width: auto;
+    padding: 8px 12px;
+    justify-self: end;
+}
+
+#social-icons-container {
+    position: relative;
+    top: 40vh;
+    display: flex;
+    justify-content: center;
+    gap: 20vh;
+}
+
+.social-icon:hover {
+    cursor: pointer;
+}
