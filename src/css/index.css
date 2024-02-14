@@ -72,7 +72,8 @@ body {
   height: 5vh;
 }
 
-button:hover {
+button:hover,
+#about a:hover {
   transition: 500ms ease-in;
   transform: scale(1.1);
   cursor: pointer;
@@ -100,110 +101,74 @@ button:hover {
 }
 
 #about {
-  --button-bg: var(--secondary);
-  --button-hover-bg: var(--secondary);
-
   width: 100vw;
   height: 100vh;
   background-color: var(--primary);
   display: flex;
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevents any overflow */
+  overflow: hidden;
+}
+
+#about a {
+  background-color: var(--secondary);
+  width: fit-content;
+  padding: 15px 15px;
+  border: 0px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: var(--background);
+  font-size: 1.2rem;
 }
 
 .about-container {
   display: flex;
-  width: 100%; /* Take the full width of the parent */
-  height: 100%; /* Take the full height of the parent */
-  align-items: center; /* Center content vertically */
+  width: 100%;
+  height: 100%;
+  align-items: center;
   background-color: var(--primary);
 }
 
 .about-image {
   flex-basis: 100%;
-  height: 100%; /* Ensure image container takes full height */
+  height: 100%;
 }
 
 .about-image img {
   width: 100%;
-  height: 100%; /* Image will fill its container */
-  object-fit: cover; /* Ensures image covers the area without distortion */
+  height: 100%;
+  object-fit: cover;
 }
 
 .about-text {
   flex-basis: 50%;
-  padding: 7rem; /* More padding for the text side */
+  padding: 6rem;
   color: var(--background);
-  background-color: transparent; /* Keep the background from the parent */
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center text content vertically */
-  transform: translateX(50px); /* Start slightly to the right */
-  opacity: 0; /* Start invisible */
-  animation: enterText 1.5s forwards ease-out; /* Animation to bring text into view */
+  justify-content: center;
+  transform: translateX(50px);
 }
 
 .about-text h1 {
-  font-size: 3rem; /* Larger font size for headlines */
-  font-weight: 300; /* Lighter font-weight */
+  font-size: 3rem;
+  font-weight: 300;
   margin-bottom: 1rem;
-  color: var(--secondary); /* White color for headline */
-  text-transform: uppercase; /* Make the headline uppercase */
-  letter-spacing: 2px; /* More spacing between letters */
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
   background-color: var(--primary);
 }
 
 .about-text p {
-  font-size: 1.5rem; /* Medium font size for paragraphs */
+  font-size: 1.5rem;
   margin-bottom: 2rem;
-  line-height: 1.6; /* Line height for better readability */
+  line-height: 1.6;
   background-color: var(--primary);
   color: var(--background);
-}
-
-.about-text button {
-  padding: 1rem 2rem;
-  background-color: var(--button-bg);
-  color: var(--background);
-  font-size: 1rem;
-  border: none;
-  border-radius: 50px; /* Rounded corners for the button */
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
-  align-self: start; /* Align the button to the start of the flex container */
-}
-
-.about-text button:hover {
-  background-color: var(--button-hover-bg); /* Change button color on hover */
-}
-
-@keyframes enterText {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
-    height: auto; /* Adjust height for stacked layout */
-  }
-
-  .about-image,
-  .about-text {
-    width: 100%;
-    flex-basis: auto; /* Reset basis for mobile */
-    padding: 2rem;
-  }
-
-  .about-text {
-    order: 1; /* Bring text above the image on mobile */
-  }
 }
 
 #contact {
