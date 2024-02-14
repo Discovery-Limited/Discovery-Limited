@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- <title>Account</title> -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="sign up or login" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id"
+        content="1023482491835-5dj72j1lssf5u1705gi29sabe89u5sdq.apps.googleusercontent.com.apps.googleusercontent.com">
+    <link rel="stylesheet" href="../css/LoginSignup.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="text" id="action">Login</div>
+            <div class="underline"></div>
+        </div>
+        <form class="all_inputs">
+            <div id="nameInput" class="input" style="display:none;">
+                <input autocomplete="given-name" type="text" placeholder="Name" name="name" />
+            </div>
+
+            <div class="input">
+                <input autocomplete="email" type="email" placeholder="Email" name="email" />
+            </div>
+
+            <div class="input">
+                <input autocomplete="current-password" type="password" placeholder="Password" name="password" />
+            </div>
+        </form>
+        <div class="forgot_password">
+            Forgot Password?<span>Click here!</span>
+        </div>
+        <div class="submit_container">
+            <button class="submit" id="signUp">Sign-up</button>
+            <button class="submit gray" id="login">Login</button>
+
+        </div>
+        <div class="line"></div>
+
+        <!-- <div class = "googleSignIn">
+          <a href = "_" class = "googleSignInButton">
+            <img src = "../images/google.png" alt = "Google Sign In" class = "googleSignInImage">
+            <span>Sign in with Google</span>
+          </a>
+        </div> -->
+
+        <!-- <div class="googleSignin" data-onsuccess="onSignIn">
+            <a href="#" class="field google">
+                <img src="../images/google.png" alt="" class="google-img">
+                <span>Login with Google</span>
+            </a>
+        </div> -->
+        <!-- <div id="g-signin2" data-onsuccess="onSignIn"></div> -->
+    </div>
+    <link rel="stylesheet" href="../css/LoginSignup.css">
+    <script src="../scripts/account.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="../scripts/googleSignIn.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+
+</html>
