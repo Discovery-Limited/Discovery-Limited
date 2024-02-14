@@ -22,8 +22,13 @@ body {
 }
 
 i {
-    font-size: 45px;
+    font-size: 30px;
     color: var(--secondary);
+    background-color: var(--primary);
+}
+
+input {
+    width: 75%;
 }
 
 #header {
@@ -115,65 +120,81 @@ button:hover {
     width: 100%;
     height: 100vh;
     background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #contact-heading {
-    margin-top: 20vh;
+    margin-top: 15vh;
     font-size: 80px;
     font-weight: bold;
-    text-align: center;
-    /* position: relative; */
     top: 20vh;
 }
 
 #contact-container {
-    /* position: relative; */
+    width: 75%;
     margin-top: 5vh;
-    top: 30vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 30px;
-    /* height: 60vh; */
+    align-items: center;
 }
 
-#contact form {
+#contact-form {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-}
-
-#message-input, #submit-button {
-    grid-column: 1 / 3;
 }
 
 #message-input {
-    max-width: 100vh;
-    min-width: 100vh;
-    min-height: 20vh;
-}
-
-#name-input, #email-input, #message-input {
+    width: 100%;
+    margin-top: 2%;
+    height: 30vh;
     font-size: 25px;
-    padding: 8px 12px;
-    border: 1px solid #000000;
+    padding: 8px 0px;
+    border: 1px solid var(--text);
     border-radius: 30px;
 }
 
+#message-input::placeholder {
+    padding: 0px 12px;
+}
+
+#name-input, #email-input {
+    font-size: 25px;
+    padding: 8px 12px;
+    border: 1px solid var(--text);
+    border-radius: 30px;
+}
+
+#email-input {
+    display: flex;
+    justify-self: flex-end;
+}
+
 #submit-button {
+    margin-top: 2.5vh;
     background-color: var(--primary);
-    color: #FCF7F8;
+    color: var(--background);
     font-size: 25px;
     border-radius: 60px;
     width: auto;
     padding: 8px 12px;
-    justify-self: end;
 }
 
-#social-icons-container {
-    position: relative;
-    top: 15vh;
+#footer {
+    width: 100%;
+    height: 7.5vh;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--primary);
+}
+
+.social-icon {
+    background-color: var(--primary);
 }
 
 .social-icon:hover {
