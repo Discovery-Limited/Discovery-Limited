@@ -1,50 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 * {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :root {
-    --background: #FCF7F8;
-    --text: #000000;
-    --primary: #403F4C;
-    --secondary: #348AA7;
-    --tertiary: #eaeaea;
+  --background: #FCF7F8;
+  --text: #000000;
+  --primary: #403F4C;
+  --secondary: #348AA7;
+  --tertiary: #eaeaea;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 i {
-    font-size: 30px;
-    color: var(--secondary);
-    background-color: var(--primary);
+  font-size: 30px;
+  color: var(--secondary);
+  background-color: var(--primary);
 }
 
 input {
-    width: 75%;
+  width: 75%;
+}
+
+button:hover,
+#about a:hover {
+  transition: 500ms ease-in;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 #header {
-    z-index: 1;
-    position: fixed;
-    top: 2.5%;
-    background-color: var(--background);
-    color: var(--text);
-    width: 98%;
-    height: 12.5vh;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 2px 2px var(--primary);
+  z-index: 1;
+  position: fixed;
+  top: 2.5%;
+  background-color: var(--background);
+  color: var(--text);
+  width: 98%;
+  height: 12.5vh;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px 2px var(--primary);
 }
 
 #logo-container {
@@ -70,9 +77,9 @@ input {
 }
 
 #header a:hover {
-    transition: 250ms;
-    font-weight: bold;
-    cursor: pointer;
+  transition: 250ms;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #header button {
@@ -82,13 +89,6 @@ input {
   color: var(--background);
   width: 7.5vw;
   height: 5vh;
-}
-
-button:hover,
-#about a:hover {
-  transition: 500ms ease-in;
-  transform: scale(1.1);
-  cursor: pointer;
 }
 
 #button-wrapper {
@@ -101,19 +101,19 @@ button:hover,
 }
 
 #intro {
-    width: 100%;
-    height: 100vh;
-    background-color: var(--primary);
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary);
 }
 
 #services {
-    width: 100%;
-    height: 100vh;
-    background-color: var(--primary);
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary);
 }
 
 #about {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: var(--primary);
   display: flex;
@@ -124,6 +124,13 @@ button:hover,
   overflow: hidden;
 }
 
+.about-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
 #about a {
   background-color: var(--secondary);
   width: fit-content;
@@ -131,17 +138,10 @@ button:hover,
   border: 0px;
   border-radius: 30px;
   text-decoration: none;
-  color: var(--background);
   font-size: 1.2rem;
+  color: var(--background);
 }
 
-.about-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  background-color: var(--primary);
-}
 
 .about-image {
   flex-basis: 100%;
@@ -184,86 +184,86 @@ button:hover,
 }
 
 #contact {
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #contact-heading {
-    margin-top: 15vh;
-    font-size: 80px;
-    font-weight: bold;
-    top: 20vh;
+  margin-top: 15vh;
+  font-size: 80px;
+  font-weight: bold;
+  top: 20vh;
 }
 
 #contact-container {
-    width: 75%;
-    margin-top: 5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 75%;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #contact-form {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 #message-input {
-    width: 100%;
-    margin-top: 2%;
-    height: 30vh;
-    font-size: 25px;
-    padding: 8px 0px;
-    border: 1px solid var(--text);
-    border-radius: 30px;
+  width: 100%;
+  margin-top: 2%;
+  height: 30vh;
+  font-size: 25px;
+  padding: 8px 0px;
+  border: 1px solid var(--text);
+  border-radius: 30px;
 }
 
 #message-input::placeholder {
-    padding: 0px 12px;
+  padding: 0px 12px;
 }
 
 #name-input, #email-input {
-    font-size: 25px;
-    padding: 8px 12px;
-    border: 1px solid var(--text);
-    border-radius: 30px;
+  font-size: 25px;
+  padding: 8px 12px;
+  border: 1px solid var(--text);
+  border-radius: 30px;
 }
 
 #email-input {
-    display: flex;
-    justify-self: flex-end;
+  display: flex;
+  justify-self: flex-end;
 }
 
 #submit-button {
-    margin-top: 2.5vh;
-    background-color: var(--primary);
-    color: var(--background);
-    font-size: 25px;
-    border-radius: 60px;
-    width: auto;
-    padding: 8px 12px;
+  margin-top: 2.5vh;
+  background-color: var(--primary);
+  color: var(--background);
+  font-size: 25px;
+  border-radius: 60px;
+  width: auto;
+  padding: 8px 12px;
 }
 
 #footer {
-    width: 100%;
-    height: 7.5vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--primary);
+  width: 100%;
+  height: 7.5vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--primary);
 }
 
 .social-icon {
-    background-color: var(--primary);
+  background-color: var(--primary);
 }
 
 .social-icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
