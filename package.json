@@ -2,9 +2,9 @@
   "name": "discovery-limited",
   "version": "1.0.0",
   "description": "",
-  "main": "index.mjs",
+  "main": "server.mjs",
   "scripts": {
-    "start": "node --experimental-specifier-resolution=node index.mjs",
+    "start": "node --experimental-specifier-resolution=node server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
