@@ -48,27 +48,25 @@ input {
 }
 
 #logo-container {
-    width: 7.5vh;
-    height: 7.5vh;
-    background-color: var(--text);
-    color: var(--text);
-    position: relative;
-    right: 17.5%;
+  width: 7.5vh;
+  height: 7.5vh;
+  background-color: var(--text);
+  color: var(--background);
+  position: relative;
+  right: 17.5%;
 }
 
 #header-wrapper {
-    min-width: 35vw;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--background);
+  min-width: 35vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #header a {
-    color: var(--text);
-    display: flex;
-    text-decoration: none;
-    background-color: var(--background);
+  color: var(--text);
+  display: flex;
+  text-decoration: none;
 }
 
 #header a:hover {
@@ -78,28 +76,28 @@ input {
 }
 
 #header button {
-    border: 0cm;
-    border-radius: 10px;
-    background-color: var(--secondary);
-    color: var(--background);
-    width: 7.5vw;
-    height: 5vh;
+  border: 0cm;
+  border-radius: 10px;
+  background-color: var(--secondary);
+  color: var(--background);
+  width: 7.5vw;
+  height: 5vh;
 }
 
-button:hover {
-    transition: 250ms ease-in;
-    transform: scale(1.1);
-    cursor: pointer;
+button:hover,
+#about a:hover {
+  transition: 500ms ease-in;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 #button-wrapper {
-    position: relative;
-    left: 17.5%;
-    min-width: 20vw;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--background);
+  position: relative;
+  left: 17.5%;
+  min-width: 20vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #intro {
@@ -115,9 +113,74 @@ button:hover {
 }
 
 #about {
-    width: 100%;
-    height: 100vh;
-    background-color: var(--primary);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#about a {
+  background-color: var(--secondary);
+  width: fit-content;
+  padding: 15px 15px;
+  border: 0px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: var(--background);
+  font-size: 1.2rem;
+}
+
+.about-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  background-color: var(--primary);
+}
+
+.about-image {
+  flex-basis: 100%;
+  height: 100%;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-text {
+  flex-basis: 50%;
+  padding: 6rem;
+  color: var(--background);
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateX(50px);
+}
+
+.about-text h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: var(--primary);
+}
+
+.about-text p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  background-color: var(--primary);
+  color: var(--background);
 }
 
 #contact {
