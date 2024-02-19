@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id"
+        content="15203078856-u0p12011dkvm9umtere0kcg7csgj24dg.apps.googleusercontent.com">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="sign up or login" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +22,9 @@
     <link rel="stylesheet" href="css/accessControl.css" />
     <script type="module" defer src="static/account.js"></script>
     <script src="static/auth.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- test -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
@@ -55,7 +60,7 @@
         <div class="line"></div>
 
         <div class="googleSignin">
-            <a href="/auth/google/callback">Sign in with Google</a>
+            <a data-onsuccess="OnSignIn">Sign in with Google</a>
 
             <!-- <div class = "googleSignIn">
           <a href = "_" class = "googleSignInButton">
@@ -71,6 +76,8 @@
             </a>
         </div> -->
             <!-- <div id="g-signin2" data-onsuccess="onSignIn"></div> -->
+
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
 </body>
 
