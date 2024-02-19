@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="sign up or login" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google-signin-client_id"
         content="1023482491835-5dj72j1lssf5u1705gi29sabe89u5sdq.apps.googleusercontent.com.apps.googleusercontent.com"> -->
-        <link rel="stylesheet" href="css/accessControl.css">
-        <!-- <link rel="stylesheet" href="css/index.css"> -->
-        <script type="module" defer src="static/account.js"></script>
-        <!-- <script src="scripts/googleSignIn.js"></script> -->
-        <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-        <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
-        <!-- <script src="https://kit.fontawesome.com/13e3511e22.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="css/accessControl.css">
+    <!-- <link rel="stylesheet" href="css/index.css"> -->
+    <script type="module" defer src="static/account.js"></script>
+    <!-- <script src="scripts/googleSignIn.js"></script> -->
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
+    <!-- <script src="https://kit.fontawesome.com/13e3511e22.js" crossorigin="anonymous"></script> -->
     <title>DS | Log In</title>
     <link rel="stylesheet" href="css/accessControl.css" />
     <script type="module" defer src="static/account.js"></script>
@@ -26,7 +27,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="header-text" id="action"><p>Log In</p></div>
+            <div class="header-text" id="action">
+                <p>Log In</p>
+            </div>
             <div class="underline"></div>
         </div>
         <form class="all-inputs">
@@ -43,7 +46,7 @@
             </div>
         </form>
         <div class="forgot-password">
-            <p class = "temp">Forgot Password?</p> <span>Click here!</span>
+            <p class="temp">Forgot Password?</p> <span>Click here!</span>
         </div>
         <div class="submit-container">
             <button class="submit" id="signUp">Sign-up</button>
@@ -51,20 +54,24 @@
         </div>
         <div class="line"></div>
 
-        <!-- <div class = "googleSignIn">
+        <div class="googleSignin">
+            <a href="/auth/google/callback">Sign in with Google</a>
+
+            <!-- <div class = "googleSignIn">
           <a href = "_" class = "googleSignInButton">
             <img src = "../images/google.png" alt = "Google Sign In" class = "googleSignInImage">
             <span>Sign in with Google</span>
           </a>
         </div> -->
 
-        <!-- <div class="googleSignin" data-onsuccess="onSignIn">
+            <!-- <div class="googleSignin" data-onsuccess="onSignIn">
             <a href="#" class="field google">
                 <img src="../images/google.png" alt="" class="google-img">
                 <span>Login with Google</span>
             </a>
         </div> -->
-        <!-- <div id="g-signin2" data-onsuccess="onSignIn"></div> -->
-    </div>
+            <!-- <div id="g-signin2" data-onsuccess="onSignIn"></div> -->
+        </div>
 </body>
+
 </html>
