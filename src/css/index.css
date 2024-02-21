@@ -166,6 +166,8 @@ button:hover,
 .task-management-container {
   display: grid;
   flex-direction: column;
+  grid-area: 1;
+  grid-column: 1;
 }
 
 .task-management {
@@ -180,6 +182,8 @@ button:hover,
 .deadline-tracker-container {
   display: grid;
   flex-direction: column;
+  grid-area: 2;
+  grid-column: 2;
 }
 
 .deadline-tracker {
@@ -193,6 +197,8 @@ button:hover,
 .file-sharing-container {
   display: grid;
   flex-direction: row;
+  grid-area: 3;
+  grid-column: 3;
 }
 
 .file-sharing {
