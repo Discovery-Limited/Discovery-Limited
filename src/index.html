@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <script type="module" defer src="static/index.js"></script>
     <script src="https://kit.fontawesome.com/13e3511e22.js" crossorigin="anonymous"></script>
     <title>DS | Home</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="header">
         <a id="logo-container" href="#"></a>
         <div id="header-wrapper">
@@ -34,38 +36,62 @@
             <span>E</span>
             <span>R</span>
             <span>Y</span>
-          </div>
+        </div>
     </section>
 
     <section id="services">
         <div class="features">
-            <h1>Features</h1>
+            <h1>We Offer</h1>
         </div>
-        <div class="services-container">
+        <!-- <div class="services-container">
             <div class = "services-content">
                 <p>Task Management</p>
-                <p>Gantt Chart</p>
-                <p>Time Tracking</p>
-                <p>Cross-Platform Sync</p>
-                <p>Dashboard Customisation</p>
+                <p>Deadline Tracker</p>
+                <p>File Sharing</p>
             </div>
             <img id="service-image" src="./contents/newservice.avif" alt="services">
+        </div> -->
+
+        <div class="services-container">
+            <div class="task-management-container">
+                <div class="task-management">
+                    <h3>Task Manager</h3>
+                    <p>Build and manage teams in your workspace.</p>
+                </div>
+            </div>
+            <div class="deadline-tracker-container">
+                <div class="deadline-tracker">
+                    <h3>Deadline Tracker</h3>
+                    <p>Keep track of your project deadlines.</p>
+                </div>
+            </div>
+            <div class="file-sharing-container">
+                <div class="file-sharing">
+                    <h3>File Sharing</h3>
+                    <p>Share files with your team members.</p>
+                </div>
+            </div>
+
+            <img id="service-image" src="./contents/newservice.avif" alt="services">
         </div>
+
     </section>
 
     <section id="about">
-      <div class="about-container">
-        <div class="about-image">
-          <img src="./contents/imgs/about-us.png" alt="About Us Image" />
+        <div class="about-container">
+            <div class="about-image">
+                <img src="./contents/imgs/about-us.png" alt="About Us Image" />
+            </div>
+            <div class="about-text">
+                <h1>About Us</h1>
+                <p>
+                    Our platform simplifies teamwork and boosts productivity. With intuitive tools for project
+                    management and seamless communication, we're here to help your team thrive. Join us today and
+                    revolutionize the way you work together!
+                </p>
+                <a href="#contact">Contact Us</a>
+            </div>
         </div>
-        <div class="about-text">
-          <h1>About Us</h1>
-          <p>
-            Our platform simplifies teamwork and boosts productivity. With intuitive tools for project management and seamless communication, we're here to help your team thrive. Join us today and revolutionize the way you work together!
-          </p>
-          <a href="#contact">Contact Us</a>
-        </div>
-      </div>
     </section>
 
     <section id="contact">
@@ -75,8 +101,8 @@
                 <input type="text" name="name" id="name-input" placeholder="Name">
                 <input type="email" name="email" id="email-input" placeholder="Email">
             </div>
-                <textarea name="message" id="message-input" placeholder="Message"></textarea>
-                <button type="submit" id="submit-button">Send Message</button>
+            <textarea name="message" id="message-input" placeholder="Message"></textarea>
+            <button type="submit" id="submit-button">Send Message</button>
         </div>
     </section>
 
@@ -94,5 +120,6 @@
             <i class="fa-brands fa-square-twitter"></i>
         </a>
     </div>
-  </body>
+</body>
+
 </html>

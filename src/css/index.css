@@ -4,7 +4,7 @@
   padding: 0;
   margin: 0;
   border: 0;
-  font-size: 1em;
+  font-size: 25px;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -117,7 +117,7 @@ button:hover,
   background-position: center;
   font-size: 40px;
   font-weight: 700;
-  line-height: 2.5; 
+  line-height: 2.5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,7 +151,7 @@ button:hover,
   background-color: var(--background);
 }
 
-.features h1{
+.features h1 {
   font-size: 3rem;
   font-weight: 300;
   text-transform: uppercase;
@@ -163,19 +163,71 @@ button:hover,
   margin-top: 5vh;
 }
 
+.task-management-container {
+  display: grid;
+  flex-direction: column;
+  grid-area: 1;
+  grid-column: 1;
+}
+
+.task-management {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: start; */
+  margin-top: 5vh;
+  background-color: var(--background);
+
+}
+
+.deadline-tracker-container {
+  display: grid;
+  flex-direction: column;
+  grid-area: 2;
+  grid-column: 2;
+}
+
+.deadline-tracker {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: start; */
+  margin-top: 5vh;
+  background-color: var(--background);
+}
+
+.file-sharing-container {
+  display: grid;
+  flex-direction: row;
+  grid-area: 3;
+  grid-column: 3;
+}
+
+.file-sharing {
+  display: block;
+  flex-direction: column;
+  /* justify-content: start; */
+  margin-top: 5vh;
+  background-color: var(--background);
+}
+
 .services-container {
   margin-top: 10vh;
+
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
+.services-content {
+  margin-top: 15vh;
+}
+
 .services-content p {
-  margin-bottom: 5vh;
+  margin-bottom: 7.5vh;
+  ;
 }
 
 .services-content p::before {
-  content: '•';
+  /* content: '•'; */
   font-size: 2em;
 }
 
@@ -301,7 +353,8 @@ button:hover,
   padding: 0px 12px;
 }
 
-#name-input, #email-input {
+#name-input,
+#email-input {
   font-size: 25px;
   padding: 8px 12px;
   border: 1px solid var(--text);
