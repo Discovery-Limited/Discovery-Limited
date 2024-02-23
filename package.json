@@ -13,15 +13,10 @@
     "browser": "^0.2.6",
     "browser-sync": "^3.0.2",
     "express": "^4.18.2",
-<<<<<<< HEAD
-    "open": "^10.0.3",
-    "passport-google-oauth2": "^0.2.0"
-=======
     "express-session": "^1.18.0",
     "open": "^10.0.3",
     "passport": "^0.7.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0"
->>>>>>> d541c0bea7c563f6e6bff7863a13ce19daec2922
   }
 }
