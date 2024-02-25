@@ -19,6 +19,7 @@
 }
 
 body {
+  scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,7 +175,6 @@ button:hover,
 .task-management {
   display: flex;
   flex-direction: column;
-  /* justify-content: start; */
   margin-top: 5vh;
   background-color: var(--background);
 
@@ -192,7 +192,6 @@ button:hover,
 .deadline-tracker {
   display: flex;
   flex-direction: column;
-  /* justify-content: start; */
   margin-top: 5vh;
   background-color: var(--background);
 }
@@ -207,7 +206,6 @@ button:hover,
 .file-sharing {
   display: flex;
   flex-direction: column;
-  /* justify-content: start; */
   margin-top: 5vh;
   background-color: var(--background);
 }
@@ -232,7 +230,6 @@ button:hover,
 }
 
 .services-content p::before {
-  /* content: '•'; */
   font-size: 2em;
 }
 
@@ -243,7 +240,6 @@ button:hover,
   border: 0;
   border-radius: 20px;
   position: absolute;
-  /* left: 60%; */
   right: 10%;
 }
 
