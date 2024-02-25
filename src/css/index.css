@@ -9,11 +9,13 @@
 }
 
 :root {
-  --background: #FCF7F8;
+  /* --background: #FCF7F8;    */
   --text: #000000;
   --primary: #403F4C;
   --secondary: #348AA7;
-  --tertiary: #eaeaea;
+  /* --tertiary: #eaeaea; */
+  --background: #e8e5e5;
+  --tertiary: #f4f4f4;
 }
 
 body {
