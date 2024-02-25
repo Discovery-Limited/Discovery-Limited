@@ -4,21 +4,21 @@
   padding: 0;
   margin: 0;
   border: 0;
-  font-size: 25px;
+  font-size: 15px;
   font-family: 'Montserrat', sans-serif;
+  z-index: 0;
 }
 
 :root {
-  /* --background: #FCF7F8;    */
   --text: #000000;
   --primary: #403F4C;
   --secondary: #348AA7;
-  /* --tertiary: #eaeaea; */
   --background: #e8e5e5;
   --tertiary: #f4f4f4;
 }
 
 body {
+  overflow-x: hidden;
   scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,7 @@ input {
 }
 
 span {
+  font-size: 2.5em;
   transition: color 1000ms ease-out;
 }
 
@@ -53,19 +54,33 @@ button:hover,
   cursor: pointer;
 }
 
+/* HEADER CSS */
+
 #header {
-  z-index: 4;
+  z-index: 1;
   position: fixed;
   top: 2.5%;
-  background-color: var(--background);
   color: var(--text);
-  width: 98%;
+  width: 98vw;
   height: 10vh;
-  border-radius: 20px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 2px 2px 2px 2px var(--primary);
+  box-shadow: 5px 5px 5px 5px var(--primary);
+}
+
+#header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+  opacity: 0.9;
+  z-index: -1;
+  border-radius: inherit;
 }
 
 #logo-container {
@@ -73,15 +88,17 @@ button:hover,
   height: 7.5vh;
   background-color: var(--text);
   color: var(--background);
-  position: relative;
-  right: 17.5%;
+  position: absolute;
+  left: 5%;
 }
 
 #header-wrapper {
-  min-width: 35vw;
+  width: 75%;
+  left: 5%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  position: absolute;
 }
 
 #header a {
@@ -106,16 +123,18 @@ button:hover,
 }
 
 #button-wrapper {
-  position: relative;
-  left: 17.5%;
+  position: absolute;
+  right: 2.5%;
   min-width: 20vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
+/* INTRO CSS */
+
 #intro {
-  background-image: url(../contents/intro.avif);
+  background-image: url(../contents/imgs/intro.avif);
   background-size: cover;
   background-position: center;
   font-size: 40px;
@@ -154,94 +173,58 @@ button:hover,
   background-color: var(--background);
 }
 
-.features h1 {
-  font-size: 3rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  color: var(--text);
+/* FEATURES CSS */
+
+#features {
   width: 100%;
+  height: 100vh;
   background-color: var(--background);
-  margin-top: 5vh;
+}
+
+#features h1 {
+  padding-top: 10vh;
+  padding-left: 15%;
+  font-size: 2.5em;
+  font-weight: 700;
+  background-color: var(--background);
 }
 
 .features-container {
-  display: flex;
-  flex-direction: column;
-
-}
-
-.task-management {
-  display: flex;
-  flex-direction: column;
-  margin-top: 5vh;
-  background-color: var(--background);
-
-}
-
-.deadline-tracker-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  grid-area: 2;
-  grid-column: 2;
-}
-
-.deadline-tracker {
-  display: flex;
-  flex-direction: column;
-  margin-top: 5vh;
-  background-color: var(--background);
-}
-
-.file-sharing-container {
-  display: flex;
-  flex-direction: column;
-  grid-area: 3;
-  grid-column: 3;
-}
-
-.file-sharing {
-  display: flex;
-  flex-direction: column;
-  margin-top: 5vh;
-  background-color: var(--background);
-}
-
-.services-container {
   margin-top: 10vh;
-
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  display: block;
+  color: var(--background);
 }
 
-.services-content {
-  margin-top: 15vh;
+.features-wrapper {
+  margin-left: 20px;
 }
 
-.services-content p {
-  margin-bottom: 7.5vh;
-  ;
-}
-
-.services-content p::before {
-  font-size: 2em;
-}
-
-#service-image {
-  display: flex;
-  flex-direction: row;
-  height: 55vh;
+.task-management, 
+.deadline-tracker, 
+.file-sharing {
+  text-align: start;
+  min-width: 60%;
+  width: fit-content;
+  margin-left: 15%;
+  background-color: var(--secondary);
+  margin-bottom: 5vh;
+  padding: 20px;
   border: 0;
-  border-radius: 20px;
-  position: absolute;
-  right: 10%;
+  border-radius: 10px;
+  display: flex;
 }
+
+.features-container h2 {
+  font-size: 1em;
+}
+
+.features-container i {
+  background-color: var(--secondary);
+  color: var(--background);
+}
+
+/* ABOUT CSS */
 
 #about {
   width: 100%;
@@ -250,9 +233,6 @@ button:hover,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
 }
 
 .about-container {
@@ -296,8 +276,8 @@ button:hover,
 }
 
 .about-text h1 {
-  font-size: 3rem;
-  font-weight: 300;
+  font-size: 2.5em;
+  font-weight: 700;
   margin-bottom: 1rem;
   color: var(--secondary);
   text-transform: uppercase;
