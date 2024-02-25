@@ -14,6 +14,7 @@
     "browser-sync": "^3.0.2",
     "express": "^4.18.2",
     "express-session": "^1.18.0",
+    "frappe-gantt": "^0.6.1",
     "open": "^10.0.3",
     "passport": "^0.7.0",
     "passport-google-oauth2": "^0.2.0",

@@ -1,0 +1,13 @@
+.gantt-container {
+    width: 90vw; 
+    margin: 0 auto;
+}
+
+.change-chart {
+    text-align: center;
+}
+
+.change-chart p {
+    font-size: 25px;
+    font-weight: 500;
+}
