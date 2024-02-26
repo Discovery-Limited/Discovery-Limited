@@ -1,8 +1,8 @@
 <?php
-$host = '1';
-$db   = '1';
-$user = '1';
-$pass = '1';
+$host = 'u921949114_root_admin';
+$db   = 'DB_accounts';
+$user = 'u921949114_root_admin';
+$pass = 'w4bF&9zDp#q@X6yS';
 $charset = 'utf8mb4';
 
 $options = [

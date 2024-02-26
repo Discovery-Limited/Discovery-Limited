@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start(); 
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
@@ -10,10 +10,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$host = 'hostname';
-$db   = 'dbname';
-$user = 'dbuser';
-$pass = 'dbpass';
+$host = 'u921949114_root_admin';
+$db   = 'DB_accounts';
+$user = 'u921949114_root_admin';
+$pass = 'w4bF&9zDp#q@X6yS';
 $charset = 'utf8mb4';
 
 $options = [
