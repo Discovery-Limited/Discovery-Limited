@@ -135,7 +135,7 @@ input:hover {
 }
 
 .selected {
-  background: var(--tertiary);
+  background: var(--quaternary);
   color: var(--primary);
 }
 
