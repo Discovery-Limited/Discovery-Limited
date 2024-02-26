@@ -5,11 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="15203078856-u0p12011dkvm9umtere0kcg7csgj24dg.apps.googleusercontent.com">
-    <link rel="stylesheet" href="src/css/accessControl.css">
-    <script type="module" defer src="src/static/account.js"></script>
-    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-    <script src="static/googleSignIn.js"></script>
-    <script src="src/static/auth.js"></script>    
+    <link rel="stylesheet" href="./src/css/accessControl.css">
+    <script type="module" defer src="./src/static/accessControl.js"></script>  
     <title>DS | Log In</title>
 </head>
 
@@ -19,31 +16,42 @@
 
         <div class="header">
 
-            <div class="header-text" id="action">
-                <p>Log In</p>
-            </div>
+            <h1 id="header-text">Sign Up</h1>
 
             <div class="underline"></div>
         </div>
 
-        <form action="log_form.php" method="post" id="loginform" novalidate>
+        <form action="reg_form.php" method="post" id="signupform" novalidate>
 
             <div class="input">
                 <input autocomplete="email" type="email" placeholder="Email" name="email" />
             </div>
 
             <div class="input">
-                <input autocomplete="current-password" type="password" placeholder="Password" name="password" />
+                <input id="signUp-password" type="password" placeholder="Password" name="password" />
+            </div>
+            <div class="input">
+                <input id="confirm-password" type="password" placeholder="Confirm Password" name="password" />
             </div>
         </form>
         
+        <form action="log_form.php" method="post" id="loginform" novalidate>
+            <div class="input">
+                <input autocomplete="email" type="email" placeholder="Email" name="email" />
+            </div>
+
+            <div class="input">
+                <input id="logIn-password" type="password" placeholder="Password" name="password" />
+            </div>
+        </form>
+
         <div class="forgot-password">
             <p class="temp">Forgot Password?</p> <span>Click here!</span>
         </div>
 
         <div class="submit-container">
             <button class="submit" id="signUp">Sign-up</button>
-            <button class="submit gray" id="login">Log-in</button>
+            <button class="submit" id="logIn">Log-in</button>
         </div>
         
         <div class="line"></div>
