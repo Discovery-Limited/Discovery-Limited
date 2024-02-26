@@ -2,7 +2,7 @@
 session_start(); 
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: account.php?userid=".$_SESSION['userid']."");
+    header("Location: accessControl.html".$_SESSION['userid']."");
     exit;
 }
 
