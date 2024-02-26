@@ -76,6 +76,8 @@ input:hover {
   background: var(--tertiary);
   border-radius: 6px;
   padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 25px;
 }
 
 .forgot-password {
@@ -92,6 +94,7 @@ input:hover {
   justify-content: center;
   color: var(--text);
   cursor: pointer;
+  font-size: 15px;
 }
 
 .forgot-password span:hover {
