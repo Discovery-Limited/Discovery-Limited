@@ -46,7 +46,14 @@ let tasks = [
     },
 ]
 
-let ganttChart = new Gantt("#gantt", tasks, {});
+let ganttChart = new Gantt("#gantt", tasks, {
+    on_view_change: function(mode) {
+        document.getElementById("current-view").innerText = mode;
+    },
+    on_progress_change: function (task, progress) {
+        console.log(task, progress);
+    },
+});
 
 document.querySelector(".change-chart #day").addEventListener("click", () => {
     ganttChart.change_view_mode("Day");
