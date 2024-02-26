@@ -151,7 +151,7 @@ button:hover,
   filter: grayscale(100%);
   position: absolute;
   z-index: 2;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: linear-gradient(0deg, var(--text) 0%, transparent 100%);
 }
