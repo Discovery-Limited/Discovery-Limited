@@ -10,8 +10,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$host = 'u921949114_root_admin';
-$db   = 'DB_accounts';
+$host = '127.0.0.1:3306';
+$db   = 'u921949114_discoveria';
 $user = 'u921949114_root_admin';
 $pass = 'w4bF&9zDp#q@X6yS';
 $charset = 'utf8mb4';
