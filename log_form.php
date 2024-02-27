@@ -2,7 +2,7 @@
 session_start(); 
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: account.php?userid=".$_SESSION['userid']."");
+    header("Location: accessControl.html".$_SESSION['userid']."");
     exit;
 }
 
@@ -54,22 +54,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $user = $stmt->fetch();
         if ($user && password_verify($password, $user['password'])) {
-            if ($user['is_verified'] == 1) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['userid'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
     
                 echo "Login successful!";
-                header("Location: account.php?userid=".$user['id']."");
+                // header("Location: account.php?userid=".$user['id']."");
                 exit();
-            } else {
-                echo "Your account has not been verified. Please check your email.";
-            }
+            } 
         } else {
             echo "Incorrect email or password.";
         }
     } catch (\PDOException $e) {
         echo "Error occurred during login.";
     }
-}
 ?>

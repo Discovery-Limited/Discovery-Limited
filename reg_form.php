@@ -18,10 +18,6 @@ try {
 }
 
 session_start();
-if (isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === true) {
-    header("Location: login.html");
-    exit;
-}
 
 function test_input($data) {
     $data = trim($data);
@@ -33,7 +29,6 @@ function test_input($data) {
 function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = test_input($_POST['username']);
@@ -48,17 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $verificationToken = bin2hex(random_bytes(16));
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO users (username, email, password, verification_token) VALUES (:username, :email, :password, :token)");
+        $stmt = $pdo->prepare("INSERT INTO DB_accounts (username, email, password) VALUES (:username, :email, :password)");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
-        $stmt->bindParam(':token', $verificationToken);
 
         $stmt->execute();
 
-        echo "Registration successful, please verify your email.";
+        echo "Registration successful.";
     } catch (\PDOException $e) {
-        // todo falan 
     }
 }
 ?>
