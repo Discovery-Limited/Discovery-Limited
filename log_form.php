@@ -62,10 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // header("Location: account.php?userid=".$user['id']."");
                 exit();
             } 
-        } else {
+         else {
             echo "Incorrect email or password.";
         }
     } catch (\PDOException $e) {
         echo "Error occurred during login.";
-    }
+    }}
 ?>
