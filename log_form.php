@@ -10,10 +10,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$host = 'hostname';
-$db   = 'dbname';
-$user = 'dbuser';
-$pass = 'dbpass';
+$host = '127.0.0.1:3306';
+$db   = 'u921949114_discoveria';
+$user = 'u921949114_root_admin';
+$pass = 'w4bF&9zDp#q@X6yS';
 $charset = 'utf8mb4';
 
 $options = [
@@ -54,22 +54,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $user = $stmt->fetch();
         if ($user && password_verify($password, $user['password'])) {
-            if ($user['is_verified'] == 1) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['userid'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
     
                 echo "Login successful!";
-                header("Location: account.php?userid=".$user['id']."");
+                // header("Location: account.php?userid=".$user['id']."");
                 exit();
-            } else {
-                echo "Your account has not been verified. Please check your email.";
-            }
+            } 
         } else {
             echo "Incorrect email or password.";
         }
     } catch (\PDOException $e) {
         echo "Error occurred during login.";
     }
-}
 ?>

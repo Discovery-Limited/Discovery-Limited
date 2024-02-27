@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="15203078856-u0p12011dkvm9umtere0kcg7csgj24dg.apps.googleusercontent.com">
-    <link rel="stylesheet" href="./src/css/accessControl.css">
-    <script type="module" defer src="./src/static/accessControl.js"></script>  
-    <title>DS | Log In</title>
+    <link rel="stylesheet" href="./src/css/accessControl.css?=2">
+    <script type="module" defer src="./src/static/accessControl.js?=4"></script>  
+    <title>DS | Sign Up</title>
 </head>
 
 <body>
@@ -21,39 +21,26 @@
             <div class="underline"></div>
         </div>
 
-        <form action="reg_form.php" method="post" id="signupform" novalidate>
+        <form action="reg_form.php" method="POST" id="signupform">
 
             <div class="input">
-                <input autocomplete="email" type="email" placeholder="Email" name="email" />
-            </div>
-
-            <div class="input">
-                <input id="signUp-password" type="password" placeholder="Password" name="password" />
-            </div>
-            <div class="input">
-                <input id="confirm-password" type="password" placeholder="Confirm Password" name="password" />
-            </div>
-        </form>
-        
-        <form action="log_form.php" method="post" id="loginform" novalidate>
-            <div class="input">
-                <input autocomplete="email" type="email" placeholder="Email" name="email" />
+                <input type="text" id="username" name="username" placeholder="Username"  required/>
             </div>
 
             <div class="input">
-                <input id="logIn-password" type="password" placeholder="Password" name="password" />
+                <input type="email" id="email" name="email"  placeholder="Email"  required/>
             </div>
+
+            <div class="input">
+                <input type="password" id="password" name="password" placeholder="Password" required/>
+            </div>
+            
+            <input type="submit" id="submit-form" value="Sign Up"/>
         </form>
 
-        <div class="forgot-password">
-            <p class="temp">Forgot Password?</p> <span>Click here!</span>
+        <div id="info-container">
+            <a id="login-link" class="info" href="./accessControl.html?access=logIn">Already have an account?</a>
         </div>
-
-        <div class="submit-container">
-            <button class="submit" id="signUp">Sign-up</button>
-            <button class="submit" id="logIn">Log-in</button>
-        </div>
-        
         <div class="line"></div>
 
 </body>
