@@ -25,6 +25,10 @@ input:hover {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+}
+
 .hidden {
   display: none;
 }
@@ -33,19 +37,20 @@ input:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 5%;
   width: 50%;
   background: var(--background);
   border-radius: 20px;
+  height: 80vh;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   width: 100%;
-  margin-top: 2.5vh;
+  margin-top: 0px;
 }
 
 #header-text {
@@ -148,4 +153,14 @@ input:hover {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+
+}
+
+#info-container span {
+  display: flex;
+  flex-direction: column;
+}
+
+#info-container a {
+  text-decoration: none;
 }
