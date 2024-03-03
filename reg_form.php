@@ -1,14 +1,14 @@
 <?php
 $host = '127.0.0.1:3306';
-$db   = 'u921949114_discoveria';
+$db = 'u921949114_discoveria';
 $user = 'u921949114_root_admin';
 $pass = 'w4bF&9zDp#q@X6yS';
 $charset = 'utf8mb4';
 
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
+    PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
 try {
@@ -19,24 +19,35 @@ try {
 
 session_start();
 
-function test_input($data) {
+function test_input($data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
 
-function validateEmail($email) {
+function validateEmail($email)
+{
     return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+function validatePassword($password, $confirmpassword) {
+    return $password === $confirmpassword;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = test_input($_POST['username']);
     $email = test_input($_POST['email']);
     $password = test_input($_POST['password']);
+    $confirmpassword = test_input($_POST['confirmpassword']);
 
     if (!validateEmail($email)) {
         die("Invalid email format.");
+    }
+
+    if (!validatePassword($password, $confirmpassword)) {
+        die("Passwords doesn't match.");
     }
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -52,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "Registration successful.";
     } catch (\PDOException $e) {
+        echo "Error occurred during login.";
     }
 }
 ?>
