@@ -1,21 +1,22 @@
 @import 'index.css';
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
   background-color: var(--primary);
+  height: 100vh;
+  justify-content: center;
 }
 
 input {
-  height: 7.5vh;
-  width: 100%;
-  background: transparent;
+  height: 5vh;
+  width: 75%;
+  background: var(--tertiary);
   outline: none;
   color: var(--text);
   font-size: 15px;
+  border: 0px;
+  border-radius: 0.5em;
+  padding: 0% 2.5%;
+  margin: 2.5% 0%;
 }
 
 input:hover {
@@ -24,117 +25,64 @@ input:hover {
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 10%;
+.access-container {
   width: 50%;
+  height: 50%;
   background: var(--background);
-  border-radius: 20px;
-}
-
-.header {
+  border: 0px;
+  border-radius: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9px;
-  width: 100%;
-  margin-top: 2.5vh;
+  justify-content: center;
 }
 
-#header-text {
-  font-size: 40px;
+.access-header {
+  font-size: 2.5em;
   font-weight: 700;
   color: var(--primary);
+  margin-bottom: 10%;
+  position: relative;
+  display: inline-block;
 }
 
-.underline {
-  width: 15%;
-  height: 6px;
-  background: var(--text);
-  border-radius: 9px;
+.access-header::after {
+  content: ''; 
+  position: absolute;
+  left: 0;
+  bottom: -50%; 
+  width: 100%; 
+  height: 15%; 
+  background-color: var(--primary); 
+  border-radius: 5px; 
 }
 
-.all-inputs {
-  margin-top: 5vh;
+#signupform {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-}
-
-.input {
-  display: flex;
   align-items: center;
-  margin: auto;
-  width: 80%;
-  height: fit-content;
-  background: var(--tertiary);
-  border-radius: 6px;
-  padding: 5px;
+  width: 100%;
 }
 
-#info-container {
-  margin-top: 5vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+#submit-form {
+  width: 35%;
+  color: var(--background);
+  background: var(--primary);
+  font-weight: 700;
+  font-size: 1.25em;
+  margin: 5% 0%;
 }
 
-.info {
+.access-info {
   font-size: 15px;
   width: 100%;
   text-align: center;
   text-decoration: underline;
+  color: var(--text);
 }
 
-.info:hover {
+.access-info:hover {
   transition: 500ms ease-in-out;
   font-weight: bold;
   cursor: pointer;
-  
-}
-
-#submit-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  height: 7.5vh;
-  color: var(--background);
-  background: var(--primary);
-  border-radius: 50px;
-  font-size: 15px;
-  font-weight: 700;
-  align-self: center;
-  margin-top: 10%;
-}
-
-#password-error {
-  font-size: 12.5px;
-  color: red;
-  width: 100%;
-  text-align: center;
-}
-
-.line {
-  position: relative;
-  height: 1px;
-  width: 90%;
-  margin: 36px auto;
-  background-color: var(--primary);
-}
-
-.line::before {
-  content: 'Or';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--background);
-  color: var(--primary);
-  padding: 0 15px;
 }
