@@ -5,43 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="15203078856-u0p12011dkvm9umtere0kcg7csgj24dg.apps.googleusercontent.com">
-    <link rel="stylesheet" href="./src/css/accessControl.css?=2">
-    <script type="module" defer src="./src/static/accessControl.js?=4"></script>  
-    <title>DS | Sign Up</title>
+    <link rel="stylesheet" href="./src/css/accessControl.css?=1">
+    <script type="module" defer src="./src/static/accessControl.js"></script>  
+    <title>DS | Log In</title>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="access-container">
+        <h1 class="access-header">Log In</h1>
 
-        <div class="header">
-
-            <h1 id="header-text">Sign Up</h1>
-
-            <div class="underline"></div>
-        </div>
-
-        <form action="reg_form.php" method="POST" id="signupform">
-
-            <div class="input">
-                <input type="text" id="username" name="username" placeholder="Username"  required/>
-            </div>
-
-            <div class="input">
-                <input type="email" id="email" name="email"  placeholder="Email"  required/>
-            </div>
-
-            <div class="input">
-                <input type="password" id="password" name="password" placeholder="Password" required/>
-            </div>
-            
-            <input type="submit" id="submit-form" value="Sign Up"/>
+        <form action="log_form.php" method="POST" id="loginform">
+            <input type="email" id="email" name="email"  placeholder="Email"  required/>
+            <input type="password" id="password" name="password" placeholder="Password" required/>
+            <input type="submit" class="submit-form" value="Log In"/>
         </form>
-
-        <div id="info-container">
-            <a id="login-link" class="info" href="./accessControl.html?access=logIn">Already have an account?</a>
+        <div class="info-container">
+            <a id="forgot-pw" class="access-info">I forgot my password.</a>
+            <a id="register-link" class="access-info" href="./register.html">Sign Up Now!</a>
         </div>
-        <div class="line"></div>
+    </div>
 
 </body>
 

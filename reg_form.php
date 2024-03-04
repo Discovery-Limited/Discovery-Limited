@@ -32,7 +32,8 @@ function validateEmail($email)
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-function validatePassword($password, $confirmpassword) {
+function validatePassword($password, $confirmpassword) 
+{
     return $password === $confirmpassword;
 }
 

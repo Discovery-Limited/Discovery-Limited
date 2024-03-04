@@ -15,8 +15,8 @@ input {
   font-size: 15px;
   border: 0px;
   border-radius: 0.5em;
-  padding: 0% 2.5%;
-  margin: 2.5% 0%;
+  padding: 2.5%;
+  margin-top: 2.5%;
 }
 
 input:hover {
@@ -25,9 +25,16 @@ input:hover {
   cursor: pointer;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .access-container {
   width: 50%;
-  height: 50%;
+  height: fit-content;
   background: var(--background);
   border: 0px;
   border-radius: 5%;
@@ -41,7 +48,8 @@ input:hover {
   font-size: 2.5em;
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: 10%;
+  margin-bottom: 5%;
+  margin-top: 2.5%;
   position: relative;
   display: inline-block;
 }
@@ -57,20 +65,20 @@ input:hover {
   border-radius: 5px; 
 }
 
-#signupform {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-#submit-form {
+.submit-form {
   width: 35%;
   color: var(--background);
   background: var(--primary);
   font-weight: 700;
   font-size: 1.25em;
   margin: 5% 0%;
+  height: fit-content;
+}
+
+.submit-form:hover {
+  transition: 250ms;
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .access-info {
@@ -79,10 +87,16 @@ input:hover {
   text-align: center;
   text-decoration: underline;
   color: var(--text);
+  margin-bottom: 5%;
 }
 
 .access-info:hover {
   transition: 500ms ease-in-out;
   font-weight: bold;
   cursor: pointer;
+}
+
+.info-container {
+  display: flex;
+  width: 100%;
 }

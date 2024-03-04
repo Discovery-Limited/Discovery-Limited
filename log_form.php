@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt = $pdo->prepare("SELECT * FROM DB_accounts WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
