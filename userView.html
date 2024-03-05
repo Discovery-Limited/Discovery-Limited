@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="module" defer src="./src/static/userView.js?=1"></script>  
+<link rel="stylesheet" href="/src/css/userView.css">
+<title>Dashboard</title>
+</head>
+<body>
+<div class="wrapper">
+    <nav class="top-nav">
+        <div class="logo"><?php echo htmlspecialchars($username); ?></div>
+        <div class="menu-items">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="section deadlines">
+                <h2>Deadlines</h2>
+            </div>
+            <div class="section activities">
+                <h2>Recent Activity</h2>
+            </div>
+        </div>
+        <div class="main-content">
+            <button class="btn">Add Sticky Note</button>
+        </div>
+        <div class="sidebar">
+            <div class="section online">
+                <h2>People Online</h2>
+            </div>
+            <div class="section goals">
+                <h2>Goal/Objective</h2>
+            </div>
+            <div class="section tasks">
+                <h2>Tasks</h2>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
