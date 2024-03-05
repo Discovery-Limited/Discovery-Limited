@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
+<script type="module" defer src="./src/static/userView.js?=1"></script>  
 <link rel="stylesheet" href="/src/css/userView.css">
+<title>Dashboard</title>
 </head>
 <body>
 <div class="wrapper">
     <nav class="top-nav">
-        <div class="logo">NAME</div>
+        <div class="logo"><?php echo htmlspecialchars($username); ?></div>
         <div class="menu-items">
             <a href="#">Home</a>
             <a href="#">About</a>

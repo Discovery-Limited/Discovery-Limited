@@ -1,10 +1,9 @@
 <?php
 session_start();
+session_unset();
+session_destroy();
 
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: accessControl.html" . $_SESSION['userid'] . "");
-    exit;
-}
+session_start();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -56,12 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $user = $stmt->fetch();
         if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['loggedin'] = true;
             $_SESSION['userid'] = $user['id'];
             $_SESSION['username'] = $user['username'];
 
-            echo "Login successful!";
-            // header("Location: account.php?userid=".$user['id']."");
+            header("Location: user_view.php?userid=" . $_SESSION['userid']);
             exit();
         }
     } catch (\PDOException $e) {

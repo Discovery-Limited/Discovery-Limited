@@ -16,6 +16,9 @@ try {
 } catch (\PDOException $e) {
     die("Database connection failed.");
 }
+session_start();
+session_unset();
+session_destroy();
 
 session_start();
 
@@ -62,7 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->execute();
 
+        $userid = $pdo->lastInsertId();
+
+        $_SESSION['userid'] = $userid;
+
         echo "Registration successful.";
+        header("Location: user_view.php?userid=" . $_SESSION['userid']);
     } catch (\PDOException $e) {
         echo "Error occurred during login.";
     }
