@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/accessControl.css?=5">
-    <script type="module" defer src="./src/static/accessControl.js?=5"></script>  
+    <script type="module" defer src="./src/static/register.js"></script>  
     <title>DS | Sign Up</title>
 </head>
 
@@ -19,8 +19,10 @@
             <input type="text" id="username" name="username" placeholder="Username"  required/>
             <input type="email" id="email" name="email"  placeholder="Email"  required/>
             <input type="password" id="password" name="password" placeholder="Password" required/>
+            <a id="pw-info" class="hidden"></a>
             <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required/>
-            <input type="submit" class="submit-form" value="Sign Up" onclick="validatePassword()"/>
+            <a id="confirm-info" class="hidden"></a>
+            <input type="submit" class="submit-form" value="Sign Up" disabled>
         </form>
 
         <a id="login-link" class="access-info" href="./login.html">Already have an account?</a>
