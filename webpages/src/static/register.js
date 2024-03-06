@@ -1,10 +1,32 @@
 'use strict';
 
-let pwInfo = document.querySelector('#pw-info');
-let confirmInfo = document.querySelector('#confirm-info');
+// DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed
+// It helps us to run our code safely when we are in a coding enviroment with different files, programming languages,
+// such as PHP.
 
-let password = document.querySelector('#password');
-let confirmPassword = document.getElementById('confirmpassword');
+document.addEventListener("DOMContentLoaded", () => {
+
+    const pwInfo = document.querySelector('#pw-info');
+    const confirmInfo = document.querySelector('#confirm-info');
+    
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#confirmpassword');
+    
+    confirmPassword.addEventListener('keyup', validatePassword());
+    // I changed the textContent of confirmInfo inside the HTML file so only thing that we had to do is
+    // toggling the hidden class:
+    function validatePassword() {
+        if (password.value != confirmPassword.value) {
+            // .value means the value of the input which is better way to track the input values
+            confirmInfo.classList.remove('hidden');
+        } else {
+            confirmInfo.classList.add('hidden');
+        }
+    }
+    // here's more simplified and efficient way to do it:
+    // confirmInfo.classList.toggle('hidden', password.value !== confirmPassword.value); 
+});
+
 
 // pwInfo.addEventListener('keydown', passwordHandler());
 
@@ -42,15 +64,3 @@ let confirmPassword = document.getElementById('confirmpassword');
 // }
 
 // let password = document.getElementById('password');
-
-confirmPassword.addEventListener('keyup', validatePassword());
-
-function validatePassword() {
-    if (password != confirmPassword) {
-        confirmInfo.classList.toggle('hidden');
-        confirmInfo.textContent = '${Passwords do not match}';
-    } else {
-        confirmInfo.classList.toggle('hidden');
-        confirmInfo.textContent = '${Passwords match}';
-    }
-}

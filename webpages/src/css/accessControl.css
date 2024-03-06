@@ -32,6 +32,10 @@ form {
   width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 .access-container {
   width: 50%;
   height: fit-content;
