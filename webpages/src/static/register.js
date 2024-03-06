@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pwInfo = document.querySelector('#pw-info');
     const confirmInfo = document.querySelector('#confirm-info');
-    
+
     const password = document.querySelector('#password');
     const confirmPassword = document.querySelector('#confirmpassword');
-    
-    confirmPassword.addEventListener('keyup', validatePassword());
+
+    confirmPassword.addEventListener('keyup', validatePassword);
     // I changed the textContent of confirmInfo inside the HTML file so only thing that we had to do is
     // toggling the hidden class:
     function validatePassword() {
