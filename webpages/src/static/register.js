@@ -12,20 +12,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.querySelector('#password');
     const confirmPassword = document.querySelector('#confirmpassword');
 
+    const button = document.querySelector('.submit-form');
+
     confirmPassword.addEventListener('keyup', validatePassword);
+    password.addEventListener('keyup', passwordHandler);
     // I changed the textContent of confirmInfo inside the HTML file so only thing that we had to do is
     // toggling the hidden class:
+
+    function passwordHandler() {
+        if (password.value.length < 8) {
+            pwInfo.classList.remove('hidden');
+            pwInfo.textContent = 'Password must be at least 8 characters long';
+            button.disabled = true;
+        } else {
+            pwInfo.textContent = 'Password is valid';
+    }
+    }
+
     function validatePassword() {
-        if (password.value != confirmPassword.value) {
+        } if (password.value != confirmPassword.value) {
             // .value means the value of the input which is better way to track the input values
             confirmInfo.classList.remove('hidden');
+            confirmInfo.textContent = 'Passwords do not match';
+            button.disabled = true;
         } else {
             confirmInfo.classList.add('hidden');
+            confirmInfo.textContent = 'Passwords match';
         }
-    }
+    },
     // here's more simplified and efficient way to do it:
     // confirmInfo.classList.toggle('hidden', password.value !== confirmPassword.value); 
-});
+);
 
 
 // pwInfo.addEventListener('keydown', passwordHandler());
