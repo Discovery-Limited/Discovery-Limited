@@ -3,42 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
+<title>Modern Dashboard</title>
 <link rel="stylesheet" href="/src/css/userView.css">
 </head>
 <body>
 <div class="wrapper">
     <nav class="top-nav">
-        <div class="logo">NAME</div>
+        <div class="logo">Dashboard</div>
         <div class="menu-items">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#" class="btn">Username</a>
+            <a href="#" class="btn">Settings</a>
         </div>
     </nav>
     <div class="dashboard">
-        <div class="sidebar">
-            <div class="section deadlines">
-                <h2>Deadlines</h2>
-            </div>
-            <div class="section activities">
-                <h2>Recent Activity</h2>
-            </div>
-        </div>
-        <div class="main-content">
-            <button class="btn">Add Sticky Note</button>
-        </div>
-        <div class="sidebar">
-            <div class="section online">
-                <h2>People Online</h2>
-            </div>
-            <div class="section goals">
-                <h2>Goal/Objective</h2>
-            </div>
-            <div class="section tasks">
-                <h2>Tasks</h2>
-            </div>
-        </div>
+        <aside class="sidebar">
+            <section class="section deadlines">Deadlines</section>
+            <section class="section activities">Recent Activity</section>
+            <section class="section online">People Online</section>
+            <section class="section goals">Goals/Objectives</section>
+            <section class="section tasks">Tasks</section>
+        </aside>
+        <main class="main-content">
+            <button class="btn add-note">Add Sticky Note</button>
+            <!-- Sticky notes or content can be added here -->
+        </main>
     </div>
 </div>
 </body>
