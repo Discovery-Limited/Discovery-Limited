@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/accessControl.css?=1">
+    <script type="module" defer src="./src/static/accessControl.js"></script>  
+    <title>DS | Log In</title>
+</head>
+
+<body>
+
+    <div class="access-container">
+        <h1 class="access-header">Log In</h1>
+
+        <form action="log_form.php?=1" method="POST" id="loginform">
+            <input type="email" id="email" name="email"  placeholder="Email"  required/>
+            <input type="password" id="password" name="password" placeholder="Password" required/>
+            <input type="submit" class="submit-form" value="Log In"/>
+        </form>
+        <div class="info-container">
+            <a id="forgot-pw" class="access-info">I forgot my password.</a>
+            <a id="register-link" class="access-info" href="./register.html">Sign Up Now!</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

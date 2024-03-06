@@ -1,0 +1,33 @@
+@import 'index.css';
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--primary);
+}
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    width: 300px;
+    background-color: var(--background);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#project-content {
+    background-color: var(--background);
+}
+
+#project-content ol {
+    font-weight: 200;
+    background-color: var(--background);
+}
+
+#project-content h2 {
+    font-weight: 500;
+    margin-bottom: 15px;
+
+}
