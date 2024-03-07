@@ -23,26 +23,32 @@ document.addEventListener("DOMContentLoaded", () => {
         if (password.value.length < 8) {
             pwInfo.classList.remove('hidden');
             pwInfo.textContent = 'Password must be at least 8 characters long';
-            button.disabled = true;
-        } else {
+        } else if (password.value == null) {
+            pwInfo.classList.add('hidden');
+        }
+        else {
             pwInfo.textContent = 'Password is valid';
-    }
+            button.style.cursor = 'not-allowed';
+        }
     }
 
     function validatePassword() {
-        } if (password.value != confirmPassword.value) {
+        if (password.value != confirmPassword.value) {
             // .value means the value of the input which is better way to track the input values
             confirmInfo.classList.remove('hidden');
             confirmInfo.textContent = 'Passwords do not match';
-            button.disabled = true;
         } else {
             confirmInfo.classList.add('hidden');
             confirmInfo.textContent = 'Passwords match';
+            button.disabled = false;
+            button.style.opacity = (1);
+            button.style.cursor = 'pointer';
+
         }
-    },
-    // here's more simplified and efficient way to do it:
-    // confirmInfo.classList.toggle('hidden', password.value !== confirmPassword.value); 
-);
+        // here's more simplified and efficient way to do it:
+        // confirmInfo.classList.toggle('hidden', password.value !== confirmPassword.value); 
+    }
+});
 
 
 // pwInfo.addEventListener('keydown', passwordHandler());
