@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // .value means the value of the input which is better way to track the input values
             confirmInfo.classList.remove('hidden');
             confirmInfo.textContent = 'Passwords do not match';
+            button.style.cursor = 'not-allowed';
+            button.style.opacity = (0.4);
         } else {
             confirmInfo.classList.add('hidden');
             confirmInfo.textContent = 'Passwords match';
