@@ -1,6 +1,6 @@
 <?php
 $host = '212.107.17.1';
-$db = 'u921949114_discoveria';
+$db = 'u921949114_discoveria_';
 $user = 'u921949114_admin_';
 $pass = 'w4bF&9zDp#q@X6yS';
 $charset = 'utf8mb4';
