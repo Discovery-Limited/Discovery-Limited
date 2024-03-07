@@ -86,6 +86,13 @@ form {
   transform: scale(1.1);
 }
 
+#confirm-info {
+  margin-top: 10px;
+}
+
+#pw-info {
+  margin-top: 10px;
+}
 
 .access-info {
   font-size: 15px;
