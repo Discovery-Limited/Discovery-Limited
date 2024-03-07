@@ -1,8 +1,8 @@
 <?php
 
-$host = '127.0.0.1:3306';
+$host = '212.107.17.1';
 $db = 'u921949114_discoveria';
-$user = 'u921949114_root_admin';
+$user = 'u921949114_admin_';
 $pass = 'w4bF&9zDp#q@X6yS';
 $charset = 'utf8mb4';
 
