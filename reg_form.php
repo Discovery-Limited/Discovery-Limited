@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Registration successful.";
         header("Location: user_view.php?userid=" . $_SESSION['userid']);
     } catch (\PDOException $e) {
-        echo "Error occurred during login.";
+        echo "User already exists.";
     }
 }
 ?>
