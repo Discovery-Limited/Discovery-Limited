@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             header("Location: user_view.php?userid=" . $_SESSION['userid']);
         
-            // exit();
+            exit();
         }
     } catch (\PDOException $e) {
         echo "Error occurred during login.";
