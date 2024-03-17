@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" defer src="./src/static/scrumBoard.js?=1"></script>
+    <link rel="stylesheet" href="./src/css/scrumBoard.css?=1">
+    <title>Scrum Board</title>
+</head>
+
+<body>
+    <div class="content">
+        <header class="top-nav">
+            <ul>
+                <li>Backlog</li>
+                <li>ToDo</li>
+                <li>In Progress</li>
+                <li>Done</li>
+            </ul>
+        </header>
+
+        <section id="dashboard" class="dashboard top-nav">
+            <div id="backlog" class="backlog"></div>
+            <div id="toDo" class="toDo"></div>
+            <div id="inProgress" class="inProgress"></div>
+            <div id="done" class="done"></div>
+        </section>
+
+        <footer>
+            <ul class="controls">
+                <li data-tooltip="Drag task here to delete">
+                    <a href="#" class="remove" id="remove">
+                        <img src="./src/contents/imgs/trash-icon.png" alt="remove">
+                    </a>
+                </li>
+                <li data-tooltip="Add new task">
+                    <a href="#" class="add-task" id="add-task">
+                        <img src="./src/contents/imgs/add.png" alt="add">
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+
+    <div class="modal hide" id="add-task-modal">
+        <div class="modal-content">
+            <form action="scrumBoard.html" method="post" class="add-tast-form" name="add_task">
+                <span class="close">&times;</span>
+
+                <h2>Add Task</h2>
+
+                <input type="text" id="task" name="task" placeholder="Task">
+                <textarea id="description" name="description" placeholder="Description">
+                <input type="text" id="assignee" name="assignee" placeholder="Assignee">
+                <input type="text" id="deadline" name="deadline" placeholder="Deadline">
+                <input type="submit"  name="add_task" value="Add Task">
+            </form>
+        </div>
+    </div>
+
+    <!-- <script id="task-card-template" type="text/x-handlebars-template">
+        <div class="task-card" draggable="true">
+            <div class="task-card-header">
+                <h3>{{task}}</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="task-card-body">
+                <p>{{description}}</p>
+                <p>{{assignee}}</p>
+                <p>{{deadline}}</p>
+            </div>
+        </div>
+    </script> -->
+
+    <script id="task-card-template" type="text/x-handlebars-template">
+        {{#each this}}
+
+            <div class="card" data-task-id="{{id}}">
+                <a href="#" class="expand-card"></a>
+                <h5>{{task}}</h5>
+                <div class="card-content">
+                    <p data-field="deadline">{{deadline}}</p>
+                    <p data-field="description">{{description}}</p>
+                    <p data-field="assignee">{{#checkIfEmptyAssigned assigned_to}}{{/checkIfEmptyAssigned}}</p>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+
+</html>
