@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" defer src="./src/static/scrumBoard.js?=1"></script>
-    <link rel="stylesheet" href="./src/css/scrumBoard.css?=1">
+    <link rel="stylesheet" href="./src/css/scrumBoard.css?=1" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Scrum Board</title>
 </head>
 
@@ -46,7 +46,7 @@
     <div class="modal hide" id="add-task-modal">
         <div class="modal-content">
             <form action="scrumBoard.html" method="post" class="add-tast-form" name="add_task">
-                <span class="close">&times;</span>
+                <span class="close-modal">&times;</span>
 
                 <h2>Add Task</h2>
 
@@ -77,7 +77,7 @@
         {{#each this}}
 
             <div class="card" data-task-id="{{id}}">
-                <a href="#" class="expand-card"></a>
+                <i href="#" class="fa fa-expanded"></i>
                 <h5>{{task}}</h5>
                 <div class="card-content">
                     <p data-field="deadline">{{deadline}}</p>

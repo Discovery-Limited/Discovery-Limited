@@ -7,16 +7,18 @@
     --background: #e8e5e5;
     --tertiary: #f4f4f4;
     --quaternary: #cacaca;
-  }
+}
 
 * {
     margin: 0;
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-  }
+}
 
-html, body, .content {
+html,
+body,
+.content {
     height: 100%;
 }
 
@@ -49,7 +51,7 @@ a {
 
 header {
     background-color: var(--primary);
-    
+
     li {
         padding: 15px;
         float: left;
@@ -70,19 +72,19 @@ header {
         &:nth-child(1) {
             &:after {
                 background: #ef473a;
-            }    
+            }
         }
 
         &:nth-child(2) {
             &:after {
                 background: #f39c12;
-            }    
+            }
         }
 
         &:nth-child(3) {
             &:after {
                 background: #00bcd4;
-            }    
+            }
         }
 
         &:nth-child(4) {
@@ -100,7 +102,7 @@ header {
 .dashboard {
     height: calc(100% - 101px);
 
-    > div {
+    >div {
         float: left;
         height: 100%;
         border-right: 1px solid var(--primary);
@@ -246,14 +248,14 @@ header {
 }
 
 .dragged-over {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 @keyframes rotate180 {
     to {
-      transform: rotate(180deg);
+        transform: rotate(180deg);
     }
-  }
+}
 
 .modal {
     position: fixed;
@@ -261,7 +263,117 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: var(--background);
+    z-index: 2;
+}
 
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 400px;
+    margin: auto;
+    width: 100%;
+    transform: translateX(-50%) translateY(-50%);
+
+
+    .close-modal {
+        border: 1px solid var(--primary);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: -90px;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 52px;
+        font-size: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        vertical-align: middle;
+        cursor: pointer;
+
+        &:hover {
+            border-color: #fff;
+        }
+    }
+
+    h3 {
+        font-weight: 100;
+        font-size: 30px;
+        position: relative;
+    }
+}
+
+.add-tast-form,
+.add-task-modal {
+    text-align: center;
+
+    li {
+        margin-top: 30px;
+    }
+
+    [type=text],
+    [type=submit],
+    textarea {
+        color: #fff;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        width: 100%;
+        line-height: 24px;
+        padding: 15px 10px;
+        appearance: none;
+        border: 1px solid var(--primary);
+        background-color: transparent;
+        transition: border-color .25s linear;
+
+        &::-webkit-input-placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        &:focus {
+            border-color: #fff;
+        }
+    }
+
+    [type=submit] {
+        cursor: pointer;
+        border-color: transparent;
+    }
+
+    textarea {
+        resize: none;
+        min-height: 100px;
+    }
+}
+
+.expand-card {
+    height: 19px;
+    width: 19px;
+    background-size: auto 100%;
+    display: inline-block;
+    position: absolute;
+    top: 25px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    right: 15px;
+    padding: 3px;
+
+    .backlog & {
+        color: #ef473a;
+    }
+
+    .todo & {
+        color: #f39c12;
+    }
+
+    .in-progress & {
+        color: #00bcd4;
+    }
+
+    .done & {
+        color: #8bc34a;
+    }
 }
 
 footer {
@@ -273,37 +385,118 @@ footer {
 .add-task {
     z-index: 1;
     border-radius: 50%;
-    
+
     img {
-      width: 30px;
-      display: block;
-      box-shadow: 3px 3px 3px rgba(0,0,0,.1);
+        width: 30px;
+        display: block;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, .1);
     }
-    
+
     &:hover {
-      img {
-        animation: rotate180 .2s linear;
-      }
+        img {
+            animation: rotate180 .2s linear;
+        }
     }
-  }
+}
 
 .remove {
-  display: block;
-  background-color: #ef473a;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  padding-top: 7px;
-  transition: all 300ms ease-out;
-  cursor: default;
+    display: block;
+    background-color: #ef473a;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    padding-top: 7px;
+    transition: all 300ms ease-out;
+    cursor: default;
 
-  img {
-    width: 16px;
-  }
-  
-  &.dragged-over {
-    width: 250px;
-    border-radius: 3px;
-  }
+    img {
+        width: 16px;
+    }
+
+    &.dragged-over {
+        width: 250px;
+        border-radius: 3px;
+    }
 }
+
+[data-tooltip] {
+    position: relative;
+
+    &:before {
+        display: none;
+        content: attr(data-tooltip);
+        background-color: rgba(0, 0, 0, .6);
+        padding: 10px 20px;
+        position: absolute;
+        text-align: center;
+        white-space: nowrap;
+        left: 50%;
+        transform: translateY(-130%) translateX(-50%);
+    }
+
+    &:hover {
+        &:before {
+            display: block;
+        }
+    }
+}
+
+.controls {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    li {
+        float: left;
+        margin-right: 20px;
+    }
+}
+
+.branding,
+.create-task-branding {
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 10px;
+
+    sup {
+        position: absolute;
+        font-size: 9px;
+        margin-top: -6px;
+        margin-left: -3px;
+    }
+
+    span {
+        color: rgba(255, 255, 255, .6);
+    }
+}
+
+.create-task-branding {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 300px;
+}
+
+.onboard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 2;
+}
+
+.onboard-modal {
+    height: 300px;
+    width: 450px;
+    background-color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
