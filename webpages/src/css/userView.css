@@ -13,6 +13,7 @@
 * {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
+    font-size: 20px;
 }
 
 /* Reset and base styles */
@@ -54,15 +55,15 @@ body, html {
     color: var(--text);
     text-decoration: none;
     margin-left: 20px; /* Add margin between menu items */
-    padding: 10px;
+    padding-top: 5px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 
-.menu-items a:hover {
+/* .menu-items a:hover { */
     /* background-color: rgba(255, 255, 255, 0.1); */
-    background-color: var(--quaternary);
-}
+    /* background-color: var(--quaternary); */
+/* } */
 
 /* Dashboard layout */
 .dashboard {
@@ -83,6 +84,16 @@ body, html {
     border-radius: 5px;
     background-color: var(--quinary); 
     transition: background-color 0.3s;
+}
+
+.sidebar a {
+    display: inline-block;
+    /* padding: 20px; */
+    /* margin: 0px; */
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .sidebar-buttons:hover {
@@ -107,4 +118,14 @@ body, html {
 
 .add-note:hover {
     background-color: #218838;
+}
+
+
+img {
+    height: 40px;
+    width: 40px;
+}
+
+a:visited {
+    color: var(--text);
 }

@@ -13,16 +13,18 @@
         <div class="logo"><?php echo htmlspecialchars($username); ?></div>
         <div class="menu-items">
             <a href="#" class="btn"><?php echo htmlspecialchars($username); ?></a>
-            <a href="#" class="btn">Settings</a>
+            <a href="#" class="btn">
+                <img src="./src/contents/imgs/settings.png" alt="settings">
+            </a>
         </div>
     </nav>
     <div class="dashboard">
         <aside class="sidebar">
-            <div class="sidebar-buttons">Deadlines</div>
-            <div class="sidebar-buttons">Recent Activity</div>
-            <div class="sidebar-buttons">People Online</div>
-            <div class="sidebar-buttons">Goals/Objectives</div>
-            <div class="sidebar-buttons">Tasks</div>
+            <a href="./scrumBoard.html" class="sidebar-buttons">Deadlines</a>
+            <a class="sidebar-buttons">Recent Activity</a>
+            <a class="sidebar-buttons">People Online</a>
+            <a class="sidebar-buttons">Goals/Objectives</a>
+            <a class="sidebar-buttons">Tasks</a>
         </aside>
         <main class="main-content">
             <button class="btn add-note">Add Sticky Note</button>
