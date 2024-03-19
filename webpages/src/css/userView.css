@@ -1,9 +1,26 @@
+/* @import 'index.css';*/
+
+:root {
+    --text: #fff;
+    --primary: #403F4C;
+    --secondary: #348AA7;
+    --background: #e5dede;
+    --tertiary: #246b82;
+    --quaternary: #cacaca;
+    --quinary: #8e8e8e;
+  }
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
 /* Reset and base styles */
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
+    background-color: var(--background);
 }
 
 /* Wrapper for the entire layout */
@@ -19,9 +36,9 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    background-color: #007bff;
-    color: #ffffff;
-    border-bottom: 5px solid #0056b3; /* Darker border color */
+    background-color: var(--secondary);
+    color: var(--background);
+    border-bottom: 5px solid var(--tertiary); /* Darker border color */
 }
 
 .logo {
@@ -34,7 +51,7 @@ body, html {
 }
 
 .menu-items a {
-    color: #ffffff;
+    color: var(--text);
     text-decoration: none;
     margin-left: 20px; /* Add margin between menu items */
     padding: 10px;
@@ -43,7 +60,8 @@ body, html {
 }
 
 .menu-items a:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white on hover */
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    background-color: var(--quaternary);
 }
 
 /* Dashboard layout */
@@ -54,8 +72,8 @@ body, html {
 
 .sidebar {
     width: 200px;
-    background-color: #233348;
-    color: #ffffff;
+    background-color: var(--primary);
+    color: var(--text);
     padding: 20px;
 }
 
@@ -63,13 +81,13 @@ body, html {
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 5px;
-    background-color: #2c3e50; 
+    background-color: var(--quinary); 
     transition: background-color 0.3s;
 }
 
 .sidebar-buttons:hover {
     cursor: pointer;
-    background-color: #34495e; /* Slightly lighter background color on hover */
+    background-color: var(--quaternary); /* Slightly lighter background color on hover */
 }
 
 .main-content {
