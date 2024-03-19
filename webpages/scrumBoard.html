@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" defer src="./src/static/scrumBoard.js?=1"></script>
+    <!-- <script src="./src/static/handlebar.js"></script> -->
+    <!-- <script type="module" defer src="./src/static/scrumBoard.js?=1"></script> -->
+    <!-- <script src="scrumBoard.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./src/static/handlebar.js"></script>
+    <script src="scrumBoard.js"></script>
     <link rel="stylesheet" href="./src/css/scrumBoard.css?=1" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Scrum Board</title>
 </head>
@@ -43,7 +48,7 @@
         </footer>
     </div>
 
-    <div class="modal hide" id="add-task-modal">
+    <div class="modal hidden" id="add-task-modal">
         <div class="modal-content">
             <form action="scrumBoard.html" method="post" class="add-tast-form" name="add_task">
                 <span class="close-modal">&times;</span>
