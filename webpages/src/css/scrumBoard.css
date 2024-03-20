@@ -470,7 +470,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--background);
+    background: var(--primary);
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
