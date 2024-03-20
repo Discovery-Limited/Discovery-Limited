@@ -486,7 +486,7 @@ footer {
     justify-content: center;
     /* margin: 70px auto; */
     padding: 20px;
-    background: #fff;
+    background: var(--background);
     border-radius: 20px;
     width: 30%;
     position: absolute;
