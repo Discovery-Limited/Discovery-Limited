@@ -470,7 +470,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--background);
+    background: var(--primary);
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
@@ -486,7 +486,7 @@ footer {
     justify-content: center;
     /* margin: 70px auto; */
     padding: 20px;
-    background: #fff;
+    background: var(--background);
     border-radius: 20px;
     width: 30%;
     position: absolute;
