@@ -1,119 +1,123 @@
-// var LocalStorage = function () {
-//     function set(key, val) {
-//         localStorage.setItem(key, val);
-//     }
+var LocalStorage = function () {
+    function set(key, val) {
+        localStorage.setItem(key, val);
+    }
 
-//     function get(key) {
-//         return localStorage.getItem(key);
-//     }
+    function get(key) {
+        return localStorage.getItem(key);
+    }
 
-//     function remove(key) {
-//         localStorage.removeItem(key);
-//     }
+    function remove(key) {
+        localStorage.removeItem(key);
+    }
 
-//     return {
-//         set: set,
-//         get: get,
-//         remove: remove
-//     }
-// }();
+    return {
+        set: set,
+        get: get,
+        remove: remove
+    }
+}();
 
-// var Helper = function () {
-//     function init() {
-//         checkIfEmptyAssigned();
-//     }
+var Helper = function () {
+    function init() {
+        checkIfEmptyAssigned();
+    }
 
-//     function checkAssigned() {
-//         Handlebars.registerHelper('checkIfEmptyAssigned', function (val, options) {
-//             if (val) {
-//                 return val;
-//             } else {
-//                 return "Unassigned";
-//             }
-//         });
-//     }
+    function checkAssigned() {
+        Handlebars.registerHelper('checkIfEmptyAssigned', function (val, options) {
+            if (val) {
+                return val;
+            } else {
+                return "Unassigned";
+            }
+        });
+    }
 
-//     return {
-//         init: init
-//     }
-// }();
+    return {
+        init: init
+    }
+}();
 
-// Helper.init();
+Helper.init();
 
-// var App = function () {
-//     function init() {
-//         draggable();
-//         droppable();
-//         openCard();
-//         createTask();
-//         closeModal();
-//         printNotes();
-//     }
 
-//     function createTask() {
-//         var source = $("#task-card-template").html();
-//         var template = Handlebars.compile(source);
 
-//         $("#add-task").on("click", function (e) {
-//             e.preventDefault();
-//             $("#add-task-modal").removeClass("hide");
+var App = function () {
+    function init() {
+        draggable();
+        droppable();
+        openCard();
+        createTask();
+        closeModal();
+        printNotes();
+    }
 
-//             $('#add-task-modal').find('form').on('submit', function (e) {
-//                 e.preventDefault();
-//                 var obj = {};
-//                 var params = $(this).serialize();
-//                 var splitParams = params.split('&');
+    function createTask() {
+        var source = $("#task-card-template").html();
+        var template = Handlebars.compile(source);
+        var task = document.getElementById('add-task');
 
-//                 for (var i = 0, l = splitParams.length; i < l; i++) {
-//                     var keyVal = splitParams[i].split('=');
-//                     obj[keyVal[0]] = unescape(keyVal[1]);
-//                 }
+        $("#add-task").on("click", function (e) {
+            e.preventDefault();
+            $("#add-task-modal").removeClass("hide");
+            $(".content").addClass("hide");
 
-//                 // TODO: Add validations
-//                 if (obj.description === '' || obj.title === '') {
-//                     return;
-//                 }
+            $('#add-task-modal').find('form').on('submit', function (e) {
+                e.preventDefault();
+                var obj = {};
+                var params = $(this).serialize();
+                var splitParams = params.split('&');
 
-//                 var iid = LocalStorage.get('taskCounter');
-//                 obj.id = ++iid;
-//                 obj.status = 'pending';
-//                 LocalStorage.set('task-' + obj.id, JSON.stringify(obj));
-//                 LocalStorage.set('taskCounter', iid);
+                for (var i = 0, l = splitParams.length; i < l; i++) {
+                    var keyVal = splitParams[i].split('=');
+                    obj[keyVal[0]] = unescape(keyVal[1]);
+                }
 
-//                 var newCard = template([obj]);
-//                 $('#dashboard #' + obj.status).append(newCard);
-//                 draggable();
+                // TODO: Add validations
+                if (obj.description === '' || obj.title === '') {
+                    return;
+                }
 
-//                 $('.close-modal').trigger('click');
+                var iid = LocalStorage.get('taskCounter');
+                obj.id = ++iid;
+                obj.status = 'pending';
+                LocalStorage.set('task-' + obj.id, JSON.stringify(obj));
+                LocalStorage.set('taskCounter', iid);
 
-//                 //Clear form fields after submit
-//                 $(this).find('input[type=text], textarea').val('');
-//             });
+                var newCard = template([obj]);
+                $('#dashboard #' + obj.status).append(newCard);
+                draggable();
 
-//         });
-//     }
+                $('.close-modal').trigger('click');
 
-//     function closeModal() {
-//         $('.close-modal').on('click', function () {
-//             $('.modal').addClass('hide');
-//         });
-//     }
+                //Clear form fields after submit
+                $(this).find('input[type=text], textarea').val('');
+            });
 
-//     function draggable() {
-//         $(".card").draggable({
-//             handle: 'h5',
-//             revert: false,
-//             helper: function (e) {
-//                 var original = $(e.target).hasClass("ui-draggable") ? $(e.target) : $(e.target).closest(".ui-draggable");
-//                 return original.clone().css({
-//                     width: original.width()
-//                 });
-//             },
-//             scroll: false,
-//             cursor: "move",
-//             start: function (event, ui) {},
-//             stop: function(event, ui) {}
-//         });
-//     }
-// }
+        });
+    }
+
+    function closeModal() {
+        $('.close-modal').on('click', function () {
+            $('.modal').addClass('hide');
+        });
+    }
+
+    function draggable() {
+        $(".card").draggable({
+            handle: 'h5',
+            revert: false,
+            helper: function (e) {
+                var original = $(e.target).hasClass("ui-draggable") ? $(e.target) : $(e.target).closest(".ui-draggable");
+                return original.clone().css({
+                    width: original.width()
+                });
+            },
+            scroll: false,
+            cursor: "move",
+            start: function (event, ui) {},
+            stop: function(event, ui) {}
+        });
+    }
+}
 
