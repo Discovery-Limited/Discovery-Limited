@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li data-tooltip="Add new task">
-                    <a href="#" class="add-task" id="add-task">
+                    <a href="#add-task-modal" class="add-task" id="add-task">
                         <img src="./src/contents/imgs/add.png" alt="add">
                     </a>
                 </li>
@@ -48,9 +48,9 @@
         </footer>
     </div>
 
-    <div class="modal hide" id="add-task-modal">
+    <div class="overlay" id="add-task-modal">
         <div class="modal-content">
-            <form action="scrumBoard.html" method="post" class="add-tast-form" name="add_task">
+            <form class="add-tast-form" name="add_task">
                 <span class="close-modal">&times;</span>
 
                 <h2>Add Task</h2>

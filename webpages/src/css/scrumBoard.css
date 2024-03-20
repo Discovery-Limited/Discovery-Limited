@@ -309,49 +309,6 @@ header {
     }
 }
 
-.add-tast-form,
-.add-task-modal {
-    text-align: center;
-
-    li {
-        margin-top: 30px;
-    }
-
-    [type=text],
-    [type=submit],
-    textarea {
-        color: #fff;
-        font-size: inherit;
-        font-family: inherit;
-        font-weight: inherit;
-        width: 100%;
-        line-height: 24px;
-        padding: 15px 10px;
-        appearance: none;
-        border: 1px solid var(--primary);
-        background-color: transparent;
-        transition: border-color .25s linear;
-
-        &::-webkit-input-placeholder {
-            color: rgba(255, 255, 255, .3);
-        }
-
-        &:focus {
-            border-color: #fff;
-        }
-    }
-
-    [type=submit] {
-        cursor: pointer;
-        border-color: transparent;
-    }
-
-    textarea {
-        resize: none;
-        min-height: 100px;
-    }
-}
-
 .expand-card {
     height: 19px;
     width: 19px;
@@ -506,3 +463,63 @@ footer {
     transform: translate(-50%, -50%);
 }
 
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--text);
+}
+
+.modal-content .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.modal-content .close-modal:hover {
+    color: var(--quaternary);
+}
+
+
+.modal-content .add-task-form {
+    max-height: 80%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+    .modal-content {
+        width: 70%;
+    }
+}
