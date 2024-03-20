@@ -482,12 +482,14 @@ footer {
 }
 
 .modal-content {
-    margin: 70px auto;
+    display: flex;
+    justify-content: center;
+    /* margin: 70px auto; */
     padding: 20px;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 30%;
-    position: relative;
+    position: absolute;
     transition: all 5s ease-in-out;
 
 }
