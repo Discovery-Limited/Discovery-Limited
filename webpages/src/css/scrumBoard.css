@@ -49,7 +49,7 @@ textarea {
     min-width: 75%;
     max-width: 75%;
     min-height: 30vh;
-    max-height: 40vh;
+    max-height: 30vh;
     background: var(--tertiary);
     outline: none;
     color: var(--text);
@@ -306,52 +306,7 @@ header {
     }
 }
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--background);
-    z-index: 2;
-}
 
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    max-width: 400px;
-    margin: auto;
-    width: 100%;
-    transform: translateX(-50%) translateY(-50%);
-
-
-    .close-modal {
-        border: 1px solid var(--primary);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        position: absolute;
-        top: -90px;
-        font-family: 'Montserrat', sans-serif;
-        line-height: 52px;
-        font-size: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        vertical-align: middle;
-        cursor: pointer;
-
-        &:hover {
-            border-color: #fff;
-        }
-    }
-
-    h3 {
-        font-weight: 100;
-        font-size: 30px;
-        position: relative;
-    }
-}
 
 .expand-card {
     height: 19px;
@@ -532,10 +487,15 @@ footer {
     padding: 20px;
     background: var(--background);
     border-radius: 20px;
-    width: 30%;
+    border: 0px;
+    width: 50%;
+    height: fit-content;
     position: absolute;
     transition: all 5s ease-in-out;
-
+    align-items: center;
+    margin-left: 25%;
+    margin-top: 3%;
+    flex-direction: column;
 }
 
 .modal-content h2 {
@@ -568,4 +528,21 @@ footer {
     .modal-content {
         width: 70%;
     }
+}
+
+#add-task-btn {
+    width: 35%;
+    color: var(--background);
+    background: var(--primary);
+    font-weight: 700;
+    font-size: 1.25em;
+    margin: 5% 0%;
+    height: fit-content;
+    opacity: 0.4;
+}
+
+#add-task-btn:hover {
+    transition: 250ms;
+    cursor: not-allowed;
+    transform: scale(1.1);
 }
