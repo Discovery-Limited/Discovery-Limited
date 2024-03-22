@@ -172,13 +172,13 @@ const insertAboveTask = (zone, mouseY) => {
 
 // ---------- Add Task ---------- 
 // not functioning properly - page refreshes on form submit
-const form = document.getElementsById("add-task-form");
+const form = document.getElementById("add-task-form");
 const taskInput = document.getElementById("task");
 const todoLane = document.getElementById("toDo");
 const submitButton = document.getElementById("add-task-btn");
 
-submitButton.addEventListener("submit", (e) => {
-    // e.preventDefault();
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
     const value = taskInput.value;
 
     if (!value) return;
