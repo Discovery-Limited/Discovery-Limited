@@ -170,3 +170,31 @@ const insertAboveTask = (zone, mouseY) => {
     return closestTask;
 };
 
+// ---------- Add Task ---------- 
+const form = document.getElementById("add-task-form");
+const taskInput = document.getElementById("task");
+const todoLane = document.getElementById("toDo");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = taskInput.value;
+
+    if (!value) return;
+
+    const newTask = document.createElement("p");
+    newTask.classList.add("task");
+    newTask.setAttribute("draggable", "true");
+    newTask.innerText = value;
+
+    newTask.addEventListener("dragstart", () => {
+        newTask.classList.add("is-dragging");
+    });
+
+    newTask.addEventListener("dragend", () => {
+        newTask.classList.remove("is-dragging");
+    });
+
+    todoLane.appendChild(newTask);
+
+    taskInput.value = "";
+});
