@@ -543,6 +543,32 @@ footer {
 
 #add-task-btn:hover {
     transition: 250ms;
-    cursor: not-allowed;
+    cursor: pointer;
     transform: scale(1.1);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 5px;
+    padding: 12px;
+}
+
+.task {
+    background: white;
+    color: black;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 16px;
+    cursor: move;
+}
+
+.is-dragging {
+    scale: 1.05;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+    background: rgb(50, 50, 50);
+    color: white;
 }
