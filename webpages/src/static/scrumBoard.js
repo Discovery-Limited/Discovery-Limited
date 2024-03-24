@@ -174,6 +174,7 @@ const insertAboveTask = (zone, mouseY) => {
 const form = document.getElementById("add-task-form");
 const taskInput = document.getElementById("task");
 const todoLane = document.getElementById("toDo");
+const backlogLane = document.getElementById("backlog");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -194,7 +195,9 @@ form.addEventListener("submit", (e) => {
         newTask.classList.remove("is-dragging");
     });
 
-    todoLane.appendChild(newTask);
+    // todoLane.appendChild(newTask);
+    backlogLane.appendChild(newTask);
+    
 
     taskInput.value = "";
 });
