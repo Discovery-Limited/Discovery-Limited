@@ -175,9 +175,12 @@ const form = document.getElementById("add-task-form");
 const taskInput = document.getElementById("task");
 const todoLane = document.getElementById("toDo");
 const backlogLane = document.getElementById("backlog");
+const addTaskModal = document.getElementById("add-task-modal");
+const addTaskBtn = document.getElementById("add-task");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    addTaskModal.classList.remove("hide");
     const value = taskInput.value;
 
     if (!value) return;
@@ -197,7 +200,9 @@ form.addEventListener("submit", (e) => {
 
     // todoLane.appendChild(newTask);
     backlogLane.appendChild(newTask);
-    
-
     taskInput.value = "";
+    // addTaskModal.classList.add("hide");
+    window.location.href = "#";
+
 });
+
