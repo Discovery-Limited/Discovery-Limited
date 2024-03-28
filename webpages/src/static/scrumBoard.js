@@ -125,6 +125,10 @@
 // ---------- Drag Tasks ----------
 const draggables = document.querySelectorAll(".task");
 const droppables = document.querySelectorAll(".column");
+const backlog = document.getElementById("backlog");
+const toDo = document.getElementById("toDo");
+const inProgress = document.getElementById("inProgress");
+const done = document.getElementById("done");
 
 draggables.forEach((task) => {
     task.addEventListener("dragstart", () => {
@@ -173,6 +177,9 @@ const insertAboveTask = (zone, mouseY) => {
 // ---------- Add Task ---------- 
 const form = document.getElementById("add-task-form");
 const taskInput = document.getElementById("task");
+const descriptionInput = document.getElementById("description");
+const assigneeInput = document.getElementById("assignee");
+const deadlineInput = document.getElementById("deadline");
 const todoLane = document.getElementById("toDo");
 const backlogLane = document.getElementById("backlog");
 const addTaskModal = document.getElementById("add-task-modal");
@@ -182,13 +189,22 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     addTaskModal.classList.remove("hide");
     const value = taskInput.value;
+    const descriptionValue = descriptionInput.value;
+    const assigneeValue = assigneeInput.value;
+    const deadlineValue = deadlineInput.value;
 
     if (!value) return;
 
     const newTask = document.createElement("p");
     newTask.classList.add("task");
     newTask.setAttribute("draggable", "true");
-    newTask.innerText = value;
+    // newTask.innerText = value;
+    newTask.innerText = `
+       Task: ${value}
+        Description: ${descriptionValue}
+       Assignee: ${assigneeValue}
+        Deadline: ${deadlineValue}
+    `;
 
     newTask.addEventListener("dragstart", () => {
         newTask.classList.add("is-dragging");
