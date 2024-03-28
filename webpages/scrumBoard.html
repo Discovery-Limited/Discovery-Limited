@@ -1,70 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="./src/static/handlebar.js"></script> -->
-    <!-- <script type="module" defer src="./src/static/scrumBoard.js?=1"></script> -->
-    <!-- <script src="scrumBoard.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./src/static/handlebar.js"></script>
-    <script src="./src/static/scrumBoard.js" defer></script>
-    <link rel="stylesheet" href="./src/css/scrumBoard.css?=2" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Scrum Board</title>
-</head>
-
-<body>
-    <div class="content">
-        <header class="top-nav">
-            <ul>
-                <li>Backlog</li>
-                <li>ToDo</li>
-                <li>In Progress</li>
-                <li>Done</li>
-            </ul>
-        </header>
-
-        <section id="dashboard" class="dashboard top-nav">
-            <div id="backlog" class="backlog column"></div>
-            <div id="toDo" class="toDo column"></div>
-            <div id="inProgress" class="inProgress column"></div>
-            <div id="done" class="done column"></div>
-        </section>
-
-        <footer>
-            <ul class="controls">
-                <li data-tooltip="Drag task here to delete">
-                    <a href="#" class="remove" id="remove">
-                        <img src="./src/contents/imgs/trash-icon.png" alt="remove">
-                    </a>
-                </li>
-                <li data-tooltip="Add new task">
-                    <a href="#add-task-modal" class="add-task" id="add-task">
-                        <img src="./src/contents/imgs/add.png" alt="add">
-                    </a>
-                </li>
-            </ul>
-        </footer>
-    </div>
-
-    <div class="overlay" id="add-task-modal">
-        <div class="modal-content">
-            <form id="add-task-form" class="add-task-form" name="add_task">
-                <a href="#" class="close-modal">&times;</a>
-
-                <h2>Add Task</h2>
-
-                <input type="text" id="task" name="task" placeholder="Task">
-                <textarea id="description" name="description" placeholder="Description"></textarea>
-                <input type="text" id="assignee" name="assignee" placeholder="Assignee">
-                <input type="text" id="deadline" name="deadline" placeholder="Deadline">
-                <input type="submit" id="add-task-btn" name="add_task" value="Add Task">
-            </form>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <script src="./src/static/handlebar.js"></script> -->
+        <!-- <script type="module" defer src="./src/static/scrumBoard.js?=1"></script> -->
+        <!-- <script src="scrumBoard.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="./src/static/handlebar.js"></script>
+        <script src="./src/static/scrumBoard.js" defer></script>
+        <link rel="stylesheet" href="./src/css/scrumBoard.css?=2" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Scrum Board</title>
+    </head>
+    <body>
+        <div class="content">
+            <header class="top-nav">
+                <ul>
+                    <li>Backlog</li>
+                    <li>ToDo</li>
+                    <li>In Progress</li>
+                    <li>Done</li>
+                </ul>
+            </header>
+            <section id="dashboard" class="dashboard top-nav">
+                <div id="backlog" class="backlog column"></div>
+                <div id="toDo" class="toDo column"></div>
+                <div id="inProgress" class="inProgress column"></div>
+                <div id="done" class="done column"></div>
+            </section>
+            <footer>
+                <ul class="controls">
+                    <li data-tooltip="Drag task here to delete">
+                        <a href="#" class="remove" id="remove">
+                            <img src="./src/contents/imgs/trash-icon.png" alt="remove">
+                        </a>
+                    </li>
+                    <li data-tooltip="Add new task">
+                        <a href="#add-task-modal" class="add-task" id="add-task">
+                            <img src="./src/contents/imgs/add.png" alt="add">
+                        </a>
+                    </li>
+                </ul>
+            </footer>
         </div>
-    </div>
-
-    <!-- <script id="task-card-template" type="text/x-handlebars-template">
+        <div class="overlay" id="add-task-modal">
+            <div class="modal-content">
+                <form id="add-task-form" class="add-task-form" name="add_task">
+                    <a href="#" class="close-modal">&times;</a>
+                    <h2>Add Task</h2>
+                    <input
+                        type="text"
+                        id="task"
+                        name="task"
+                        placeholder="Task"
+                    >
+                    <textarea id="description" name="description" placeholder="Description"></textarea>
+                    <input
+                        type="text"
+                        id="assignee"
+                        name="assignee"
+                        placeholder="Assignee"
+                    >
+                    <input
+                        type="date"
+                        id="deadline"
+                        name="deadline"
+                        placeholder="Deadline"
+                    >
+                    <input
+                        type="submit"
+                        id="add-task-btn"
+                        name="add_task"
+                        value="Add Task"
+                    >
+                </form>
+            </div>
+        </div>
+        <!-- <script id="task-card-template" type="text/x-handlebars-template">
         <div class="task-card" draggable="true">
             <div class="task-card-header">
                 <h3>{{task}}</h3>
@@ -77,8 +89,7 @@
             </div>
         </div>
     </script> -->
-
-    <script id="task-card-template" type="text/x-handlebars-template">
+        <script id="task-card-template" type="text/x-handlebars-template">
         {{#each this}}
 
             <div class="card" data-task-id="{{id}}">
@@ -91,7 +102,6 @@
                 </div>
             </div>
         {{/each}}
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>
