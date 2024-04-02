@@ -1,131 +1,121 @@
-/* @import 'index.css';*/
-
 :root {
-    --text: #fff;
-    --primary: #403F4C;
-    --secondary: #348AA7;
-    --background: #e8e5e5;
-    --tertiary: #246b82;
-    --quaternary: #cacaca;
-    --quinary: #8e8e8e;
-  }
-
-* {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
+  --text: #fff;
+  --primary: #403f4c;
+  --secondary: #348aa7;
+  --background: #e8e5e5;
+  --tertiary: #246b82;
+  --quaternary: #cacaca;
+  --quinary: #8e8e8e;
 }
 
-/* Reset and base styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background);
+* {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background);
 }
 
 /* Wrapper for the entire layout */
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-/* Top navigation bar */
 .top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    background-color: var(--secondary);
-    color: var(--background);
-    border-bottom: 5px solid var(--tertiary); /* Darker border color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: var(--secondary);
+  color: var(--background);
+  border-bottom: 5px solid var(--tertiary); /* Darker border color */
 }
 
 .logo {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .menu-items {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .menu-items a {
-    color: var(--text);
-    text-decoration: none;
-    margin-left: 20px; /* Add margin between menu items */
-    padding-top: 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 20px; /* Add margin between menu items */
+  padding-top: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-/* .menu-items a:hover { */
-    /* background-color: rgba(255, 255, 255, 0.1); */
-    /* background-color: var(--quaternary); */
-/* } */
-
-/* Dashboard layout */
 .dashboard {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 .sidebar {
-    width: 200px;
-    background-color: var(--primary);
-    color: var(--text);
-    padding: 20px;
+  width: 200px;
+  background-color: var(--primary);
+  color: var(--text);
+  padding: 20px;
 }
 
 .sidebar-buttons {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: var(--quinary); 
-    transition: background-color 0.3s;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--quinary);
+  transition: background-color 0.3s;
 }
 
 .sidebar a {
-    display: inline-block;
-    /* padding: 20px; */
-    /* margin: 0px; */
-    width: 90%;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+  display: inline-block;
+  /* padding: 20px; */
+  /* margin: 0px; */
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .sidebar-buttons:hover {
-    cursor: pointer;
-    background-color: var(--quaternary); /* Slightly lighter background color on hover */
+  cursor: pointer;
+  background-color: var(--quaternary);
 }
 
 .main-content {
-    flex-grow: 1;
-    padding: 20px;
+  flex-grow: 1;
+  padding: 20px;
 }
 
 .add-note {
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #28a745;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .add-note:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
-
 img {
-    height: 40px;
-    width: 40px;
+  height: 40px;
+  width: 40px;
 }
 
 a:visited {
-    color: var(--text);
+  color: var(--text);
 }
