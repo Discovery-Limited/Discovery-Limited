@@ -1,131 +1,213 @@
-/* @import 'index.css';*/
-
 :root {
-    --text: #fff;
-    --primary: #403F4C;
-    --secondary: #348AA7;
-    --background: #e8e5e5;
-    --tertiary: #246b82;
-    --quaternary: #cacaca;
-    --quinary: #8e8e8e;
-  }
+  --text: #fff;
+  --primary: #403f4c;
+  --secondary: #348aa7;
+  --background: #e8e5e5;
+  --tertiary: #246b82;
+  --quaternary: #cacaca;
+  --quinary: #8e8e8e;
+}
 
 * {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
 }
 
-/* Reset and base styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background);
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--primary);
 }
 
-/* Wrapper for the entire layout */
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Top navigation bar */
 .top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    background-color: var(--secondary);
-    color: var(--background);
-    border-bottom: 5px solid var(--tertiary); /* Darker border color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background-color: var(--secondary);
+  color: var(--background);
+  border-bottom: 5px solid var(--tertiary);
 }
 
-.logo {
-    font-size: 24px;
-}
-
-.menu-items {
-    display: flex;
-    align-items: center;
-}
-
-.menu-items a {
-    color: var(--text);
-    text-decoration: none;
-    margin-left: 20px; /* Add margin between menu items */
-    padding-top: 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-/* .menu-items a:hover { */
-    /* background-color: rgba(255, 255, 255, 0.1); */
-    /* background-color: var(--quaternary); */
-/* } */
-
-/* Dashboard layout */
 .dashboard {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 .sidebar {
-    width: 200px;
-    background-color: var(--primary);
-    color: var(--text);
-    padding: 20px;
+  width: 200px;
+  background-color: var(--primary);
+  padding: 20px;
 }
 
 .sidebar-buttons {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: var(--quinary); 
-    transition: background-color 0.3s;
-}
-
-.sidebar a {
-    display: inline-block;
-    /* padding: 20px; */
-    /* margin: 0px; */
-    width: 90%;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--secondary);
+  transition: background-color 0.3s;
 }
 
 .sidebar-buttons:hover {
-    cursor: pointer;
-    background-color: var(--quaternary); /* Slightly lighter background color on hover */
+  cursor: pointer;
+  background-color: var(--quaternary);
 }
 
 .main-content {
-    flex-grow: 1;
-    padding: 20px;
+  padding: 20px;
+  border: none;
+  flex-grow: 1;
+  background-color: transparent;
 }
-
-.add-note {
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.add-note:hover {
-    background-color: #218838;
-}
-
 
 img {
-    height: 40px;
-    width: 40px;
+  margin-left: 30px;
+  height: 50px;
+  width: 50px;
 }
 
 a:visited {
-    color: var(--text);
+  color: var(--text);
+}
+
+.content-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap");
+
+.navbar {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background-color: var(--background);
+  padding: 0 8%;
+  box-shadow: var(--shadow);
+}
+
+.navbar-logo {
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.navbar-list {
+  width: 100%;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.navbar-list li {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.navbar-list li a {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.profile-dropdown {
+  position: relative;
+  width: fit-content;
+}
+
+.profile-dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 150px;
+  border-radius: 50px;
+  color: var(--background);
+  cursor: pointer;
+  border: 1px solid var(--secondary);
+  transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
+    border 0.3s;
+}
+
+.profile-img {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  background: url(/webpages/src/contents/imgs/about-us.png);
+  background-size: cover;
+}
+
+.profile-img i {
+  position: absolute;
+  right: 0;
+  bottom: 0.3rem;
+  font-size: 0.1rem;
+  color: var(--green);
+}
+
+.profile-dropdown-btn span {
+  margin: 0 0.5rem;
+  margin-right: 0;
+}
+
+.profile-dropdown-list {
+  position: absolute;
+  top: 50px;
+  width: 200px; /* width*/
+  right: 0;
+  background-color: var(--secondary);
+  border-radius: 30px;
+  max-height: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: max-height 0.5s;
+}
+
+.profile-dropdown-list.active {
+  max-height: 400px;
+}
+
+.profile-dropdown-list-item {
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+  transition: background-color 0.9s ease-in, padding-left 0.4s;
+}
+
+.profile-dropdown-list-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.profile-dropdown-list-item a i {
+  margin-right: 0.8rem;
+  font-size: 1.1rem;
+  height: 2.3rem;
+  background-color: var(--secondary);
+  color: var(--white);
+  line-height: 2.3rem;
+  text-align: center;
+  margin-right: 1rem;
+  border-radius: 50%;
+  transition: margin-right 0.4s;
+}
+
+.profile-dropdown-list-item:hover {
+  padding-left: 1.5rem;
+  background-color: var(--secondary-light);
 }
