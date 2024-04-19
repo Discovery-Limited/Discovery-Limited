@@ -148,7 +148,11 @@ droppables.forEach((zone) => {
 
         if (!bottomTask) {
             zone.appendChild(curTask);
-        } else {
+        } else if (curTask == 'remove') {
+            curTask.remove();
+        }
+        
+        else {
             zone.insertBefore(curTask, bottomTask);
         }
     });
@@ -200,9 +204,9 @@ form.addEventListener("submit", (e) => {
     newTask.setAttribute("draggable", "true");
     // newTask.innerText = value;
     newTask.innerText = `
-       Task: ${value}
+        Task: ${value}
         Description: ${descriptionValue}
-       Assignee: ${assigneeValue}
+        Assignee: ${assigneeValue}
         Deadline: ${deadlineValue}
     `;
 

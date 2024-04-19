@@ -2,7 +2,8 @@
 
 :root {
     --text: #000000;
-    --primary: #403F4C;
+    /* --primary: #403F4C; */
+    --primary: #1e1c1c;
     --secondary: #348AA7;
     --background: #e8e5e5;
     --tertiary: #f4f4f4;
