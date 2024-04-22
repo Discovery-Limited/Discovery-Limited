@@ -129,6 +129,7 @@ const backlog = document.getElementById("backlog");
 const toDo = document.getElementById("toDo");
 const inProgress = document.getElementById("inProgress");
 const done = document.getElementById("done");
+const remove = document.getElementById("remove");
 
 draggables.forEach((task) => {
     task.addEventListener("dragstart", () => {
@@ -157,6 +158,13 @@ droppables.forEach((zone) => {
         }
     });
 });
+
+remove.addEventListener("dragover", () => {
+    const curTask = document.querySelector(".is-dragging");
+    curTask.remove();
+})
+
+
 
 const insertAboveTask = (zone, mouseY) => {
     const els = zone.querySelectorAll(".task:not(.is-dragging)");
