@@ -31,4 +31,3 @@ try {
     die("Database connection failed.");
 }
 
-?>
