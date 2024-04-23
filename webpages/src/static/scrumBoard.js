@@ -1,3 +1,7 @@
+document.addEventListener("dragover", (e) => {
+    e.preventDefault();
+})
+
 // ---------- Drag Tasks ----------
 const draggables = document.querySelectorAll(".task");
 const droppables = document.querySelectorAll(".column");
@@ -34,7 +38,7 @@ droppables.forEach((zone) => {
 });
 
 
-remove.addEventListener("dragover", () => {
+remove.addEventListener("drop", () => {
     const curTask = document.querySelector(".is-dragging");
     document.getElementById("remove").style.width = "50px";
     curTask.remove();
