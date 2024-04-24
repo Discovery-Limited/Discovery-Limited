@@ -8,63 +8,72 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
     <link rel="stylesheet" href="./src/css/userView.css" />
+    <script src="./src/static/userView.js"></script>
     <title>Dashboard</title>
   </head>
   <body>
     <div class="wrapper">
       <nav class="top-nav">
-      <img src="./src/contents/imgs/logo.png" class="navbar-logo" alt="logo"/>
-      <ul class="navbar-list">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Community</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-
-      <div class="profile-dropdown">
-        <div onclick="toggle()" class="profile-dropdown-btn">
-          <div class="profile-img">   
-          </div><span><?php echo htmlspecialchars($username); ?><i class="fa-solid fa-angle-down"></i>
-          </span>
-        </div>
-
-        <ul class="profile-dropdown-list">
-
-        <div class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-regular fa-user"></i>
-              Edit Profile
-            </a>
-        </div>
-
-        <div class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-sliders"></i>
-              Settings
-            </a>
-        </div>
-
-        <div class="profile-dropdown-list-item">
-            <a href="index.html">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              Log out
-            </a>
-        </div>
+        <img src="./src/contents/imgs/logo.png" class="navbar-logo" alt="logo"/>
+        <ul class="navbar-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">About</a></li>
         </ul>
-      </div>
+
+        <div class="profile-dropdown">
+          <div class="profile-dropdown-btn">
+              <div class="profile-img"></div>
+              <span><?php echo htmlspecialchars($username); ?><i class="fa-solid fa-angle-down"></i></span>
+          </div>
+          <ul class="profile-dropdown-list">
+              <li class="profile-dropdown-list-item">
+                  <a href="#">
+                      <i class="fa-regular fa-user"></i>
+                      Edit Profile
+                  </a>
+              </li>
+              <li class="profile-dropdown-list-item">
+                  <a href="#">
+                      <i class="fa-solid fa-sliders"></i>
+                      Settings
+                  </a>
+              </li>
+              <li class="profile-dropdown-list-item">
+                  <a href="index.html">
+                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                      Log out
+                  </a>
+              </li>
+          </ul>
+      </div>    
     </nav>
        
       <div class="dashboard">
         <aside class="sidebar">
-          <button
-            class="sidebar-buttons"
+          <div>
+            <div id="projects" class="sidebar-toggle">
+              <p>Projects</p>
+              <i class="fa-solid fa-sort-down"></i>
+            </div>
+            <ul class="sidebar-dropdown-list">
+              <li><a href="#"><i class="fa-solid fa-circle-plus"></i>Create new project</a></li>
+            </ul>
+          </div>
+          <div>
+            <div id="deadlines" class="sidebar-toggle">
+              <p>Project Deadlines</p>
+            </div>
+          </div>
+
+          <!-- <button class="sidebar-buttons"
             onclick="loadContent('./scrumBoard.html')">Deadlines</button>
-          <button class="sidebar-buttons" onclick="loadContent('./activity.html')"> Recent Activity</button>
+          <button class="sidebar-buttons" onclick="loadContent('./activity.html')"> Recent Activity</button> -->
         </aside>
         <main class="main-content">
           <iframe id="contentFrame"class="content-frame"src=""frameborder="0"></iframe>
         </main>
       </div>
     </div>
-    <script src="./src/static/userView.js"></script>
   </body>
 </html>
