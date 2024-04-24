@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmPassword = document.querySelector('#confirmpassword');
 
     const button = document.querySelector('.submit-form');
-    let emailCheck = false; 
-    let usernameCheck = false;  
 
     confirmPassword.addEventListener('keyup', validateInfo);
     password.addEventListener('keyup', passwordHandler);
