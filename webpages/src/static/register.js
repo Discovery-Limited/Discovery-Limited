@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (password.value.length < 8) {
             pwInfo.classList.remove('hidden');
             pwInfo.textContent = 'Password must be at least 8 characters long';
-        } else if (password.value == null) {
+        } else if (password.value.length <= 0) {
             pwInfo.classList.add('hidden');
         } else {
             button.style.cursor = 'not-allowed';
