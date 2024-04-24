@@ -47,20 +47,74 @@ html {
   width: 200px;
   background-color: var(--primary);
   padding: 20px;
+  border-right: var(--tertiary) 2px solid;
 }
 
-.sidebar-buttons {
-  margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  color: var(--text);
-  background-color: var(--secondary);
-  transition: background-color 0.3s;
+.sidebar > div {
+  background-color: black;
+  color: var(--quaternary);
+  display: block;
+  align-items: center;
+  height: fit-content;
+  border: 0;
+  border-radius: 2.5%;
+  margin-bottom: 2.5vh;
 }
 
-.sidebar-buttons:hover {
+.sidebar-toggle {
+  display: flex;
+  width: 100%;
+  padding:10px 0px;
+}
+
+.sidebar-toggle:hover {
   cursor: pointer;
-  background-color: var(--quaternary);
+}
+
+.sidebar-toggle p {
+  width: 80%;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.sidebar-toggle i {
+  text-align: center;
+  width: 20%;
+}
+
+.sidebar-dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none; 
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding-left: 20px;
+}
+
+.sidebar-dropdown-list.active {
+  display: block; 
+  padding: 0;
+}
+
+.sidebar-dropdown-list li a {
+  color: var(--quaternary);
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-dropdown-list a {
+  font-size: 15px;
+  padding: 10px 10px;
+}
+
+.sidebar-dropdown-list a>i {
+  padding-right: 10px;
+}
+
+.sidebar-dropdown-list li a:hover {
+  background-color: var(--tertiary);
 }
 
 .main-content {
@@ -165,14 +219,14 @@ a:visited {
 .profile-dropdown-list {
   position: absolute;
   top: 50px;
-  width: 200px; /* width*/
+  width: 200px;
   right: 0;
   background-color: var(--secondary);
   border-radius: 30px;
   max-height: 0;
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: max-height 0.5s;
+  transition: max-height 0.5s ease;
 }
 
 .profile-dropdown-list.active {
@@ -182,7 +236,7 @@ a:visited {
 .profile-dropdown-list-item {
   padding: 0.3rem 0.5rem;
   text-align: left;
-  transition: background-color 0.9s ease-in, padding-left 0.4s;
+  transition: background-color 0.3s, padding-left 0.4s;
 }
 
 .profile-dropdown-list-item a {
