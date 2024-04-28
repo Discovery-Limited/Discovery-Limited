@@ -36,21 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // function checkInfo() {
-    //     if (username.value.length <= 0 && email.value.length <= 0) {
-    //         // emailCheck = false;
-    //         // usernameCheck = false;
-    //         button.style.cursor = 'not-allowed';
-    //         button.style.opacity = (0.4);
-    //     } else {
-    //         console.log(email.value);
-    //         // emailCheck = true;
-    //         // usernameCheck = true;
-    //         button.style.opacity = (1);
-    //         button.style.cursor = 'pointer';
-    //     }
-    // }
-
     function validateInfo() {
         // console.log(email.value);
         if (password.value != confirmPassword.value) {
