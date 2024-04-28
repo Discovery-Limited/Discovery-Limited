@@ -30,9 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (password.value.length < 8) {
             pwInfo.classList.remove('hidden');
             pwInfo.textContent = 'Password must be at least 8 characters long';
-        } else if (password.value.length <= 0) {
-            pwInfo.classList.add('hidden');
         } else {
+            pwInfo.classList.add('hidden');
             button.style.cursor = 'not-allowed';
         }
     }
@@ -61,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
             button.style.cursor = 'not-allowed';
             button.style.opacity = (0.4);
         } else if (username.value.length <= 0 && email.value.length <= 0) {
+            button.style.cursor = 'not-allowed';
+            button.style.opacity = (0.4);
+        } else if (password.value <= '' && confirmPassword.value <= '') {
             button.style.cursor = 'not-allowed';
             button.style.opacity = (0.4);
         } else {
