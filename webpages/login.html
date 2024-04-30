@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/accessControl.css?=1">
-    <script type="module" defer src="./src/static/accessControl.js"></script>  
+    <script type="module" defer src="./src/static/login.js?=1"></script>  
     <title>DS | Log In</title>
 </head>
 
@@ -17,7 +17,9 @@
         <form action="log_form.php" method="POST" id="loginform">
             <input type="email" id="email" name="email"  placeholder="Email"  required/>
             <input type="password" id="password" name="password" placeholder="Password" required/>
-            <input type="submit" class="submit-form" value="Log In" style="cursor:pointer; opacity:1"/>
+            <input type="submit" class="submit-form" value="Log In"/>
+            <!-- style="cursor:pointer; opacity:1" -->
+            <p id="error"></p>
         </form>
         <div class="info-container">
             <a id="forgot-pw" class="access-info">I forgot my password</a>
