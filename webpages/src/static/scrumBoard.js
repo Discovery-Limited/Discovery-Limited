@@ -137,12 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-// todoLane.appendChild(newTask);
-backlogLane.appendChild(newTask);
-taskInput.value = "";
-// addTaskModal.classList.add("hide");
-window.location.href = "#";
-
 document.addEventListener("click", (e) => {
   const expandButton = e.target.closest(".expand-details-btn");
   if (expandButton) {
