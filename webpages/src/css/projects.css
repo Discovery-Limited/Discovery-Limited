@@ -35,7 +35,7 @@ li {
 
 .project p {
     padding-left: 5%;
-    width: 80%;
+    width: 70%;
     color: var(--tertiary);
 }
 
@@ -47,6 +47,19 @@ li {
 }
 
 .edit {
-    width: 10%;
+    width: 20%;
     text-align: center;
+}
+
+.edit-btn {
+    padding-left: 50%;
+}
+
+.edit-dropdown {
+    display: none;
+    grid-template-columns: 1.25fr 0.75fr;
+}
+
+.fa-pen-to-square {
+    margin-left: 50%;
 }
