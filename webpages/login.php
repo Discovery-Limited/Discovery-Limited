@@ -1,26 +1,19 @@
 <?php
-session_start();
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$host = '212.107.17.1';
-$db = 'u921949114_discoveria_';
-$user = 'u921949114_admin_';
-$pass = 'w4bF&9zDp#q@X6yS';
-$charset = 'utf8mb4';
+// Load the configuration file
+$config = require 'config.php';
 
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO(
+        "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
+        $config['db']['user'],
+        $config['db']['pass'],
+        $config['options']
+    );
 } catch (\PDOException $e) {
-    exit("Database connection failed: " . $e->getMessage());
+    die("Database connection failed: " . $e->getMessage());
 }
 
 function test_input($data) {

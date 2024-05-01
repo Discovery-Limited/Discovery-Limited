@@ -23,7 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   window.loadContent = function(fileName) {
-    document.getElementById("contentFrame").src = fileName;
+    if (fileName !== document.getElementById("contentFrame")) {
+      document.getElementById("contentFrame").src = fileName;
+    }
   };
 
   createProject.addEventListener("click", function() {
@@ -33,11 +35,11 @@ document.addEventListener("DOMContentLoaded", function() {
   const emailInput = document.getElementById('emailInput');
   emailInput.addEventListener('keypress', function(event) {
       if (event.key === 'Enter') {
-          event.preventDefault(); // This stops the form from submitting
+          event.preventDefault(); 
           const email = this.value.trim();
-          if (email && validateEmail(email)) { // Simple email validation function call
+          if (email && validateEmail(email)) {
               addEmailToList(email);
-              this.value = ''; // Clear input after adding
+              this.value = ''; 
           } else {
               alert("Please enter a valid email.");
           }

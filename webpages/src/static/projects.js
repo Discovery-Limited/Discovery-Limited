@@ -1,13 +1,13 @@
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
     const listCon = document.querySelector("ul");
     
     class Projects {
         static editBtns = [];
         static projectsList = [];
 
-        constructor(projectName, contributorsCount) {
-            this.projectName = projectName;
-            this.contributorsCount = contributorsCount;
+        constructor(data) {
+            this.projectName = data.project_name;
+            // this.contributorsCount = contributorsCount;
             this.node = null;
             this.editBtn = null;
             this.dropdownContent = null;
@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
             const content = template.content.cloneNode(true);
             
             content.querySelector('p').textContent = this.projectName;
-            content.querySelectorAll('.contributors p')[0].textContent = this.contributorsCount;
+            // content.querySelectorAll('.contributors p')[0].textContent = this.contributorsCount;
             
             this.node = document.importNode(content, true);
             this.editBtn = this.node.querySelector('.edit-btn');
@@ -48,10 +48,20 @@ window.addEventListener("load", () => {
         }
     }
 
-    // for (let i = 0; i < 5; i++) {
-    //     const project = new Projects('New Project', 5);
-    //     project.render();
-    // }
+    fetch('getProjects.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                data.forEach(project => {
+                    const projectInstance = new Projects(project);
+                    projectInstance.render();
+                });
+            }
+        })
+        .catch(error => console.error('Error fetching projects:', error));
+    
 
     window.addEventListener("click", (event) => {
        if (!event.target.classList.contains("edit-btn")) {

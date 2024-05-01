@@ -1,31 +1,21 @@
 <?php
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
-
-// Database credentials
-$host = '212.107.17.1';
-$db = 'u921949114_discoveria_';
-$user = 'u921949114_admin_';
-$pass = 'w4bF&9zDp#q@X6yS';
-$charset = 'utf8mb4';
-
-// Data Source Name (DSN)
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
+// Load the configuration file
+$config = require 'config.php';
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO(
+        "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
+        $config['db']['user'],
+        $config['db']['pass'],
+        $config['options']
+    );
 } catch (\PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
+
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
