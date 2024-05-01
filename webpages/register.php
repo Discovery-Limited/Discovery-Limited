@@ -49,6 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Passwords don't match.");
     }
 
+    // Check if the email already exists
+    $stmt = $pdo->prepare("SELECT email FROM user WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    if ($stmt->fetch()) {
+        die("Email already exists.");
+    }
+
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     try {
