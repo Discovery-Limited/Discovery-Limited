@@ -35,7 +35,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 $project_name = $_POST['project_name'] ?? '';
-$email_addresses = $_POST['email'] ?? [];
+$email_addresses = isset($_POST['emails']) ? explode(',', $_POST['emails']) : [];
 
 // Begin a transaction
 $pdo->beginTransaction();
@@ -72,7 +72,7 @@ try {
 
     // Commit the transaction
     $pdo->commit();
-    echo "Project created successfully.";
+    header('Location: user_view.php');
 } catch (\PDOException $e) {
     // Rollback the transaction on error
     $pdo->rollBack();
