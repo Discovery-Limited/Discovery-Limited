@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const sidebarDropdownList = document.querySelector('.sidebar-dropdown-list');
   const createProject = document.querySelector("#create-project");
   const projectForm = document.querySelector("#project-form");
+  const closeProjectPopup = document.querySelector('.close-popup');
 
   profileDropdownButton.addEventListener("click", function() {
     profileDropdownList.classList.toggle("active");
@@ -29,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
   createProject.addEventListener("click", function() {
     projectForm.classList.toggle("active");
   });
+
+  closeProjectPopup.addEventListener("click", function() {
+    projectForm.classList.toggle("active");
+  })
 
   const emailInput = document.getElementById('emailInput');
   emailInput.addEventListener('keypress', function(event) {
