@@ -39,12 +39,7 @@ droppables.forEach((zone) => {
 
 remove.addEventListener("drop", () => {
   const curTask = document.querySelector(".is-dragging");
-  document.getElementById("remove").style.width = "50px";
   curTask.remove();
-});
-
-remove.addEventListener("dragleave", () => {
-  document.getElementById("remove").style.width = "30px";
 });
 
 const insertAboveTask = (zone, mouseY) => {
@@ -92,15 +87,15 @@ form.addEventListener("submit", (e) => {
   newTask.classList.add("task");
   newTask.setAttribute("draggable", "true");
   newTask.innerHTML = `
-        <p class="task-title">${value}</p>
-        <div class="additional-details expanded">
-            <p>Description: ${descriptionValue}</p>
-            <p>Assignee: ${assigneeValue}</p>
-            <p>Deadline: ${deadlineValue}</p>
-        </div>
-        <button class="expand-details-btn">
-            <i class="fas fa-caret-down"></i> <!-- Initially shown as caret-down -->
-        </button>
+    <p class="task-title">${value}</p>
+    <p>Assignee: ${assigneeValue}</p>
+    <p>Deadline: ${deadlineValue}</p>
+    <div class="additional-details">
+      <p>Description: ${descriptionValue}</p>
+    </div>
+    <button class="expand-details-btn">
+      <i class="fas fa-caret-down"></i>
+    </button>
     `;
 
   newTask.addEventListener("dragstart", () => {

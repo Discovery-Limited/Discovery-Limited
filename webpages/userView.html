@@ -83,6 +83,8 @@
         <main class="main-content">
           <iframe id="contentFrame"class="content-frame"src=""frameborder="0"></iframe>
           <form id="project-form" action="projects.php" method="post">
+            <a href="#" class="close-popup">&times;</a>
+            <h2>Create Project</h2>
             <label for="projectName">Project Name:</label>
             <input type="text" id="projectName" name="project_name" required><br><br>
 
@@ -91,8 +93,8 @@
             <input type="text" id="emailInput" placeholder="Enter email and press Enter">
             <input type="hidden" name="emails" id="hiddenEmails">
 
-            <button type="submit">Create Project</button>
-        </form>
+            <button type="submit" id="create-project-submit-btn">Create Project</button>
+          </form>
         </main>
       </div>
     </div>

@@ -52,12 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
             button.style.opacity = (0.4);
         } else {
             confirmInfo.classList.add('hidden');
-            // confirmInfo.textContent = 'Passwords match';
             button.disabled = false;
             button.style.opacity = (1);
             button.style.cursor = 'pointer';
         }
-        // here's more simplified and efficient way to do it:
-        // confirmInfo.classList.toggle('hidden', password.value !== confirmPassword.value); 
     }
 });

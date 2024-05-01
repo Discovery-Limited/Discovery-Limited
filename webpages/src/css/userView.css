@@ -279,9 +279,17 @@ a:visited {
   top: 25%;
   background-color: var(--quaternary);
   width: 50%;
-  height: 25%;
+  height: fit-content;
   border: var(--quinary) 2px solid;
   border-radius: 5px;
+}
+
+#project-form h2 {
+  position: relative;
+  justify-self: center;
+  top: -30px;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 #project-form label {
@@ -313,4 +321,30 @@ a:visited {
 input[type="text"], input[type="submit"] {
   padding: 8px;
   margin-top: 5px;
+}
+
+#create-project-submit-btn {
+  position: relative;
+  justify-self: center;
+  width: 40%;
+  margin: 20px 0px 5px 0px;
+  font-size: 20px;
+  padding: 8px 4px;
+  border-radius: 20px;
+}
+
+#create-project-submit-btn:hover {
+  transition: 250ms;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.close-popup {
+  position: relative;
+  justify-self: right;
+  margin: 5px 10px 0px 0px;
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  text-decoration: none;
 }
