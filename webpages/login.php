@@ -1,12 +1,7 @@
 <?php
 session_start();
-session_unset();
-session_destroy();
-
-session_start();
 
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $host = '212.107.17.1';
@@ -21,22 +16,21 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass, $options);
+    $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    die("Database connection failed.");
+    exit("Database connection failed: " . $e->getMessage());
 }
 
-function test_input($data)
-{
+function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
 
-function validateEmail($email)
-{
+function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
@@ -49,20 +43,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM user WHERE email = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
+        $stmt = $pdo->prepare("SELECT user_id, username, password FROM user WHERE email = :email");
+        $stmt->execute(['email' => $email]);
         $user = $stmt->fetch();
+
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
-
-            header("Location: user_view.php?userid=" . $_SESSION['user_id']);
-        
-            exit();
+            header("Location: user_view.php");
+            exit;
+        } else {
+            die("Invalid email or password.");
         }
     } catch (\PDOException $e) {
-        echo "Error occurred during login.";
+        die("An error occurred: " . $e->getMessage());
     }
 }
+?>
