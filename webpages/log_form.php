@@ -49,16 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM DB_accounts WHERE email = :email");
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
         $user = $stmt->fetch();
         if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['userid'] = $user['id'];
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
 
-            header("Location: user_view.php?userid=" . $_SESSION['userid']);
+            header("Location: user_view.php?userid=" . $_SESSION['user_id']);
         
             exit();
         }

@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $verificationToken = bin2hex(random_bytes(16));
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO DB_accounts (username, email, password) VALUES (:username, :email, :password)");
+        $stmt = $pdo->prepare("INSERT INTO user (username, email, password) VALUES (:username, :email, :password)");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
@@ -67,10 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $userid = $pdo->lastInsertId();
 
-        $_SESSION['userid'] = $userid;
+        $_SESSION['user_id'] = $userid;
 
         echo "Registration successful.";
-        header("Location: user_view.php?userid=" . $_SESSION['userid']);
+        header("Location: user_view.php?userid=" . $_SESSION['user_id']);
     } catch (\PDOException $e) {
         echo "User already exists.";
     }
