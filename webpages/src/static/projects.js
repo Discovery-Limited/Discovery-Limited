@@ -48,10 +48,10 @@ window.addEventListener("load", () => {
         }
     }
 
-    for (let i = 0; i < 5; i++) {
-        const project = new Projects('New Project', 5);
-        project.render();
-    }
+    // for (let i = 0; i < 5; i++) {
+    //     const project = new Projects('New Project', 5);
+    //     project.render();
+    // }
 
     window.addEventListener("click", (event) => {
        if (!event.target.classList.contains("edit-btn")) {

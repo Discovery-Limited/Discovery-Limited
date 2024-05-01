@@ -265,3 +265,52 @@ a:visited {
   padding-left: 1.5rem;
   background-color: var(--secondary-light);
 }
+
+#project-form {
+  display: none;
+}
+
+#project-form.active {
+  display: grid;
+  grid-template-columns: 1fr;
+  position: absolute;
+  z-index: 3;
+  left: 25%;
+  top: 25%;
+  background-color: var(--quaternary);
+  width: 50%;
+  height: 25%;
+  border: var(--quinary) 2px solid;
+  border-radius: 5px;
+}
+
+#project-form label {
+  padding-left: 5%;
+  padding-top: 5%;
+  font-size: 1em;
+}
+
+#project-form input {
+  margin-left: 5%;
+  width: 90%;
+}
+
+#project-form input[type="submit"] {
+  margin-bottom: 5%;
+}
+
+#emailList {
+  margin-bottom: 10px;
+}
+
+#emailList span{
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+input[type="text"], input[type="submit"] {
+  padding: 8px;
+  margin-top: 5px;
+}
