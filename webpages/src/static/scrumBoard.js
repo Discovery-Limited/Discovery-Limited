@@ -39,7 +39,6 @@ droppables.forEach((zone) => {
 
 remove.addEventListener("drop", () => {
   const curTask = document.querySelector(".is-dragging");
-  document.getElementById("remove").style.width = "50px";
   curTask.remove();
 });
 
