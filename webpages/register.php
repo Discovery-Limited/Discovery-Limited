@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $host = '212.107.17.1';
 $db = 'u921949114_discoveria_';
 $user = 'u921949114_admin_';
@@ -11,32 +13,25 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass, $options);
+    $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    die("Database connection failed.");
+    exit("Database connection failed: " . $e->getMessage());
 }
-session_start();
-session_unset();
-session_destroy();
 
-session_start();
-
-function test_input($data)
-{
+function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
 
-function validateEmail($email)
-{
+function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-function validatePassword($password, $confirmpassword) 
-{
+function validatePassword($password, $confirmpassword) {
     return $password === $confirmpassword;
 }
 
@@ -51,27 +46,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!validatePassword($password, $confirmpassword)) {
-        die("Passwords doesn't match.");
+        die("Passwords don't match.");
+    }
+
+    // Check if the email already exists
+    $stmt = $pdo->prepare("SELECT email FROM user WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    if ($stmt->fetch()) {
+        die("Email already exists.");
     }
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $verificationToken = bin2hex(random_bytes(16));
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO DB_accounts (username, email, password) VALUES (:username, :email, :password)");
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $hashed_password);
+        $stmt = $pdo->prepare("INSERT INTO user (username, email, password) VALUES (:username, :email, :password)");
+        $stmt->execute(['username' => $username, 'email' => $email, 'password' => $hashed_password]);
 
-        $stmt->execute();
-
-        $userid = $pdo->lastInsertId();
-
-        $_SESSION['userid'] = $userid;
-
-        echo "Registration successful.";
-        header("Location: user_view.php?userid=" . $_SESSION['userid']);
+        $_SESSION['user_id'] = $pdo->lastInsertId();
+        header("Location: user_view.php");
+        exit;
     } catch (\PDOException $e) {
-        echo "User already exists.";
+        die("An error occurred: " . $e->getMessage());
     }
 }
+?>

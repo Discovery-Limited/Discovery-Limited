@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 $host = '212.107.17.1';
 $db = 'u921949114_discoveria_';
 $user = 'u921949114_admin_';
@@ -15,20 +18,24 @@ $options = [
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass, $options);
 } catch (\PDOException $e) {
-    die("Database connection failed.");
+    die("Database connection failed: " . $e->getMessage());
 }
 
 session_start();
 
-if (isset($_SESSION['userid'])) {
-    $userid = $_SESSION['userid'];
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
 
-    $stmt = $pdo->prepare("SELECT username FROM DB_accounts WHERE id = :userid");
-    $stmt->execute(['userid' => $userid]);
+    $stmt = $pdo->prepare("SELECT username FROM user WHERE user_id = :user_id");
+    $stmt->execute(['user_id' => $user_id]);
     $user = $stmt->fetch();
-    $username = $user['username'];
 
-    include 'userView.html';
+    if ($user) {
+        $username = $user['username'];
+        include 'userView.html';
+    } else {
+        echo "No user found.";
+    }
 } else {
     header("Location: login.php");
     exit();
