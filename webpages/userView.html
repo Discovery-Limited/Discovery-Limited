@@ -24,8 +24,8 @@
         <div class="profile-dropdown">
           <div class="profile-dropdown-btn">
               <div class="profile-img"></div>
-              <span><php echo htmlspecialchars($username); ?><i class="fa-solid fa-angle-down"></i></span>
-          </div>
+              <span><?php echo htmlspecialchars($username); ?><i class="fa-solid fa-angle-down"></i></span>
+            </div>
           <ul class="profile-dropdown-list">
               <li class="profile-dropdown-list-item">
                   <a href="#">
@@ -58,6 +58,9 @@
               <i class="fa-solid fa-sort-down"></i>
             </div>
             <ul class="sidebar-dropdown-list">
+              <?php foreach ($projects as $project): ?>
+                <li><a><?= htmlspecialchars($project['project_name']) ?></a></li>
+              <?php endforeach; ?>
               <li>
                 <a id="create-project">
                   <i class="fa-solid fa-circle-plus"></i>

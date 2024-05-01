@@ -32,7 +32,16 @@ if (isset($_SESSION['user_id'])) {
 
     if ($user) {
         $username = $user['username'];
-        include 'userView.html';
+        
+        // Query to fetch all projects associated with this user
+        $projectQuery = $pdo->prepare("SELECT p.project_id, p.project_name 
+                                       FROM project p 
+                                       JOIN user_project up ON p.project_id = up.project_id 
+                                       WHERE up.user_id = :user_id");
+        $projectQuery->execute(['user_id' => $user_id]);
+        $projects = $projectQuery->fetchAll();
+
+        include 'userView.html'; // Assuming userView.html will handle the display of projects
     } else {
         echo "No user found.";
     }
@@ -40,4 +49,6 @@ if (isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
+
 ?>
+
