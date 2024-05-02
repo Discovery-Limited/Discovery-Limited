@@ -2,7 +2,6 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Load the configuration file
 $config = require 'config.php';
 
 try {
@@ -15,6 +14,8 @@ try {
 } catch (\PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
+
+session_start();
 
 function test_input($data) {
     $data = trim($data);

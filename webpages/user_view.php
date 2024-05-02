@@ -3,7 +3,6 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Load the configuration file
 $config = require 'config.php';
 
 try {
@@ -37,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
         $projectQuery->execute(['user_id' => $user_id]);
         $projects = $projectQuery->fetchAll();
 
-        include 'userView.html'; // Assuming userView.html will handle the display of projects
+        include 'userView.html';
     } else {
         echo "No user found.";
     }

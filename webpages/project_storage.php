@@ -16,6 +16,7 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
+session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -32,8 +33,15 @@ $pdo->beginTransaction();
 
 try {
     // Insert new project
-    $stmt = $pdo->prepare("INSERT INTO project (project_name) VALUES (:project_name)");
+    $stmt = $pdo->prepare("INSERT INTO project (project_name, admin_id) VALUES (:project_name, :user_id)");
     $stmt->bindParam(':project_name', $project_name);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $project_id = $pdo->lastInsertId();
+
+    // Insert new scrumboard
+    $stmt = $pdo->prepare("INSERT INTO scrumboard (project_id) VALUES (:project_id)");
+    $stmt->bindParam(':project_id', $project_id);
     $stmt->execute();
     $project_id = $pdo->lastInsertId();
 
@@ -44,6 +52,7 @@ try {
     $stmt->execute();
 
     // Add other users if emails were provided
+    $contributors = 1;
     if (!empty($email_addresses)) {
         foreach ($email_addresses as $email) {
             $stmt = $pdo->prepare("SELECT user_id FROM user WHERE email = :email");
@@ -56,9 +65,15 @@ try {
                 $stmt->bindParam(':project_id', $project_id);
                 $stmt->bindParam(':user_id', $user['user_id']);
                 $stmt->execute();
+                $contributors++;
             }
         }
     }
+
+    $stmt = $pdo->prepare("UPDATE project SET contributors = :contributors WHERE project_id = :project_id");
+    $stmt->bindParam(':contributors', $contributors);
+    $stmt->bindParam(':project_id', $project_id);
+    $stmt->execute();
 
     // Commit the transaction
     $pdo->commit();

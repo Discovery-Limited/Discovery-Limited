@@ -20,10 +20,10 @@ session_start();
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
-    $projectQuery = $pdo->prepare("SELECT p.project_id, p.project_name 
+    $projectQuery = $pdo->prepare("SELECT p.project_id p.project_name, contributors 
                                    FROM project p 
                                    JOIN user_project up ON p.project_id = up.project_id 
-                                   WHERE up.user_id = :user_id");
+                                   WHERE p.is_delete = 0 AND up.is_left = 0 AND up.user_id = :user_id");
     $projectQuery->execute(['user_id' => $user_id]);
     $projects = $projectQuery->fetchAll(PDO::FETCH_ASSOC);
 

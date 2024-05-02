@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         constructor(data) {
             this.projectName = data.project_name;
-            // this.contributorsCount = contributorsCount;
+            this.contributorsCount = data.contributors;
             this.node = null;
             this.editBtn = null;
             this.dropdownContent = null;
@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
             const content = template.content.cloneNode(true);
             
             content.querySelector('p').textContent = this.projectName;
-            // content.querySelectorAll('.contributors p')[0].textContent = this.contributorsCount;
+            content.querySelectorAll('.contributors p')[0].textContent = this.contributorsCount;
             
             this.node = document.importNode(content, true);
             this.editBtn = this.node.querySelector('.edit-btn');
@@ -45,10 +45,10 @@ window.addEventListener("DOMContentLoaded", () => {
                 this.dropdownContent.style.display = "none";
                 this.editMode = false;
             }
-        }
+        }   
     }
 
-    fetch('getProjects.php')
+    fetch('fetch_projects.php')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -61,7 +61,6 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(error => console.error('Error fetching projects:', error));
-    
 
     window.addEventListener("click", (event) => {
        if (!event.target.classList.contains("edit-btn")) {
