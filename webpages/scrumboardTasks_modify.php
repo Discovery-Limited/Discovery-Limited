@@ -17,15 +17,21 @@ try {
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
-    
     if (isset($_SESSION['user_id'])) {
-        $task_id = $data['taskId'];
-        $status = $data['status'];
+        $taskId = $_POST['task_id'];
+        $taskTitle = $_POST['task_title'];
+        $description = $_POST['description'];
+        $deadline = $_POST['deadline'];
+        $tag = $_POST['tag']; 
+        $tagColor = $_POST['tag_color']; 
         
-        $stmt = $pdo->prepare("UPDATE task SET status = :status WHERE task_id = :task_id");
-        $stmt->bindValue(':status', $status);
-        $stmt->bindValue(':task_id', $task_id);
+        $stmt = $pdo->prepare("UPDATE task SET task_name = :task_name, description = :description, deadline = :deadline, tag = :tag, tag_color = :tag_color WHERE task_id = :task_id");
+        $stmt->bindValue(':task_name', $taskTitle);
+        $stmt->bindValue(':description', $description);
+        $stmt->bindValue(':deadline', $deadline);
+        $stmt->bindValue(':tag', $tag);
+        $stmt->bindValue(':tag_color', $tagColor);
+        $stmt->bindValue(':task_id', $taskId);
         $stmt->execute();
 
         echo json_encode(['success' => true]);

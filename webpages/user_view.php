@@ -28,7 +28,6 @@ if (isset($_SESSION['user_id'])) {
     if ($user) {
         $username = $user['username'];
         
-        // Query to fetch all projects associated with this user
         $projectQuery = $pdo->prepare("SELECT p.project_id, p.project_name 
                                        FROM project p 
                                        JOIN user_project up ON p.project_id = up.project_id 
