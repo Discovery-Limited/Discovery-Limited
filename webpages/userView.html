@@ -9,7 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
     <link rel="stylesheet" href="./src/css/userView.css?v=2" />
-    <script src="./src/static/userView.js?v=2"></script>
+    <script src="./src/static/userView.js?v=3"></script>
     <title>Dashboard</title>
   </head>
   <body>
@@ -67,14 +67,9 @@
               <i class="fa-solid fa-angle-down"></i>
             </div>
             <ul class="sidebar-dropdown-list">
-              <?php foreach ($projects as $project): ?>
-              <li>
-                <a class="project" data-id="<?= htmlspecialchars($project['project_id'], ENT_QUOTES); ?>">
-                  <?= htmlspecialchars($project['project_name'], ENT_QUOTES); ?>
-                </a>
-              </li>
-            <?php endforeach; ?>
-            
+              <li><a>Project-1</a></li>
+              <li><a>Project-2</a></li>
+              <li><a>Project-3</a></li>
               <li>
                 <a id="create-project">
                   <i class="fa-solid fa-circle-plus"></i>
@@ -87,7 +82,7 @@
           <div id="project-home">
             <div
               class="sidebar-toggle active"
-              onclick="loadContent('./home.html')"
+              onclick="loadContent('./projects.html')"
             >
               <p><i class="fa-solid fa-house"></i>Home</p>
             </div>
@@ -105,7 +100,7 @@
             <div
               id="deadlines"
               class="sidebar-toggle"
-              onclick="loadContent('./scrumBoard.html')"
+              onclick="loadContent('./scrumBoard.php')"
             >
               <p><i class="fa-solid fa-chalkboard"></i>Scrumboard</p>
             </div>
@@ -130,7 +125,7 @@
             src=""
             frameborder="0"
           ></iframe>
-          <form id="project-form" action="project_storage.php" method="post">
+          <form id="project-form" action="createProject.php" method="post">
             <a href="#" class="close-popup">&times;</a>
             <h2>Create Project</h2>
             <label for="projectName">Project Name:</label>

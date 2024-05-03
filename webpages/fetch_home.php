@@ -22,14 +22,14 @@ try {
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
         
-        $stmt = $pdo->prepare("CALL GetTasksForUser(:user_id)");
+        $stmt = $pdo->prepare("SELECT username FROM user WHERE user_id = :user_id");
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
     
-        $tasks = $stmt->fetchAll();
+        $username = $stmt->fetch();
 
-        echo json_encode(['username' => $userResult['username'], 'tasks' => $tasks]); 
-
+        echo json_encode(['username' => $username]); 
+        include 'home.html';
     } else {
         echo json_encode(['error' => 'User ID not set in session.']);
     }

@@ -740,3 +740,54 @@ header {
   font-size: 20px;
   color: #000;
 }
+#modify-task-form-container {
+  z-index: 9999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+}
+
+#modify-task-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#modify-task-form input[type="text"],
+#modify-task-form input[type="date"],
+#modify-task-form textarea {
+  width: calc(100% - 20px); /* Adjusting for padding */
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#modify-task-form textarea {
+  height: 100px; /* Adjust as needed */
+}
+
+#modify-task-form button[type="submit"] {
+  display: block;
+  width: 100%;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#modify-task-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.hide {
+  display: none;
+}
