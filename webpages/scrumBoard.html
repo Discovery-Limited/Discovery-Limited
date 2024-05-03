@@ -9,33 +9,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./src/static/handlebar.js"></script>
     <script src="./src/static/scrumBoard.js?=3" defer></script>
+    <link rel="stylesheet" href="./src/css/scrumBoard.css?=4" />
     <link
       rel="stylesheet"
-      href="./src/css/scrumBoard.css?=2"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
     <title>Scrum Board</title>
   </head>
   <body>
-    <div class="content">
-      <header class="top-nav">
-        <ul>
-          <li>Backlog</li>
-          <li>ToDo</li>
-          <li>In Progress</li>
-          <li>Done</li>
-        </ul>
-      </header>
-      <section id="dashboard" class="dashboard top-nav">
-        <div id="backlog" class="backlog column" class="drop"></div>
-        <div id="toDo" class="toDo column" class="drop"></div>
-        <div id="inProgress" class="inProgress column" class="drop"></div>
-        <div id="done" class="done column" class="drop"></div>
-      </section>
+    <div class="topbar">
+      <div class="page-name">
+        <p><i class="fa-solid fa-house"></i>Home</p>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="container">
+        <div id="backlog" class="backlog column drop">
+          <div class="title">Backlog</div>
+        </div>
+
+        <div class="toDo column drop"><div class="title">To Do</div></div>
+
+        <div class="inProgress column drop">
+          <div class="title">In Progress</div>
+        </div>
+
+        <div class="done column drop"><div class="title">Done</div></div>
+      </div>
+
       <footer>
         <ul class="controls">
           <li data-tooltip="Drag task here to delete">
@@ -50,39 +52,69 @@
           </li>
         </ul>
       </footer>
-    </div>
-    <div class="overlay" id="add-task-modal">
-      <div class="modal-content">
-        <form id="add-task-form" class="add-task-form" name="add_task">
-          <a href="#" class="close-modal">&times;</a>
-          <h2>Add Task</h2>
-          <input type="text" id="task" name="task" placeholder="Task" />
-          <textarea
-            id="description"
-            name="description"
-            placeholder="Description"
-          ></textarea>
-          <input
-            type="text"
-            id="assignee"
-            name="assignee"
-            placeholder="Assignee"
-          />
-          <input
-            type="date"
-            id="deadline"
-            name="deadline"
-            placeholder="Deadline"
-          />
-          <input
-            type="submit"
-            id="add-task-btn"
-            name="add_task"
-            value="Add Task"
-          />
-        </form>
+
+      <div class="overlay" id="add-task-modal">
+        <div class="modal-content">
+          <form id="add-task-form" class="add-task-form" name="add_task">
+            <a href="#" class="close-modal">&times;</a>
+            <h2>Add Task</h2>
+            <input type="text" id="task" name="task" placeholder="Task" />
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Description"
+            ></textarea>
+            <input
+              type="text"
+              id="assignee"
+              name="assignee"
+              placeholder="Assignee"
+            />
+            <input
+              type="date"
+              id="deadline"
+              name="deadline"
+              placeholder="Deadline"
+            />
+
+            <!-- Tag Color Selector Dropdown -->
+            <label for="tagColorSelector">Tag Color:</label>
+            <select id="tagColorSelector" name="tagColorSelector">
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+            </select>
+
+            <input
+              type="text"
+              id="tagNameInput"
+              name="tagNameInput"
+              placeholder="Tag Name"
+            />
+
+            <input
+              type="submit"
+              id="add-task-btn"
+              name="add_task"
+              value="Add Task"
+            />
+            <input
+              type="hidden"
+              id="scrumboard_ID"
+              name="scrumboard_ID"
+              value="0"
+            />
+            <input
+              type="hidden"
+              id="status_VALUE"
+              name="status_VALUE"
+              value="1"
+            />
+          </form>
+        </div>
       </div>
     </div>
+
     <script id="task-card-template" type="text/x-handlebars-template">
       {{#each this}}
 

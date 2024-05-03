@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
-        <link rel="stylesheet" href="./src/css/projects.css">
-        <script src="./src/static/projects.js"></script>
-    </head>
-    <body>
-        <section>
-            <ul>
-            </ul>
-        </section>
-        <template id="project-template">
-            <li>
-                <div class="project">
-                    <p>Project Name</p>
-                    <div class="edit">
-                        <i class="fa-solid fa-ellipsis edit-btn"></i>
-                        <div class="edit-dropdown">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash-can"></i>
-                        </div>
-                    </div>
-                    <div class="contributors">
-                        <i class="fa-solid fa-users-rectangle"></i>
-                        <p>0</p>
-                    </div>
-                </div>
-            </li>
-        </template>                
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/css/projects.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="page-name">
+        <p><i class="fa-solid fa-house"></i>Home</p>
+      </div>
+    </div>
+    <div class="dashboard">
+      <div class="container">
+        <div class="widget ScrumTracker">
+          <div class="widget-nav">
+            <h3 class="widget-title">In Progress</h3>
+            <div class="widget-settings"><i class="fa-solid fa-gear"></i></div>
+          </div>
+          <div class="widget-content">
+            <h4>2</h4>
+            <p>Tasks</p>
+          </div>
+        </div>
+        <div class="widget">
+          <div class="widget-nav">
+            <h3 class="widget-title">Agenda</h3>
+            <div class="widget-settings"><i class="fa-solid fa-gear"></i></div>
+          </div>
+        </div>
+        <div class="widget">
+          <div class="widget-nav">
+            <h3 class="widget-title">Agenda</h3>
+            <div class="widget-settings"><i class="fa-solid fa-gear"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -56,7 +56,5 @@ document.addEventListener("DOMContentLoaded", () => {
             button.style.opacity = (1);
             button.style.cursor = 'pointer';
         }
-        // here's more simplified and efficient way to do it:
-        // confirmInfo.classList.toggle('hidden', password.value !== confirmPassword.value); 
     }
 });

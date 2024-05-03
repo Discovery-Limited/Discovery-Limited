@@ -1,13 +1,13 @@
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
     const listCon = document.querySelector("ul");
     
     class Projects {
         static editBtns = [];
         static projectsList = [];
 
-        constructor(projectName, contributorsCount) {
-            this.projectName = projectName;
-            this.contributorsCount = contributorsCount;
+        constructor(data) {
+            this.projectName = data.project_name;
+            this.contributorsCount = data.contributors;
             this.node = null;
             this.editBtn = null;
             this.dropdownContent = null;
@@ -45,13 +45,22 @@ window.addEventListener("load", () => {
                 this.dropdownContent.style.display = "none";
                 this.editMode = false;
             }
-        }
+        }   
     }
 
-    // for (let i = 0; i < 5; i++) {
-    //     const project = new Projects('New Project', 5);
-    //     project.render();
-    // }
+    fetch('fetch_projects.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                data.forEach(project => {
+                    const projectInstance = new Projects(project);
+                    projectInstance.render();
+                });
+            }
+        })
+        .catch(error => console.error('Error fetching projects:', error));
 
     window.addEventListener("click", (event) => {
        if (!event.target.classList.contains("edit-btn")) {
