@@ -103,6 +103,10 @@ header nav .account-ops {
   justify-content: center;
 }
 
+header nav .account-ops .button {
+  text-decoration: none;
+}
+
 header nav .account-ops .login {
   background: transparent;
   color: #4a5465;
@@ -600,6 +604,10 @@ header nav .account-ops .button::selection {
   display: flex;
   flex-direction: row;
   gap: 8px;
+}
+
+.social-icons img {
+  height: 5vh;
 }
 
 #footer a,

@@ -1,3 +1,6 @@
+// TODO
+// ADD SCRUMBOARD_ID TO THE HIDDEN INPUT IN "scrumboard.html" SOMEHOW
+
 document.addEventListener("dragover", (e) => {
   e.preventDefault();
 });
@@ -68,6 +71,12 @@ const taskInput = document.getElementById("task");
 const descriptionInput = document.getElementById("description");
 const assigneeInput = document.getElementById("assignee");
 const deadlineInput = document.getElementById("deadline");
+const scrumboard_ID = document.getElementById("scrumboard_ID"); // TODO
+const statusVAL = document.getElementById("status_VALUE"); // TODO
+
+const tagInput = document.getElementById("tagColorSelector");
+const tagNameInput = document.getElementById("tagNameInput");
+
 const todoLane = document.getElementById("toDo");
 const backlogLane = document.getElementById("backlog");
 const addTaskModal = document.getElementById("add-task-modal");
@@ -80,37 +89,68 @@ form.addEventListener("submit", (e) => {
   const descriptionValue = descriptionInput.value;
   const assigneeValue = assigneeInput.value;
   const deadlineValue = deadlineInput.value;
+  const scrumboard_id = scrumboard_ID.value;
+  const statusValue = statusVAL.value;
+  const tagColor = tagInput.value;
+  const tagName = tagNameInput.value;
 
   if (!value) return;
 
-  const newTask = document.createElement("p");
-  newTask.classList.add("task");
-  newTask.setAttribute("draggable", "true");
-  newTask.innerHTML = `
-    <p class="task-title">${value}</p>
-    <p>Assignee: ${assigneeValue}</p>
-    <p>Deadline: ${deadlineValue}</p>
-    <div class="additional-details">
-      <p>Description: ${descriptionValue}</p>
-    </div>
-    <button class="expand-details-btn">
-      <i class="fas fa-caret-down"></i>
-    </button>
-    `;
+  const formData = new FormData();
+  formData.append("task_name", value);
+  formData.append("deadline", deadlineValue);
+  formData.append("description", descriptionValue);
+  formData.append("scrumboard_id", scrumboard_id);
+  formData.append("status", statusValue);
 
-  newTask.addEventListener("dragstart", () => {
-    newTask.classList.add("is-dragging");
-  });
+  fetch("scrumboardTasks_add.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        const task_id = data.task_id;
+        const newTask = document.createElement("p");
+        newTask.classList.add("task");
+        newTask.setAttribute("draggable", "true");
+        newTask.innerHTML = `
+        <div class="task-nav">
+          <p class="task-title">${value}</p>
+          <div class="task-settings">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+        </div>
+        <div class="additional-details expanded">
+          <p>Description: ${descriptionValue}</p>
+          <p>Assignee: ${assigneeValue}</p>
+          <div class="task-footer">
+            <p class="task-date">${deadlineValue}</p>
+            <div class="task-tag ${tagColor}">${tagName}</div>
+          </div>
+        </div>
+        <button class="expand-details-btn">
+          <i class="fas fa-caret-up"></i>
+        </button>`;
 
-  newTask.addEventListener("dragend", () => {
-    newTask.classList.remove("is-dragging");
-  });
+        newTask.addEventListener("dragstart", () => {
+          newTask.classList.add("is-dragging");
+        });
 
-  // todoLane.appendChild(newTask);
-  backlogLane.appendChild(newTask);
-  taskInput.value = "";
-  // addTaskModal.classList.add("hide");
-  window.location.href = "#";
+        newTask.addEventListener("dragend", () => {
+          newTask.classList.remove("is-dragging");
+        });
+
+        backlogLane.appendChild(newTask);
+        taskInput.value = "";
+        window.location.href = "#";
+      } else {
+        console.error("Error adding task:", data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error adding task:", error);
+    });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

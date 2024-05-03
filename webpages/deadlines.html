@@ -4,26 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome</title>
-    <link rel="stylesheet" href="/src/css/welcome.css"/>
-    <script src="src/static/deadline.js"></script>
+    <link rel="stylesheet" href="/src/css/deadlines.css" />
+    <script src="./src/static/deadlines.js?v=4"></script>
   </head>
   <body>
     <div id="overlay"></div>
-    <h2>Welcome <span class="username"></span> 👋</h2>
 
     <div id="popup">
       <button id="close-popup"><div class="close-popup"></div></button>
       <div class="deadline-details">
-        <div class="task-name">May Update</div>
-        <div class="task-date">15/05/2024</div>
+        <div class="task-name"></div>
+        <div class="task-date"></div>
       </div>
 
-      <div class="description">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident,
-        illum.
-      </div>
+      <div class="description"></div>
     </div>
-
     <div id="deadlines">
       <h3>Upcoming Deadlines</h3>
 
@@ -34,11 +29,12 @@
             <div class="task-date"></div>
           </div>
           <div class="progress-bar">
-            <div class="progress-child"></div>
+            <div class="progress-child" ></div>
           </div>
           <button class="deadline-details-btn"></button>
         </div>
       </template>
+
     </div>
   </body>
 </html>

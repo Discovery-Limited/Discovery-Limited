@@ -1,7 +1,11 @@
 <?php
 
+header('Content-Type: application/json');  // Set content type to JSON
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+session_start();  // Start the session
 
 // Load the configuration file
 $config = require 'config.php';
@@ -14,26 +18,27 @@ try {
         $config['db']['pass'],
         $config['options']
     );
+
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+
+        $stmt = $pdo->prepare("CALL GetTasksForUser(:user_id)");
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        $tasks = $stmt->fetchAll();
+
+        if ($tasks) {
+            echo json_encode(['username' => $userResult['username'], 'tasks' => $tasks]); 
+        } else {
+            echo "no tasks are found.";
+        }
+
+    } else {
+        echo json_encode(['error' => 'User ID not set in session.']);
+    }
 } catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
-
-$user_id = $_SESSION['user_id'];
-
-try {
-    // Prepare and execute the stored procedure
-    $stmt = $pdo->prepare("CALL GetTasksForUser(:user_id)");
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    // Fetch all results
-    $tasks = $stmt->fetchAll();
-
-    // Output results
-    echo json_encode($tasks);
-
-} catch (PDOException $e) {
-    echo "Error executing stored procedure: " . $e->getMessage();
+    echo json_encode(['error' => "Database error: " . $e->getMessage()]);
 }
 
 ?>

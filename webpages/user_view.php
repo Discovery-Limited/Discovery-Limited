@@ -36,6 +36,8 @@ if (isset($_SESSION['user_id'])) {
         $projectQuery->execute(['user_id' => $user_id]);
         $projects = $projectQuery->fetchAll();
 
+        echo json_encode($projects);
+
         include 'userView.html';
     } else {
         echo "No user found.";

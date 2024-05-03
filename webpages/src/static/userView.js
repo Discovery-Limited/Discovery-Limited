@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   sidebarToggle.addEventListener("click", function () {
-    sidebarToggle.querySelector("i").classList.toggle("fa-sort-down");
-    sidebarToggle.querySelector("i").classList.toggle("fa-sort-up");
+    sidebarToggle.querySelector("i").classList.toggle("fa-angle-down");
+    sidebarToggle.querySelector("i").classList.toggle("fa-angle-up");
     sidebarDropdownList.classList.toggle("active");
   });
 
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadWelcomePage() {
     const iframe = document.getElementById("contentFrame");
-    iframe.src = "welcome.html";
+    iframe.src = "deadlines.html";
   }
 
   window.onload = loadWelcomePage;

@@ -23,33 +23,22 @@ window.addEventListener("DOMContentLoaded", () => {
         overlay.style.display = "none";
     });
 
-    class Deadline {
-
+    class Deadline {      
         constructor(data) {
             this.data = data;
             this.node = null;
-          }
-        
-          render() {
+        }
+      
+        render() {
             const template = document.querySelector('#deadline-item');
             const content = template.content.cloneNode(true);
             this.node = document.importNode(content, true).firstElementChild;
-          }
+            document.querySelector("#deadlines").appendChild(this.node);
+        }
     }
 
-    fetch('user_view.php')
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            console.error('Error:', data.error);
-        } else {
-            document.querySelector(".username").textContent = data.username;
-        }
-    })
-    .catch(error => console.error('Error fetching projects:', error));
-
     fetch('fetch_deadline.php')
-    .then(response => response.json())
+    .then(response => response.json()) 
     .then(data => {
         if (data.error) {
             console.error('Error:', data.error);
@@ -59,4 +48,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     })
     .catch(error => console.error('Error fetching projects:', error));
+
 });
+

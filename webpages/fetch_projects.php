@@ -28,6 +28,7 @@ if (isset($_SESSION['user_id'])) {
     $projects = $projectQuery->fetchAll(PDO::FETCH_ASSOC);
 
     // Encode data as JSON and output it
+    header('Location: user_view.php');
     echo json_encode($projects);
 } else {
     echo json_encode(['error' => 'User not logged in']);
