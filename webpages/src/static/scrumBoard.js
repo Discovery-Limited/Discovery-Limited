@@ -258,10 +258,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const addTaskBtn = document.getElementById("add-task-btn");
-  const taskInput = document.getElementById("task");
+    const addTaskBtn = document.getElementById("add-task-btn");
+    const taskInput = document.getElementById("task");
 
-  taskInput.addEventListener("keyup", checkTaskInput);
+    taskInput.addEventListener('keyup', checkTaskInput);
 
   function checkTaskInput() {
     if (taskInput.value.length == 0) {
