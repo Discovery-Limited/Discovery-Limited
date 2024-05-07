@@ -9,7 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
     <link rel="stylesheet" href="./src/css/userView.css?v=2" />
-    <script src="./src/static/userView.js?v=3"></script>
+    <script src="./src/static/userView.js?v=21"></script>
     <title>Dashboard</title>
   </head>
   <body>
@@ -22,7 +22,7 @@
         />
 
         <ul class="navbar-list">
-          <li><a href="#">Home</a></li>
+          <li><a class="return-home">Home</a></li>
           <li><a href="#">Community</a></li>
           <li><a href="#">About</a></li>
         </ul>
@@ -67,9 +67,6 @@
               <i class="fa-solid fa-angle-down"></i>
             </div>
             <ul class="sidebar-dropdown-list">
-              <li><a>Project-1</a></li>
-              <li><a>Project-2</a></li>
-              <li><a>Project-3</a></li>
               <li>
                 <a id="create-project">
                   <i class="fa-solid fa-circle-plus"></i>
@@ -84,7 +81,7 @@
               class="sidebar-toggle active"
               onclick="loadContent('./projects.html')"
             >
-              <p><i class="fa-solid fa-house"></i>Home</p>
+              <p><i class="fa-solid fa-house"></i>Dashboard</p>
             </div>
           </div>
           <div>
@@ -96,11 +93,6 @@
               <p><i class="fa-solid fa-timeline"></i>Project Deadlines</p>
             </div>
           </div>
-          <div id="google-drive"
-              class="sidebar-toggle"
-              onclick="loadContent('./src/googleDrive/googleDrive.html')">
-              <p><i class="fa-brands fa-google-drive"></i></i>Google Drive</p>
-            </div>
           <div>
             <div
               id="deadlines"

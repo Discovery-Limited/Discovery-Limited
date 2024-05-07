@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/src/css/projects.css" />
+    <link rel="stylesheet" href="./src/css/projects.css?v=3" />
+    <script type="module" defer src="./src/static/projects.js?v=9"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -13,32 +14,54 @@
   <body>
     <div class="topbar">
       <div class="page-name">
-        <p><i class="fa-solid fa-house"></i>Home</p>
+        <button onclick="omitData('undefined')">
+          <i class="fa-solid fa-house"></i>Home
+        </button>
       </div>
     </div>
-    <div class="dashboard">
-      <div class="container">
-        <div class="widget ScrumTracker">
-          <div class="widget-nav">
-            <h3 class="widget-title">In Progress</h3>
-            <div class="widget-settings"><i class="fa-solid fa-gear"></i></div>
+    <div id="projects">
+      <h3>Projects</h3>
+
+      <template id="project-item">
+        <div class="project-item">
+          <div class="project-details">
+            <div class="project-name"></div>
+            <div class="project-contributors">
+              <i class="fa-solid fa-users"></i>
+            </div>
           </div>
-          <div class="widget-content">
-            <h4>2</h4>
-            <p>Tasks</p>
+          <p class="progress-text"> tasks done out of </p>
+          <div class="progress-bar">
+            <div class="progress-child" style="width: 0%"></div>
           </div>
+          <button class="project-btn" onclick="togglePopup()">
+            See more
+            <i class="fa-solid fa-angle-right"></i>
+          </button>
         </div>
-        <div class="widget">
-          <div class="widget-nav">
-            <h3 class="widget-title">Agenda</h3>
-            <div class="widget-settings"><i class="fa-solid fa-gear"></i></div>
-          </div>
+      </template>
+    </div>
+
+    <div class="project-details-popup" id="project-details-popup">
+      <div class="project-details-content" id="project-details-content">
+        <div id="project-details-actions">
+          <button type="button" id="project-details-close">X</button>
         </div>
-        <div class="widget">
-          <div class="widget-nav">
-            <h3 class="widget-title">Agenda</h3>
-            <div class="widget-settings"><i class="fa-solid fa-gear"></i></div>
-          </div>
+        <div id="project-details-wrapper">
+          <h2>Project Name</h2>
+          <p id="admin">Admin: </p>
+          <p class="progress-text"> total tasks done out of </p>
+          <p id="own-tasks">Assigned Tasks: </p>
+        </div>
+        <p class="contributors-text">Contributors:</p>
+        <div id="project-details-contributors">
+          <a>test1@gmail.com</a>
+          <a>test1@gmail.com</a>
+          <a>test1@gmail.com</a>
+        </div>
+        <div id="project-details-actions">
+          <button type="button" id="leave" class="project-details-delete">Leave Project</button>
+          <button type="button" id="delete" class="project-details-delete hide">Delete Project</button>
         </div>
       </div>
     </div>

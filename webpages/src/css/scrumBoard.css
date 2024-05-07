@@ -33,17 +33,20 @@
   padding: 16px;
 }
 
-.topbar .page-name p i {
+.topbar .page-name button i {
   text-align: center;
   display: inline-block;
   width: 20px;
   margin-right: 4px;
 }
 
-.topbar .page-name p {
+.topbar .page-name button {
   color: var(--text-2);
   font-weight: 500;
   font-size: 14px;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .dashboard {
@@ -106,6 +109,13 @@
 
 .task-settings {
   margin-left: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.task-settings i {
+  color: var(--text-2);
 }
 
 .task .task-title {
@@ -212,7 +222,7 @@ input:focus {
   cursor: pointer;
 }
 
-form {
+#add-task-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -740,43 +750,84 @@ header {
   font-size: 20px;
   color: #000;
 }
+
 #modify-task-form-container {
   z-index: 9999;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  border-radius: 8px;
+  background-color: #00000090;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modify-task-form-container form {
+  background-color: var(--background);
+  border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 300px;
+  width: 400px;
+}
+
+#modify-task-form-actions {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#modify-task-form-delete {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  color: #ef473a;
+  background-color: #ef473a20;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#modify-task-form-close {
+  width: 10px;
+  height: 10px;
+  background-color: #ef473a;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 #modify-task-form label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  width: fit-content;
 }
 
 #modify-task-form input[type="text"],
 #modify-task-form input[type="date"],
 #modify-task-form textarea {
-  width: calc(100% - 20px); /* Adjusting for padding */
+  width: 100%;
   padding: 8px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 #modify-task-form textarea {
-  height: 100px; /* Adjust as needed */
+  height: 100px;
 }
 
 #modify-task-form button[type="submit"] {
   display: block;
   width: 100%;
-  background-color: #007bff;
+  background-color: var(--text);
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -784,8 +835,16 @@ header {
   cursor: pointer;
 }
 
+#modify-task-tag-color {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  height: 30px;
+}
+
 #modify-task-form button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: var(--text-2);
 }
 
 .hide {

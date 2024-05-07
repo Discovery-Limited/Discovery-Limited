@@ -2,8 +2,8 @@
 
 header('Content-Type: application/json');  // Set content type to JSON
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
 
 session_start();  // Start the session
 
@@ -26,9 +26,10 @@ try {
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
     
-        $tasks = $stmt->fetchAll();
+        $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        echo json_encode(['username' => $userResult['username'], 'tasks' => $tasks]); 
+
+        echo json_encode(['tasks' => $tasks]);
 
     } else {
         echo json_encode(['error' => 'User ID not set in session.']);

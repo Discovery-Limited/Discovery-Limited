@@ -6,6 +6,118 @@ document.addEventListener("DOMContentLoaded", function () {
   const createProject = document.querySelector("#create-project");
   const projectForm = document.querySelector("#project-form");
   const closeProjectPopup = document.querySelector(".close-popup");
+  const projectButton = document.querySelector("#projects");
+
+  fetch("fetch_projects.php")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      data.forEach((project) => {
+        const li = document.createElement("li");
+        const text = document.createElement("a");
+        text.textContent = project.project_name;
+        li.classList.add("project");
+        li.setAttribute("data-id", project.project_id);
+        li.appendChild(text);
+        sidebarDropdownList.appendChild(li);
+
+        li.addEventListener("click", () => {
+          const projectId = li.getAttribute("data-id");
+          setProjectIdInSession(projectId);
+
+          
+          projectButton.querySelector("p").textContent = li.querySelector("a").textContent;
+          projectButton.setAttribute("data-id", projectId);
+          projectButton.classList.toggle("active");
+          
+          sidebarToggle.querySelector("i").classList.toggle("fa-angle-down");
+          sidebarToggle.querySelector("i").classList.toggle("fa-angle-up");
+          sidebarDropdownList.classList.toggle("active");
+          document.querySelector("#project-home").querySelector(".sidebar-toggle").classList.toggle("active");
+
+          loadContent('./projects.html');
+        });
+
+        fetch("check_project_session.php")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.projectID) {
+              const projectLi = document.querySelector(
+                `.project[data-id="${data.projectID}"]`
+              );
+              if (projectLi) {
+                projectButton.querySelector("p").textContent =
+                projectLi.textContent.trim();
+              } else {
+                console.error("Project li not found for ID:", data.projectID);
+              }
+              return;
+            } else {
+              fetch("fetch_projects.php")
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                  }
+                  return response.json();
+                })
+                .then((data) => {
+                  const currentProject = data[0];
+
+                  projectButton.querySelector("p").textContent =
+                    currentProject.project_name;
+                  projectButton.setAttribute(
+                    "data-id",
+                    currentProject.project_id
+                  );
+                  setProjectIdInSession(currentProject.project_id);
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                });
+            }
+          })
+          .catch((error) => {
+            console.error("Error checking project session:", error);
+          });
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+    function setProjectIdInSession(projectId) {
+    if (!projectId) {
+      console.error("Project ID is not provided");
+      return;
+    }
+
+    fetch("set_project_session.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ projectID: projectId }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then()
+      .catch((error) => {
+        console.error("Error setting project ID in session:", error);
+      });
+  }
 
   profileDropdownButton.addEventListener("click", function () {
     profileDropdownList.classList.toggle("active");
@@ -30,6 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.loadContent = function (fileName) {
     if (fileName !== document.getElementById("contentFrame")) {
       document.getElementById("contentFrame").src = fileName;
+      const uniqueParam = Date.now();
+      return `${fileName}?version=${uniqueParam}`;
     }
   };
 
@@ -75,9 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.onload = loadWelcomePage;
-});
 
-document.addEventListener("DOMContentLoaded", () => {
   const sidebarToggles = document.querySelectorAll(".sidebar-toggle");
 
   sidebarToggles.forEach((toggle) => {
@@ -90,3 +202,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+window.onload = function () {};

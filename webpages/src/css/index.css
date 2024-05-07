@@ -239,6 +239,7 @@ h1 {
   transition: all 400ms ease;
   box-shadow: 0px 0px 16px #758cfd00;
   text-align: center;
+  text-decoration: none;
 }
 
 .cta-button i {
@@ -255,6 +256,7 @@ h1 {
 }
 
 .demo-button {
+  text-decoration: none;
   position: relative;
   z-index: 3;
   padding: 11px 20px;
@@ -281,7 +283,6 @@ h1 {
   font-size: 12px;
   text-align: center;
   width: 24px;
-  /*  */
 }
 
 .demo-button:hover {
@@ -291,7 +292,7 @@ h1 {
 }
 
 .shine-animation {
-  animation: Shine 0.6s ease forwards; /* Trigger Shine animation */
+  animation: Shine 0.6s ease forwards;
 }
 
 .product-showcase {
@@ -604,7 +605,14 @@ header nav .account-ops .button::selection {
   display: flex;
   flex-direction: row;
   gap: 8px;
+  justify-content: center;
 }
+
+
+.inter, .copyright {
+  text-align: center;
+}
+
 
 .social-icons img {
   height: 5vh;

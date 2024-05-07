@@ -1,60 +1,113 @@
 'use strict';
 
-// DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed
-// It helps us to run our code safely when we are in a coding enviroment with different files, programming languages,
-// such as PHP.
-
 document.addEventListener("DOMContentLoaded", () => {
-
     const username = document.querySelector('#username');
     const email = document.querySelector('#email');
-
-    const pwInfo = document.querySelector('#pw-info');
-    const confirmInfo = document.querySelector('#confirm-info');
-
     const password = document.querySelector('#password');
     const confirmPassword = document.querySelector('#confirmpassword');
+    const usernameFeedback = document.querySelector("#username-feedback");
+    const emailFeedback = document.querySelector("#email-feedback");
+    const passwordFeedback = document.querySelector('#password-feedback');
+    const confirmFeedback = document.querySelector('#confirm-feedback');
+    const submitForm = document.querySelector(".submit-form");
 
-    const button = document.querySelector('.submit-form');
+    email.addEventListener('keyup', checkEmail);
+    username.addEventListener('keyup', checkUsername);
+    password.addEventListener('keyup', checkPassword);
+    confirmPassword.addEventListener('keyup', checkPassword)
 
-    confirmPassword.addEventListener('keyup', validateInfo);
-    password.addEventListener('keyup', passwordHandler);
-    
-    username.addEventListener('keydown', validateInfo);
-    email.addEventListener('keydown', validateInfo);
+    let usernameChecked = false;
+    let emailChecked = false;
+    let passwordChecked = false;
 
-    // I changed the textContent of confirmInfo inside the HTML file so only thing that we had to do is
-    // toggling the hidden class:
-
-    function passwordHandler() {
-        if (password.value.length < 8) {
-            pwInfo.classList.remove('hidden');
-            pwInfo.textContent = 'Password must be at least 8 characters long';
+    function checkUsername() {
+        const rules = {
+            length: username.value.length > 4,
+            specialChar: /[!@#$%^&*(),.?";':{}|<>]/.test(username.value)
+        };
+        
+        const messages = [];
+        if (!rules.length) messages.push("Username must be longer than 4 characters.");
+        if (rules.specialChar) messages.push("Username must not contain special character.");
+        if (messages.length === 0) {
+            usernameFeedback.style.display = 'none';
+            usernameChecked = true;
         } else {
-            pwInfo.classList.add('hidden');
-            button.style.cursor = 'not-allowed';
+            usernameFeedback.style.display = 'block';
+            usernameFeedback.innerHTML = messages.join('<br>');
+            usernameChecked = false;
         }
+        handleForm();
     }
 
-    function validateInfo() {
-        // console.log(email.value);
-        if (password.value != confirmPassword.value) {
-            // .value means the value of the input which is better way to track the input values
-            confirmInfo.classList.remove('hidden');
-            confirmInfo.textContent = 'Passwords do not match';
-            button.style.cursor = 'not-allowed';
-            button.style.opacity = (0.4);
-        } else if (username.value.length <= 0 && email.value.length <= 0) {
-            button.style.cursor = 'not-allowed';
-            button.style.opacity = (0.4);
-        } else if (password.value <= '' && confirmPassword.value <= '') {
-            button.style.cursor = 'not-allowed';
-            button.style.opacity = (0.4);
+    function checkEmail() {
+        const emailVal = email.value;
+        if (!emailVal.includes('@')) {
+            emailFeedback.style.display = 'block';
+            emailChecked = false;
+
         } else {
-            confirmInfo.classList.add('hidden');
-            button.disabled = false;
-            button.style.opacity = (1);
-            button.style.cursor = 'pointer';
+            emailFeedback.style.display = 'none';
+            emailChecked = true;
         }
+        handleForm();
+    }
+
+    function checkPassword(event) {
+        const placeholder = event.target.placeholder;
+
+        if (placeholder === "Password") {
+            const rules = {
+                length: password.value.length > 8,
+                uppercase: /[A-Z]/.test(password.value),
+                lowercase: /[a-z]/.test(password.value),
+                number: /\d/.test(password.value),
+                specialChar: /[!@#$%^&*(),.?";':{}|<>]/.test(password.value)
+            };
+            
+            const messages = [];
+            if (!rules.length) messages.push("Password must be longer than 8 characters.");
+            if (!rules.uppercase) messages.push("Password must contain at least one uppercase letter.");
+            if (!rules.lowercase) messages.push("Password must contain at least one lowercase letter.");
+            if (!rules.number) messages.push("Password must contain at least one number.");
+            if (!rules.specialChar) messages.push("Password must contain at least one special character.");
+            if (messages.length === 0) {
+                passwordFeedback.style.display = 'none';
+                if (confirmPassword.value.length > 0) {
+                    if (password.value !== confirmPassword.value) {
+                        confirmFeedback.style.display = 'block'
+                        passwordChecked = false;
+        
+                    } else {
+                        confirmFeedback.style.display = 'none';
+                        passwordChecked = true;
+                    }
+                }
+            } else {
+                passwordFeedback.style.display = 'block';
+                passwordFeedback.innerHTML = messages.join('<br>');
+                passwordChecked = false;
+            }
+            return;     
+        }
+        if (password.value !== confirmPassword.value) {
+            confirmFeedback.style.display = 'block'
+            passwordChecked = false;
+
+        } else {
+            confirmFeedback.style.display = 'none';
+            passwordChecked = true;
+
+        }
+        handleForm();
+    }
+
+    function handleForm() {
+        if (usernameChecked && emailChecked && passwordChecked) {
+            submitForm.classList.add("active");
+            return submitForm.disabled = false;
+        }
+        submitForm.classList.remove("active");
+        submitForm.disabled = true;
     }
 });

@@ -16,14 +16,23 @@ try {
 
 session_start();
 
-if (isset($_SESSION['user_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents("php://input"), true);
+    $taskId = $data['task_id'];
 
-    $stmt = $pdo->prepare("UPDATE task SET is_deleted = 1 WHERE task_id = :task_id");
-    $stmt->execute(['task_id' => $task_id]);
+    $stmt = $pdo->prepare("DELETE FROM task WHERE task_id = :task_id");
+    $stmt->execute(['task_id' => $taskId]);
 
-    echo $task_id + "is deleted.";
-    header('Location: fetch_scrumboardTasks.php');
+    if ($stmt->rowCount() > 0) {
+        echo json_encode(['success' => true]);
+        exit;
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Task not found or could not be deleted']);
+        exit;
+    }
 } else {
-    echo json_encode(['error' => 'User not logged in']);
+    echo json_encode(['success' => false, 'error' => 'Invalid request method']);
+    exit;
 }
+
 ?>

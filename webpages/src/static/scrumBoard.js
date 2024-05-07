@@ -2,7 +2,6 @@ document.addEventListener("dragover", (e) => {
   e.preventDefault();
 });
 
-// ---------- Drag Tasks ----------
 const draggables = document.querySelectorAll(".task");
 const columns = document.querySelectorAll(".column");
 
@@ -22,20 +21,14 @@ columns.forEach((column) => {
 
   column.addEventListener("drop", (e) => {
     const curTask = document.querySelector(".is-dragging");
-    const status = column.id; // Get the ID of the column (e.g., backlog, toDo, etc.)
-    console.log(status);
-    // Update the status of the task
-    const taskId = curTask.querySelector("input[name='task_id']").value; // Get the task ID
-    console.log(taskId);
+    const status = column.id;
+    const taskId = curTask.querySelector("input[name='task_id']").value;
 
     updateTaskStatus(taskId, status);
-
-    // Move the task to the dropped column
     column.appendChild(curTask);
   });
 });
 
-// Function to update task status via AJAX
 function updateTaskStatus(taskId_, status_) {
   fetch("scrumboardTasks_update.php", {
     method: "POST",
@@ -50,7 +43,6 @@ function updateTaskStatus(taskId_, status_) {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        console.log("Task status updated successfully.");
       } else {
         console.error("Error updating task status:", data.error);
       }
@@ -83,8 +75,8 @@ form.addEventListener("submit", (e) => {
   const deadlineValue = deadlineInput.value;
   const scrumboard_id = scrumboard_ID.value;
   const statusValue = statusVAL.value;
-  const tagColor = tagInput.value;
   const tagName = tagNameInput.value;
+  const tagColor = tagInput.value;
 
   if (!value) return;
 
@@ -94,6 +86,8 @@ form.addEventListener("submit", (e) => {
   formData.append("description", descriptionValue);
   formData.append("scrumboard_id", scrumboard_id);
   formData.append("status", statusValue);
+  formData.append("tag", tagName);
+  formData.append("tag_color", tagColor);
 
   fetch("scrumboardTasks_add.php", {
     method: "POST",
@@ -151,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   taskSettingsButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      console.log("taskSettingsButtons");
       const taskContainer = event.target.closest(".task");
       const taskId = taskContainer.querySelector("input[name='task_id']").value;
       const taskTitle = taskContainer.querySelector(".task-title").textContent;
@@ -160,11 +153,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ).textContent;
       const taskDeadline =
         taskContainer.querySelector(".task-date").textContent;
-      const taskTag = taskContainer.querySelector(".task-tag").textContent; // Added
+      const taskTag = taskContainer.querySelector(".task-tag").textContent;
       const taskTagColor =
-        taskContainer.querySelector(".task-tag").classList[1]; // Added
+        taskContainer.querySelector(".task-tag").classList[1];
 
-      // Populate the form with task details
       populateForm(
         taskId,
         taskTitle,
@@ -174,12 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
         taskTagColor
       );
 
-      // Display the form
       displayForm();
     });
   });
 
-  // Function to populate the form with task details
   function populateForm(
     taskId,
     taskTitle,
@@ -197,19 +187,16 @@ document.addEventListener("DOMContentLoaded", () => {
     form.querySelector("#modify-task-tag-color").value = taskTagColor; // Added
   }
 
-  // Function to display the form
   function displayForm() {
     const formContainer = document.getElementById("modify-task-form-container");
     formContainer.classList.remove("hide");
   }
 
-  // Add event listener to form submission
   const modifyForm = document.getElementById("modify-task-form");
   modifyForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(modifyForm);
 
-    // Send formData to the server for processing using AJAX fetch
     fetch("scrumboardTasks_modify.php", {
       method: "POST",
       body: formData,
@@ -217,10 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          console.log("Task details updated successfully.");
-          // Update the task details on the frontend
           updateTaskFrontend(formData);
-          // Hide the form after successful update
           const formContainer = document.getElementById(
             "modify-task-form-container"
           );
@@ -234,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
-  // Function to update task details on the frontend
   function updateTaskFrontend(formData) {
     const taskId = formData.get("task_id");
     const taskTitle = formData.get("task_title");
@@ -257,21 +240,31 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const addTaskBtn = document.getElementById("add-task-btn");
-    const taskInput = document.getElementById("task");
+document.addEventListener("DOMContentLoaded", function () {
+  var closeButton = document.getElementById("modify-task-form-close");
 
-    taskInput.addEventListener('keyup', checkTaskInput);
+  closeButton.addEventListener("click", function () {
+    var formContainer = document.getElementById("modify-task-form-container");
+
+    formContainer.classList.add("hide");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const addTaskBtn = document.getElementById("add-task-btn");
+  const taskInput = document.getElementById("task");
+
+  taskInput.addEventListener("keyup", checkTaskInput);
 
   function checkTaskInput() {
     if (taskInput.value.length == 0) {
-      addTaskBtn.style.cursor = 'not-allowed';
+      addTaskBtn.style.cursor = "not-allowed";
       addTaskBtn.style.opacity = 0.4;
     } else if (taskInput.value <= "") {
-      addTaskBtn.style.cursor = 'not-allowed';
+      addTaskBtn.style.cursor = "not-allowed";
       addTaskBtn.style.opacity = 0.4;
     } else {
-      addTaskBtn.style.cursor = 'pointer';
+      addTaskBtn.style.cursor = "pointer";
       addTaskBtn.style.opacity = 1;
     }
   }
@@ -294,4 +287,40 @@ document.addEventListener("click", (e) => {
       arrowIcon.classList.add("fa-caret-down");
     }
   }
+
+  function omitData(data) {
+    const data_to_send = { message: data };
+    window.parent.postMessage(data_to_send, "*");
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var deleteButton = document.getElementById("modify-task-form-delete");
+
+  deleteButton.addEventListener("click", function () {
+    var taskId = document.getElementById("modify-task-id").value;
+
+    fetch("scrumboardTasks_delete.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ task_id: taskId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          const taskSelector = `[data-task-id="${taskId}"]`;
+          const taskElement = document.querySelector(taskSelector);
+          taskElement.remove();
+          var formContainer = document.getElementById("modify-task-form-container");
+          formContainer.classList.add("hide"); 
+        } else {
+          console.error("Error deleting task:", data.error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting task:", error);
+      });
+  });
 });

@@ -17,6 +17,33 @@
   box-sizing: border-box;
 }
 
+.topbar {
+  width: 100%;
+  height: 53px;
+  border-bottom: 1px solid #e8eaed;
+  padding: 16px;
+}
+
+.topbar .page-name button i {
+  text-align: center;
+  display: inline-block;
+  width: 20px;
+  margin-right: 4px;
+}
+
+.topbar .page-name button {
+  color: var(--text-2);
+  font-weight: 500;
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.topbar .page-name button:hover {
+  cursor: pointer;
+}
+
 h2 {
   font-family: "Montserrat", sans-serif;
   font-size: 36px;
