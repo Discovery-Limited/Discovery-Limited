@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome</title>
-    <link rel="stylesheet" href="./src/css/deadlines.css?v=1" />
+    <link rel="stylesheet" href="./src/css/deadlines.css?v=2" />
     <script src="./src/static/deadlines.js?v=20"></script>
     <link
     rel="stylesheet"
@@ -42,5 +42,28 @@
         </div>
       </template>
     </div>
+
+    <div class="deadline-details-popup" id="deadline-details-popup">
+      <div class="deadline-details-content" id="deadline-details-content">
+        <div id="deadline-details-actions">
+          <button type="button" id="deadline-details-close">X</button>
+        </div>
+        <div id="deadline-details-wrapper">
+          <h2>Task Name</h2>
+          <p id="deadline">Deadline: </p>
+          <p id="description">Description: </p>
+        </div>
+        <p class="contributors-text">Contributors:</p>
+        <div id="deadline-details-contributors">
+          <a>test1@gmail.com</a>
+          <a>test2@gmail.com</a>
+        </div>
+        <div id="deadline-details-actions">
+          <button type="button" id="leave" class="deadline-details-delete">Leave deadline</button>
+          <button type="button" id="complete" class="deadline-details-complete">Complete</button>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
