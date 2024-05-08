@@ -23,8 +23,4 @@ document.addEventListener("DOMContentLoaded", () => {
             button.style.opacity = (0.4);
         }
     }
-
-    // module.exports = {
-    //     validateLogin
-    // };
 });

@@ -1,14 +1,26 @@
 {
-  "dependencies": {
-    "handlebars": "^4.7.8"
-  },
-  "devDependencies": {
-    "@testing-library/dom": "^10.1.0",
-    "jest": "^29.7.0",
-    "jsdom": "^24.0.0"
-  },
-  "name": "my-project",
-  "jest": {
-    "verbose": true
-  }
+    "dependencies": {
+        "handlebars": "^4.7.8",
+        "playwright": "^1.44.0"
+    },
+    "devDependencies": {
+        "@testing-library/dom": "^10.1.0",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
+        "jsdom": "^24.0.0"
+    },
+    "name": "my-project",
+    "jest": {
+        "testEnvironment": "jsdom",
+        "verbose": true
+    },
+    "description": "- [About the Project](#-about-the-project)\r - [Getting Started](#-getting-started)\r   - [Prerequisites](#-prerequisites)\r   - [Installation](#-installation)\r - [Contact](#-contact)\r - [Acknowledgements](#-acknowledgements)\r - [License](#-license)",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
