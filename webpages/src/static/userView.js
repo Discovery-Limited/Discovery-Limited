@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const sidebarToggle = document.querySelector(".sidebar-toggle");
   const sidebarDropdownList = document.querySelector(".sidebar-dropdown-list");
   const createProject = document.querySelector("#create-project");
-  const projectForm = document.querySelector("#project-form");
+  const projectForm = document.querySelector(".form-container");
   const closeProjectPopup = document.querySelector(".close-popup");
   const projectButton = document.querySelector("#projects");
 
@@ -147,11 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   createProject.addEventListener("click", function () {
-    projectForm.classList.toggle("active");
+    projectForm.classList.remove("hide");
   });
 
   closeProjectPopup.addEventListener("click", function () {
-    projectForm.classList.toggle("active");
+    projectForm.classList.add("hide");
   });
 
   const emailInput = document.getElementById("emailInput");

@@ -1,113 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./src/css/userView.css?v=6" />
+    <script src="./src/static/userView.js?v=31"></script>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="top-nav">
+        <img
+          src="./src/contents/imgs/logo.png"
+          class="navbar-logo"
+          alt="logo"
+        />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-  <link rel="stylesheet" href="./src/css/userView.css?v=2" />
-  <script src="./src/static/userView.js?v=30"></script>
-  <title>Dashboard</title>
-</head>
-
-<body>
-  <div class="wrapper">
-    <nav class="top-nav">
-      <img src="./src/contents/imgs/logo.png" class="navbar-logo" alt="logo" />
-
-      <ul class="navbar-list">
-        <li><a class="return-home">Home</a></li>
-        <li><a href="#">Community</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-
-      <div class="profile-dropdown">
-        <div class="profile-dropdown-btn">
-          <div class="profile-img"></div>
-          <span>
-            <?php echo htmlspecialchars($username); ?><i class="fa-solid fa-angle-down"></i>
-          </span>
-        </div>
-        <ul class="profile-dropdown-list">
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-regular fa-user"></i>
-              Edit Profile
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-sliders"></i>
-              Settings
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="index.html">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              Log out
-            </a>
-          </li>
+        <ul class="navbar-list">
+          <li><a class="return-home">Home</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">About</a></li>
         </ul>
-      </div>
-    </nav>
 
-    <div class="dashboard">
-      <aside class="sidebar">
-        <div class="project-selector">
-          <div id="projects" class="sidebar-toggle">
-            <p>Projects</p>
-            <i class="fa-solid fa-angle-down"></i>
+        <div class="profile-dropdown">
+          <div class="profile-dropdown-btn">
+            <div class="profile-img"></div>
+            <span
+              ><?php echo htmlspecialchars($username); ?><i
+                class="fa-solid fa-angle-down"
+              ></i
+            ></span>
           </div>
-          <ul class="sidebar-dropdown-list">
-            <li>
-              <a id="create-project">
-                <i class="fa-solid fa-circle-plus"></i>
-                Create new project
+          <ul class="profile-dropdown-list">
+            <li class="profile-dropdown-list-item">
+              <a href="#">
+                <i class="fa-regular fa-user"></i>
+                Edit Profile
+              </a>
+            </li>
+            <li class="profile-dropdown-list-item">
+              <a href="#">
+                <i class="fa-solid fa-sliders"></i>
+                Settings
+              </a>
+            </li>
+            <li class="profile-dropdown-list-item">
+              <a href="index.html">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Log out
               </a>
             </li>
           </ul>
         </div>
+      </nav>
 
-        <div id="project-home">
-          <div class="sidebar-toggle active" onclick="loadContent('./projects.html')">
-            <p><i class="fa-solid fa-house"></i>Dashboard</p>
+      <div class="dashboard">
+        <aside class="sidebar">
+          <div class="project-selector">
+            <div id="projects" class="sidebar-toggle">
+              <p>Projects</p>
+              <i class="fa-solid fa-angle-down"></i>
+            </div>
+            <ul class="sidebar-dropdown-list">
+              <li>
+                <a id="create-project">
+                  <i class="fa-solid fa-circle-plus"></i>
+                  Create new project
+                </a>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div>
-          <div id="deadlines" class="sidebar-toggle" onclick="loadContent('./deadlines.html')">
-            <p><i class="fa-solid fa-timeline"></i>Project Deadlines</p>
+
+          <div id="project-home">
+            <div
+              class="sidebar-toggle active"
+              onclick="loadContent('./projects.html')"
+            >
+              <p><i class="fa-solid fa-house"></i>Dashboard</p>
+            </div>
           </div>
-        </div>
-        <div>
-          <div id="deadlines" class="sidebar-toggle" onclick="loadContent('./scrumBoard.php')">
-            <p><i class="fa-solid fa-chalkboard"></i>Scrumboard</p>
+          <div>
+            <div
+              id="deadlines"
+              class="sidebar-toggle"
+              onclick="loadContent('./deadlines.html')"
+            >
+              <p><i class="fa-solid fa-timeline"></i>Project Deadlines</p>
+            </div>
           </div>
-        </div>
-      </aside>
+          <div>
+            <div
+              id="deadlines"
+              class="sidebar-toggle"
+              onclick="loadContent('./scrumBoard.php')"
+            >
+              <p><i class="fa-solid fa-chalkboard"></i>Scrumboard</p>
+            </div>
+          </div>
+        </aside>
 
-      <main class="main-content">
-        <iframe id="contentFrame" class="content-frame" src="" frameborder="0"></iframe>
-        <div class="form-container">
-        <form id="project-form" action="createProject.php" method="post">
-            <a href="#" class="close-popup">&times;</a>
-            <h2>Create Project</h2>
-            <label for="projectName">Project Name:</label>
-            <input type="text" id="projectName" name="project_name" required /><br /><br />
-
-            <label for="emailInput">Add User Emails:</label>
-            <div id="emailList"></div>
-            <input type="text" id="emailInput" placeholder="Enter email and press Enter" />
-            <input type="hidden" name="emails" id="hiddenEmails" />
-
-            <button type="submit" id="create-project-submit-btn">
-              Create Project
-            </button>
-          </form>
-        </div>
-      </main>
+        <main class="main-content">
+          <iframe
+            id="contentFrame"
+            class="content-frame"
+            src=""
+            frameborder="0"
+          ></iframe>
+        </main>
+      </div>
     </div>
-  </div>
-</body>
+    <div class="form-container hide">
+      <form id="project-form" action="createProject.php" method="post">
+        <a href="#" class="close-popup">&times;</a>
+        <h2>Create Project</h2>
+        <label for="projectName">Project Name:</label>
+        <input
+          type="text"
+          id="projectName"
+          name="project_name"
+          required
+        /><br /><br />
 
+        <label for="emailInput">Add User Emails:</label>
+        <div id="emailList"></div>
+        <input
+          type="text"
+          id="emailInput"
+          placeholder="Enter email and press Enter"
+        />
+        <input type="hidden" name="emails" id="hiddenEmails" />
+
+        <button type="submit" id="create-project-submit-btn">
+          Create Project
+        </button>
+      </form>
+
+    </div>
+  </body>
 </html>
