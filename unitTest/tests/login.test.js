@@ -9,10 +9,11 @@ const { chromium } = require('playwright');
     const testCases = [
         { email: '', password: '', expectedCursor: 'not-allowed', expectedOpacity: 0.4 },
         { email: '', password: 'password', expectedCursor: 'not-allowed', expectedOpacity: 0.4 },
-        { email: 'test@example.com', password: '', expectedCursor: 'not-allowed', expectedOpacity: 0.4 },
+        { email: 'test@gmail.com', password: '', expectedCursor: 'not-allowed', expectedOpacity: 0.4 },
         { email: 'invalidemail', password: 'password', expectedCursor: 'not-allowed', expectedOpacity: 0.4 },
-        { email: 'test@example.com', password: 'pass', expectedCursor: 'not-allowed', expectedOpacity: 0.4 },
-        { email: 'test@example.com', password: 'password', expectedCursor: 'pointer', expectedOpacity: 1 },
+        { email: 'test@test@gmail.com', password: 'pass', expectedCursor: 'not-allowed', expectedOpacity: 0.4 },
+        { email: 'test@gmail.com', password: 'password', expectedCursor: 'pointer', expectedOpacity: 1 },
+        { email: 'test@gmail.com', password: 'password123', expectedCursor: 'pointer', expectedOpacity: 1 }
     ];
 
     // Run tests
@@ -74,3 +75,4 @@ const { chromium } = require('playwright');
     // Close the browser
     await browser.close();
 })();
+
