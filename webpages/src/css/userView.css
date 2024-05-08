@@ -337,6 +337,19 @@ a:visited {
   display: none;
 }
 
+.form-container {
+  justify-content: center;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  background-color: var(--background);
+  margin-left: 50%;
+  margin-top: 50%;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+}
+
 #project-form.active {
   display: grid;
   grid-template-columns: 1fr;
@@ -408,7 +421,7 @@ input[type="submit"] {
 }
 
 .close-popup {
-  position: relative;
+  position: absolute;
   justify-self: right;
   margin: 5px 10px 0px 0px;
   color: black;
