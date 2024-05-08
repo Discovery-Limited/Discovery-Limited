@@ -116,3 +116,5 @@ const { chromium } = require('playwright');
     // Close the browser after all tests are done
     await browser.close();
 })();
+
+
