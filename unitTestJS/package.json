@@ -1,16 +1,14 @@
 {
-  "name": "unittest",
+  "name": "unittestjs",
   "version": "1.0.0",
   "description": "",
-  "main": "login.test.js",
+  "main": "index.js",
   "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.44.0",
-    "@types/node": "^20.12.11",
-    "fetch-mock": "^9.11.0",
-    "jest": "^29.7.0"
+    "@types/node": "^20.12.11"
   }
 }
