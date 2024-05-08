@@ -82,48 +82,55 @@ function checkFolder() {
                 var file = files[i];
                 localStorage.setItem('parent_folder', file.id);
                 console.log('Folder Available');
-                // get files if folder available
                 showList();
             }
         } else {
-            // if folder not available then create
             createFolder();
         }
     })
 }
 
-// now create a function to upload file
-function upload() {
-    var text = document.querySelector('textarea');
-    if (text.value != "") {
-        const blob = new Blob([text.value], { type: 'plain/text' });
-        // get parent folder id from localstorage
+async function upload() {
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0]; // Get the selected file
+
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+
         const parentFolder = localStorage.getItem('parent_folder');
-        var twoWords = text.value.split(' ')[0] + '-' + text.value.split(' ')[1];
-        // set file metadata
+
+
         var metadata = {
-            // get first two words from the input text and set as file name instead of backup-file
-            name: twoWords + '-' + String(Math.random() * 10000).split('.')[0] + '.txt',
-            mimeType: 'plain/text',
+            name: file.name,
+            mimeType: file.type,
             parents: [parentFolder]
         };
-        var formData = new FormData();
-        formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-        formData.append("file", blob);
 
-        fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
-            method: 'POST',
-            headers: new Headers({ "Authorization": "Bearer " + gapi.auth.getToken().access_token }),
-            body: formData
-        }).then(function (response) {
-            return response.json();
-        }).then(function (value) {
-            console.log(value);
-            // also update list on file upload
+        try {
+            const response = await gapi.client.drive.files.create({
+                resource: metadata,
+                media: {
+                    mimeType: file.type,
+                    body: file
+                },
+                fields: 'id'
+            });
+
+            console.log('File uploaded successfully:', response.result);
+
+
             showList();
-        });
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+    } else {
+        console.error('No file selected');
     }
 }
+
+
 
 function createFolder() {
     var access_token = gapi.auth.getToken().access_token;
@@ -158,16 +165,16 @@ function expand(v) {
         expandContainer.style.display = 'block';
         expandContainer.style.left = (click_position.left + window.scrollX) - 120 + 'px';
         expandContainer.style.top = (click_position.top + window.scrollY) + 25 + 'px';
-        // get data name & id and store it to the options
+
         expandContainerUl.setAttribute('data-id', v.parentElement.getAttribute('data-id'));
         expandContainerUl.setAttribute('data-name', v.parentElement.getAttribute('data-name'));
     }
 }
 
-// function for files list
+
 function showList() {
     gapi.client.drive.files.list({
-        // get parent folder id from localstorage
+
         'q': `parents in "${localStorage.getItem('parent_folder')}"`
     }).then(function (response) {
         var files = response.result.files;
