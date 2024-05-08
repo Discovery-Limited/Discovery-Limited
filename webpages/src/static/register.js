@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 uppercase: /[A-Z]/.test(password.value),
                 lowercase: /[a-z]/.test(password.value),
                 number: /\d/.test(password.value),
-                specialChar: /[!@#$%^&*(),.?";':{}|<>]/.test(password.value)
+                specialChar: /[£~`!@#$%^&*(),.?";':{}|<>]/.test(password.value)
             };
             
             const messages = [];
