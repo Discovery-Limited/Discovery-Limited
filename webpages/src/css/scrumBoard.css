@@ -795,9 +795,11 @@ header {
 }
 
 #modify-task-form-close {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
   background-color: #ef473a;
+  color: var(--background);
   border-radius: 9999px;
   border: none;
   outline: none;
@@ -850,3 +852,34 @@ header {
 .hide {
   display: none;
 }
+
+select#assignee {
+  width: 100%; 
+  height: auto; 
+  min-height: 100px; 
+  padding: 8px; 
+  border: 1px solid #ccc;
+  border-radius: 4px; 
+  background-color: white; 
+  box-sizing: border-box; 
+  overflow-y: auto; 
+}
+
+select#assignee option {
+  padding: 8px; 
+  margin: 4px 2px; 
+  border-bottom: 1px solid #eee; 
+  background-color: #fafafa; 
+  cursor: pointer; 
+}
+
+select#assignee option:hover, select#assignee option:focus {
+  background-color: #e1f5fe; 
+  color: #333; 
+}
+
+#assignee option.selected {
+  background-color: #007BFF; 
+  color: white;
+}
+

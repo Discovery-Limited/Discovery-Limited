@@ -16,6 +16,7 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
+session_start();
 session_destroy();
 
 include 'index.html';

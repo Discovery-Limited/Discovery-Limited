@@ -262,6 +262,15 @@ h2 {
   font-size: 16px;
 }
 
+#deadline-details-assignees a {
+  font-size: 10px;
+  padding: 1%;
+  margin: 0% 1%;
+  border: 0;
+  border-radius: 5px;
+  background-color:#d6d9de;
+}
+
 .hide {
   display: none;
 }

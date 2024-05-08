@@ -77,9 +77,10 @@ form.addEventListener("submit", (e) => {
   const statusValue = statusVAL.value;
   const tagName = tagNameInput.value;
   const tagColor = tagInput.value;
-
+  const assigneeValues = Array.from(document.getElementById('assignee').selectedOptions).map(option => option.value);
+  
   if (!value) return;
-
+  
   const formData = new FormData();
   formData.append("task_name", value);
   formData.append("deadline", deadlineValue);
@@ -88,7 +89,8 @@ form.addEventListener("submit", (e) => {
   formData.append("status", statusValue);
   formData.append("tag", tagName);
   formData.append("tag_color", tagColor);
-
+  assigneeValues.forEach((email, index) => formData.append(`assignees[${index}]`, email));
+  
   fetch("scrumboardTasks_add.php", {
     method: "POST",
     body: formData,
@@ -138,6 +140,34 @@ form.addEventListener("submit", (e) => {
     .catch((error) => {
       console.error("Error adding task:", error);
     });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  var select = document.getElementById('assignee');
+
+  select.addEventListener('mousedown', function(e) {
+      e.preventDefault();  
+
+      var option = e.target;
+      if (option.tagName === 'OPTION') {
+          const wasSelected = option.selected;
+
+          option.selected = !wasSelected;
+          option.classList.toggle('selected', option.selected);
+
+          var event = new Event('change');
+          select.dispatchEvent(event); 
+      }
+  }, false);
+
+  select.addEventListener('change', function() {
+      updateSelectedList();
+  });
+
+  function updateSelectedList() {
+      let selectedValues = Array.from(select.selectedOptions).map(opt => opt.value);
+      console.log(selectedValues);
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {

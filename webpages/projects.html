@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./src/css/projects.css?v=3" />
-    <script type="module" defer src="./src/static/projects.js?v=9"></script>
+    <link rel="stylesheet" href="./src/css/projects.css?v=4" />
+    <script type="module" defer src="./src/static/projects.js?v=41"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -34,7 +34,7 @@
           <div class="progress-bar">
             <div class="progress-child" style="width: 0%"></div>
           </div>
-          <button class="project-btn" onclick="togglePopup()">
+          <button class="project-btn">
             See more
             <i class="fa-solid fa-angle-right"></i>
           </button>
@@ -42,7 +42,7 @@
       </template>
     </div>
 
-    <div class="project-details-popup" id="project-details-popup">
+    <div class="project-details-popup hide" id="project-details-popup">
       <div class="project-details-content" id="project-details-content">
         <div id="project-details-actions">
           <button type="button" id="project-details-close">X</button>
@@ -55,12 +55,9 @@
         </div>
         <p class="contributors-text">Contributors:</p>
         <div id="project-details-contributors">
-          <a>test1@gmail.com</a>
-          <a>test1@gmail.com</a>
-          <a>test1@gmail.com</a>
         </div>
         <div id="project-details-actions">
-          <button type="button" id="leave" class="project-details-delete">Leave Project</button>
+          <button type="button" id="leave" class="project-details-delete hide">Leave Project</button>
           <button type="button" id="delete" class="project-details-delete hide">Delete Project</button>
         </div>
       </div>

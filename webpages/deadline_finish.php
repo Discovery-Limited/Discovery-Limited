@@ -25,18 +25,18 @@ if (!isset($_SESSION['user_id'])) {
 // Get JSON input
 $input = json_decode(file_get_contents('php://input'), true);
 
-if (isset($input['project_id']) && !empty($input['project_id'])) {
-    $project_id = $input['project_id'];
+if (isset($input['task_id']) && !empty($input['task_id'])) {
+    $task_id = $input['task_id'];
 
-    $projectDeleteQuery = $pdo->prepare("UPDATE project SET is_deleted = 1 WHERE project_id = :project_id");
-    $projectDeleteQuery->execute(['project_id' => $project_id]);
+    $taskFinishQuery = $pdo->prepare("UPDATE task SET status = 'done' WHERE task_id = :task_id");
+    $taskFinishQuery->execute(['task_id' => $task_id]);
 
-    if ($projectDeleteQuery->rowCount() > 0) {
-        echo json_encode(['success' => "Project successfully deleted."]);
+    if ($taskFinishQuery->rowCount() > 0) {
+        echo json_encode(['success' => "Task successfully finished."]);
     } else {
-        echo json_encode(['error' => "No project found with that ID or it might already be deleted."]);
+        echo json_encode(['error' => "No task found with that ID or it might already be finished."]);
     }
 } else {
-    echo json_encode(['error' => 'Project ID is required']);
+    echo json_encode(['error' => 'Task ID is required']);
 }
 ?>

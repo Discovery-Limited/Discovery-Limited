@@ -19,11 +19,23 @@ try {
 $stmt = $pdo->prepare("
     SELECT t.* 
     FROM task t
-    JOIN user_task ut ON t.task_id = ut.task_id
-    WHERE ut.user_id = :user_id AND t.project_id = :project_id
+    JOIN project p ON t.project_id = p.project_id
+    JOIN user_project up ON p.project_id = up.project_id
+    JOIN user u ON up.user_id = u.user_id
+    WHERE t.project_id = :project_id AND u.user_id = :user_id
 ");
 $stmt->execute(['user_id' => $currentUserId, 'project_id' => $currentProjectId]);
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->prepare("
+    SELECT u.email 
+    FROM user u
+    JOIN user_project up ON u.user_id = up.user_id
+    JOIN project p ON up.project_id = p.project_id
+    WHERE p.project_id = :project_id
+");
+$stmt->execute(['project_id' => $currentProjectId]);
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $backlogTasks = [];
 $toDoTasks = [];
@@ -61,8 +73,8 @@ foreach ($tasks as $task) {
     <!-- <script src="scrumBoard.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./src/static/handlebar.js"></script>
-    <script src="./src/static/scrumBoard.js?=25" defer></script>
-    <link rel="stylesheet" href="./src/css/scrumBoard.css?=19" />
+    <script src="./src/static/scrumBoard.js?=29" defer></script>
+    <link rel="stylesheet" href="./src/css/scrumBoard.css?=25" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -194,7 +206,7 @@ foreach ($tasks as $task) {
       <div id="modify-task-form-container" class="hide">
         <form id="modify-task-form">
           <div id="modify-task-form-actions">
-            <button type="button" id="modify-task-form-close"></button>
+            <button type="button" id="modify-task-form-close">X</button>
           </div>
           <input type="hidden" id="modify-task-id" name="task_id" />
           <label for="modify-task-title">Task Title:</label>
@@ -245,12 +257,15 @@ foreach ($tasks as $task) {
               name="description"
               placeholder="Description"
             ></textarea>
-            <input
-              type="text"
-              id="assignee"
-              name="assignee"
-              placeholder="Assignee"
-            />
+
+            
+            <label for="assignee">Assignees:</label>
+            <select id="assignee" name="assignee[]" multiple>
+              <?php foreach ($users as $user): ?>
+                <option value="<?php echo $user['email']; ?>"><?php echo $user['email']; ?></option>
+              <?php endforeach; ?>
+            </select>
+            
             <input
               type="date"
               id="deadline"

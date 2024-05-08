@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         li.addEventListener("click", () => {
           const projectId = li.getAttribute("data-id");
           setProjectIdInSession(projectId);
-
           
           projectButton.querySelector("p").textContent = li.querySelector("a").textContent;
           projectButton.setAttribute("data-id", projectId);
@@ -201,6 +200,54 @@ document.addEventListener("DOMContentLoaded", function () {
       toggle.classList.add("active");
     });
   });
+  
+  window.addEventListener("message", (event) => {
+    // Check the origin for security reasons
+    if (event.origin !== "https://discoveria.online") {
+      console.error("Unauthorized attempt to communicate from:", event.origin);
+      return;
+    }
+    
+    // Handle the incoming data
+    const data = event.data.message; 
+  
+    if (data.projectId) {
+      const projectSelector = `.project[data-id="${data.projectId}"]`;
+      const projectElement = document.querySelector(projectSelector);
+      if (projectElement) {
+        projectElement.remove();
+        checkProjects();
+      }
+    }
+  }, false);
+  
+  function checkProjects() {
+    const projectButton = document.querySelector("#projects");
+    fetch("fetch_projects.php")
+                  .then((response) => {
+                    if (!response.ok) {
+                      throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                  })
+                  .then((data) => {
+                    if (data[0]) {
+                      const currentProject = data[0];
+  
+                      projectButton.querySelector("p").textContent =
+                        currentProject.project_name;
+                      projectButton.setAttribute(
+                        "data-id",
+                        currentProject.project_id
+                      );
+                      setProjectIdInSession(currentProject.project_id);
+                    } else {
+                      projectButton.querySelector("p").textContent = "Projects";
+                      projectButton.setAttribute("data-id", undefined);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error:", error);
+                  });
+  }
 });
-
-window.onload = function () {};

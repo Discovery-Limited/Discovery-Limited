@@ -1,41 +1,49 @@
 <?php
+header('Content-Type: application/json');
 
-header('Content-Type: application/json');  // Set content type to JSON
-
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-
-session_start();  // Start the session
-
-// Load the configuration file
 $config = require 'config.php';
 
 try {
-    // Create a PDO instance
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
         $config['db']['user'],
         $config['db']['pass'],
         $config['options']
     );
-
-    if (isset($_SESSION['user_id'])) {
-        $user_id = $_SESSION['user_id'];
-        
-        $stmt = $pdo->prepare("CALL GetTasksForUser(:user_id)");
-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->execute();
-    
-        $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-        echo json_encode(['tasks' => $tasks]);
-
-    } else {
-        echo json_encode(['error' => 'User ID not set in session.']);
-    }
-} catch (PDOException $e) {
-    echo json_encode(['error' => "Database error: " . $e->getMessage()]);
+} catch (\PDOException $e) {
+    echo json_encode(['error' => "Database connection failed: " . $e->getMessage()]);
+    exit;
 }
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['error' => 'User not logged in']);
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
+$taskQuery = $pdo->prepare("SELECT t.*
+                               FROM task t 
+                               JOIN user_task ut ON t.task_id = ut.task_id
+                               WHERE (t.status = 'inProgress' OR t.status = 'toDo') AND ut.user_id = :user_id");
+$taskQuery->execute(['user_id' => $user_id]);
+$tasks = $taskQuery->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($tasks as &$task) {
+    $userQuery = $pdo->prepare("SELECT u.email
+                                FROM user u
+                                JOIN user_task ut ON u.user_id = ut.user_id
+                                WHERE ut.task_id = :task_id");
+    $userQuery->execute(['task_id' => $task['task_id']]);
+    $users = $userQuery->fetchAll(PDO::FETCH_ASSOC);
+    $task['users'] = $users;  // Assign correct users list to each task
+}
+unset($task);  // Break the reference with the last element
+
+echo json_encode(['tasks' => $tasks]);
 ?>
