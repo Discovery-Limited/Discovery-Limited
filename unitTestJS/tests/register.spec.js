@@ -40,7 +40,48 @@ test.describe('check password is at least 8 characters long, contains at least o
         await expect(page.locator('#password-feedback')).toContainText('Password must contain at least one uppercase letter.');
     });
 
-    
+    test('checks that the function identifies when password does not have an lowercase character', async ({ page }) => {
+        await passwordInput.pressSequentially('T@ST1234');
+        await expect(page.locator('#password-feedback')).toContainText('Password must contain at least one lowercase letter.');
+    });
+
+    test('checks that the function identifies when password does not have at least one special character', async ({ page }) => {
+        await passwordInput.pressSequentially('Test1234');
+        await expect(page.locator('#password-feedback')).toContainText('Password must contain at least one special character.');
+    });
+
+    // test('checks that the function correctly identifies when confirm password and password do not match', async ({ page }) => {
+    //     await passwordInput.pressSequentially('T@st1234');
+    //     await confirmPasswordInput.pressSequentially('T@st1');
+    //     await expect(page.locator('#confirm-feedback')).toContainText('Passwords do not match');  
+    // });
+});
+
+test.describe('check email is valid and should occur in real time', () => {
+    let emailInput;
+    let emailFeedback;
+
+    test.beforeEach(async ({ page }) => {
+        await page.goto('https://discoveria.online/register.html');
+
+        emailInput = page.locator('#email');
+        emailFeedback = await page.locator('#email-feedback').textContent();
+    });
+
+    test('checks that the function correctly identifies a valid email', async () => {
+        await emailInput.pressSequentially('test@gmail.com');
+        expect(emailFeedback).toBe('Invalid email.');
+    });
+
+    test('checks that the function correctly identifies an empty email', async () => {
+        await emailInput.pressSequentially('');
+        expect(emailFeedback).toBe('Invalid email.');
+    });
+
+    test('checks that the function correctly identifies an invalid email', async () => {
+        await emailInput.pressSequentially('testgmail.com');
+        expect(emailFeedback).toBe('Invalid email.');
+    });
 });
 
 // (async () => {
