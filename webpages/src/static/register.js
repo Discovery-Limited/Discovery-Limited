@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 document.addEventListener("DOMContentLoaded", () => {
     const username = document.querySelector('#username');
@@ -110,4 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
         submitForm.classList.remove("active");
         submitForm.disabled = true;
     }
+
+    process.on('unhandledRejection', (reason, promise) => {
+        console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+        // Handle or log the error here
+        // You can also terminate the process if needed
+        process.exit(1); // Exit with non-zero status code to indicate failure
+    });
 });
