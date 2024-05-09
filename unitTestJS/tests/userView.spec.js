@@ -39,7 +39,7 @@ if (!profileDropdownList) {
 const sidebarToggle = await page.$('#sidebarToggle');
 const sidebarDropdownList = await page.$('#sidebarDropdownList');
 
-const userViewUrl = 'https://discoveria.online/user_view.php'; // Replace 'https://example.com/user-view' with your actual user view URL
+const userViewUrl = 'https://discoveria.online/user_view.php'; 
 
 const testCases1 = [
     // Test case 1: Click event on sidebar button when sidebar is initially closed
@@ -160,32 +160,23 @@ console.log('--------------------------------');
     });
 
     const testCases2 = [
-        // Test cases for storing valid project ID
         { projectId: "123", expectedConsoleMessage: "Project ID stored successfully." },
-        // Test cases for error handling - Empty Project ID
         { projectId: "", expectedConsoleMessage: "Project ID is not provided" },
-        // Test cases for error handling - Null Project ID
         { projectId: null, expectedConsoleMessage: "Project ID is not provided" },
-        // Test cases for error handling - Undefined Project ID
         { projectId: undefined, expectedConsoleMessage: "Project ID is not provided" },
-        // Test cases for storing non-empty project ID
         { projectId: "project123", expectedConsoleMessage: "Project ID stored successfully." }
     ];
 
     for (const testCase of testCases2) {
         await page.evaluate(({ projectId, expectedConsoleMessage }) => {
-            // Mocking console.log to capture the log messages
             const consoleLog = [];
             const originalConsoleLog = console.log;
             console.log = (message) => consoleLog.push(message);
 
-            // Call the function with the provided project ID
             setProjectIdInSession(projectId);
 
-            // Restore console.log
             console.log = originalConsoleLog;
 
-            // Check if the expected console message is logged
             if (consoleLog.includes(expectedConsoleMessage)) {
                 console.log(`Test Case for project: projectId=${projectId}`);
                 console.log('Expected Console Message:', expectedConsoleMessage);
@@ -285,7 +276,6 @@ console.log('--------------------------------');
         }, email);
     };
 
-    // Test cases
     const testCases3 = [
         { email: 'test@gmail.com', expected: true },
         { email: 'testgmail.com', expected: false },
@@ -297,7 +287,6 @@ console.log('--------------------------------');
         { email: 'test!@gmail.com', expected: true }
     ];
 
-    // Run test cases
     for (const { email, expected } of testCases3) {
         const result = await validateEmail(email);
         console.log(`Testing email: ${email}`);
@@ -310,10 +299,9 @@ console.log('--------------------------------');
 
 
 
-    
 
 
-    // const page = await context.newPage();
+
     await page.evaluate(() => {
         window.checkProjects = async () => {
             const projectButton = document.querySelector("#projects");
@@ -338,7 +326,6 @@ console.log('--------------------------------');
         };
     });
 
-    // Mock function to simulate successful response with project data
     const mockFetchSuccess = async () => {
         await page.evaluate(() => {
             window.fetch = async () => ({
@@ -348,7 +335,6 @@ console.log('--------------------------------');
         });
     };
 
-    // Mock function to simulate successful response with empty array of projects
     const mockFetchEmptySuccess = async () => {
         await page.evaluate(() => {
             window.fetch = async () => ({
@@ -358,7 +344,6 @@ console.log('--------------------------------');
         });
     };
 
-    // Mock function to simulate network error
     const mockFetchNetworkError = async () => {
         await page.evaluate(() => {
             window.fetch = async () => {
@@ -367,7 +352,6 @@ console.log('--------------------------------');
         });
     };
 
-    // Mock function to simulate server error
     const mockFetchServerError = async () => {
         await page.evaluate(() => {
             window.fetch = async () => ({
@@ -377,7 +361,6 @@ console.log('--------------------------------');
         });
     };
 
-    // Mock function to simulate successful response with multiple projects
     const mockFetchMultipleProjectsSuccess = async () => {
         await page.evaluate(() => {
             window.fetch = async () => ({
@@ -390,7 +373,6 @@ console.log('--------------------------------');
         });
     };
 
-    // Mock function to simulate successful response with empty response body
     const mockFetchEmptyResponseBodySuccess = async () => {
         await page.evaluate(() => {
             window.fetch = async () => ({
@@ -400,7 +382,6 @@ console.log('--------------------------------');
         });
     };
 
-    // Test Case 1: Successful response with project data available
     await mockFetchSuccess();
     await page.setContent('<button id="projects"><p></p></button>');
     await page.evaluate(() => checkProjects());

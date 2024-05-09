@@ -59,7 +59,6 @@ const { chromium } = require('playwright');
         {
             description: "Form container exists",
             setup: async () => {
-                // Add the form container to the DOM
                 await page.setContent(`
                     <div id="modify-task-form-container" class="hide"></div>
                     <script>
@@ -71,11 +70,9 @@ const { chromium } = require('playwright');
                 `);
             },
             action: async () => {
-                // Trigger the displayForm function
                 await page.evaluate(() => displayForm());
             },
             expectation: async () => {
-                // Check if the form container is visible
                 const formContainer = await page.$('#modify-task-form-container');
                 const isHidden = await formContainer.isHidden();
                 return !isHidden;
@@ -84,14 +81,11 @@ const { chromium } = require('playwright');
         {
             description: "Form container doesn't exist",
             setup: async () => {
-                // No setup needed as form container is not added to the DOM
             },
             action: async () => {
-                // Trigger the displayForm function
                 await page.evaluate(() => displayForm());
             },
             expectation: async () => {
-                // Check if there's any error
                 return page.waitForTimeout(2000).then(() => true).catch(() => false);
             }
         }
@@ -133,10 +127,6 @@ const { chromium } = require('playwright');
                     console.error("Error updating task status:", error);
                 }
             }
-            
-            // Your function implementation here
-            // Note: You'll need to handle the fetch API call or any other method used in the function
-            // Make sure to return a Promise to be properly evaluated in page.evaluate
         };
     });
 
@@ -234,11 +224,10 @@ const { chromium } = require('playwright');
                 tagColor: "green"
             }
         }
-        // Add more test cases as needed
+
     ];
 
     for (const testCase of testCases3) {
-        // Mock the necessary HTML elements
         await page.setContent(`
             <div class="task">
                 <input type="hidden" value="${testCase.formData.task_id}">
@@ -249,7 +238,6 @@ const { chromium } = require('playwright');
             </div>
         `);
 
-        // Execute the function with the test data
         await page.evaluate(formData => {
             function updateTaskFrontend(formData) {
                 const taskId = formData.task_id;
@@ -275,14 +263,12 @@ const { chromium } = require('playwright');
             updateTaskFrontend(formData);
         }, testCase.formData);
 
-        // Validate the updated task details
         const updatedTaskTitle = await page.textContent('.task-title');
         const updatedTaskDescription = await page.textContent('.additional-details p:first-child');
         const updatedTaskDeadline = await page.textContent('.task-date');
         const updatedTaskTag = await page.textContent('.task-tag');
         const updatedTaskTagColor = await page.$eval('.task-tag', el => el.className.includes('blue') ? 'blue' : el.className.includes('green') ? 'green' : 'other');
 
-        // Assert the expected values
         console.log(`Test Case: Task ID=${testCase.formData.task_id}`);
         console.log('Updated Task Title:', updatedTaskTitle);
         console.log('Expected Title:', testCase.expected.title);
@@ -430,7 +416,6 @@ const { chromium } = require('playwright');
             populateForm(taskId, taskTitle, taskDescription, taskDeadline, taskTag, taskTagColor);
         }, testCase);
 
-        // Add assertions
         const formValues = await page.evaluate(() => {
             const form = document.getElementById('modify-task-form');
             return {
@@ -446,7 +431,6 @@ const { chromium } = require('playwright');
         console.log('Test Case:', testCase);
         console.log('Form Values:', formValues);
 
-        // Assertions
         if (
             formValues.taskId === testCase.taskId &&
             formValues.taskTitle === testCase.taskTitle &&

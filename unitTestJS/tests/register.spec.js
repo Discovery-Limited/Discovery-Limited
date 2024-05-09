@@ -5,7 +5,7 @@ const { chromium } = require('playwright');
     const page = await browser.newPage();
 
     const testCases = [
-        // Test cases for checkPassword
+
         { password: 'T£st1234', confirmPassword: undefined, expectedPasswordFeedbackVisible: false, expectedConfirmFeedbackVisible: false, expectedPasswordChecked: true },
         { password: 'T£st1234', confirmPassword: 'T£est1234', expectedPasswordFeedbackVisible: false, expectedConfirmFeedbackVisible: false, expectedPasswordChecked: true },
         { password: 'T£est', confirmPassword: undefined, expectedPasswordFeedbackVisible: true, expectedConfirmFeedbackVisible: false, expectedPasswordChecked: false },
@@ -13,12 +13,12 @@ const { chromium } = require('playwright');
         { password: 'T£ST1234', confirmPassword: undefined, expectedPasswordFeedbackVisible: true, expectedConfirmFeedbackVisible: false, expectedPasswordChecked: false },
         { password: 'Test1234', confirmPassword: undefined, expectedPasswordFeedbackVisible: true, expectedConfirmFeedbackVisible: false, expectedPasswordChecked: false },
         { password: 'T£st1234', confirmPassword: 'T£est1', expectedPasswordFeedbackVisible: false, expectedConfirmFeedbackVisible: true, expectedPasswordChecked: false },
-        // Test cases for checkEmail
+
         { email: 'test@gmail.com', expectedEmailFeedbackVisible: false, expectedEmailChecked: true },
         { email: 'test@gmail', expectedEmailFeedbackVisible: true, expectedEmailChecked: false },
         { email: '', expectedEmailFeedbackVisible: true, expectedEmailChecked: false },
         { email: 'testgmail.com', expectedEmailFeedbackVisible: true, expectedEmailChecked: false },
-        // Test cases for checkUsername
+
         { username: 'test1', expectedUsernameFeedbackVisible: false, expectedUsernameChecked: true },
         { username: 'test', expectedUsernameFeedbackVisible: true, expectedUsernameChecked: false },
         { username: 't@st1', expectedUsernameFeedbackVisible: true, expectedUsernameChecked: false },
@@ -158,7 +158,6 @@ const { chromium } = require('playwright');
                 </body>
             </html>
         `);
-        // await page.waitForNavigation();
 
         await page.waitForSelector('#username-feedback, #email-feedback, #password-feedback, #confirm-feedback', { state: 'attached' });
 
