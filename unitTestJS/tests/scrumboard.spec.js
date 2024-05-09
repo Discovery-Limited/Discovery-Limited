@@ -302,6 +302,167 @@ const { chromium } = require('playwright');
         console.log('---------------------------');
     }
 
+    
+
+    const testCases4 = [
+        // Test Case 1: Populate Form with Valid Task Details
+        {
+            taskId: "123",
+            taskTitle: "Task 1",
+            taskDescription: "This is task 1",
+            taskDeadline: "2024-06-30",
+            taskTag: "Work",
+            taskTagColor: "blue",
+            expected: {
+                taskId: "123",
+                taskTitle: "Task 1",
+                taskDescription: "This is task 1",
+                taskDeadline: "2024-06-30",
+                taskTag: "Work",
+                taskTagColor: "blue"
+            }
+        },
+        // Test Case 2: Populate Form with Empty Input
+        {
+            taskId: "",
+            taskTitle: "",
+            taskDescription: "",
+            taskDeadline: "",
+            taskTag: "",
+            taskTagColor: "",
+            expected: {
+                taskId: "",
+                taskTitle: "",
+                taskDescription: "",
+                taskDeadline: "",
+                taskTag: "",
+                taskTagColor: ""
+            }
+        },
+        // Test Case 3: Populate Form with Missing Parameters
+        {
+            taskId: "123",
+            taskTitle: "Task 1",
+            taskDescription: "",
+            taskDeadline: "2024-06-30",
+            taskTag: "Work",
+            taskTagColor: "",
+            expected: {
+                taskId: "123",
+                taskTitle: "Task 1",
+                taskDescription: "",
+                taskDeadline: "2024-06-30",
+                taskTag: "Work",
+                taskTagColor: ""
+            }
+        },
+        // Test Case 4: Populate Form with Special Characters
+        {
+            taskId: "123@#",
+            taskTitle: "Task 1",
+            taskDescription: "This is task 1",
+            taskDeadline: "2024-06-30",
+            taskTag: "Work",
+            taskTagColor: "blue",
+            expected: {
+                taskId: "123@#",
+                taskTitle: "Task 1",
+                taskDescription: "This is task 1",
+                taskDeadline: "2024-06-30",
+                taskTag: "Work",
+                taskTagColor: "blue"
+            }
+        },
+        // Test Case 5: Populate Form with Long Input Values
+        {
+            taskId: "12345678901234567890",
+            taskTitle: "testtesttesttesttesttesttest.",
+            taskDescription: "testtesttesttesttesttesttesttesttesttesttesttesttest",
+            taskDeadline: "2024-06-30",
+            taskTag: "Work",
+            taskTagColor: "blue",
+            expected: {
+                taskId: "12345678901234567890",
+                taskTitle: "testtesttesttesttesttesttest.",
+                taskDescription: "testtesttesttesttesttesttesttesttesttesttesttesttest",
+                taskDeadline: "2024-06-30",
+                taskTag: "Work",
+                taskTagColor: "blue"
+            }
+        }
+    ];
+
+    for (const testCase of testCases) {
+        await page.setContent(`
+            <html>
+                <body>
+                    <form id="modify-task-form">
+                        <input id="modify-task-id" type="text">
+                        <input id="modify-task-title" type="text">
+                        <textarea id="modify-task-description"></textarea>
+                        <input id="modify-task-deadline" type="text">
+                        <input id="modify-task-tag" type="text">
+                        <input id="modify-task-tag-color" type="text">
+                    </form>
+                    <script>
+                        function populateForm(
+                            taskId,
+                            taskTitle,
+                            taskDescription,
+                            taskDeadline,
+                            taskTag,
+                            taskTagColor
+                        ) {
+                            const form = document.getElementById("modify-task-form");
+                            form.querySelector("#modify-task-id").value = taskId;
+                            form.querySelector("#modify-task-title").value = taskTitle;
+                            form.querySelector("#modify-task-description").value = taskDescription;
+                            form.querySelector("#modify-task-deadline").value = taskDeadline;
+                            form.querySelector("#modify-task-tag").value = taskTag; // Added
+                            form.querySelector("#modify-task-tag-color").value = taskTagColor; // Added
+                        }
+                    </script>
+                </body>
+            </html>
+        `);
+
+        await page.evaluate(({ taskId, taskTitle, taskDescription, taskDeadline, taskTag, taskTagColor }) => {
+            populateForm(taskId, taskTitle, taskDescription, taskDeadline, taskTag, taskTagColor);
+        }, testCase);
+
+        // Add assertions
+        const formValues = await page.evaluate(() => {
+            const form = document.getElementById('modify-task-form');
+            return {
+                taskId: form.querySelector('#modify-task-id').value,
+                taskTitle: form.querySelector('#modify-task-title').value,
+                taskDescription: form.querySelector('#modify-task-description').value,
+                taskDeadline: form.querySelector('#modify-task-deadline').value,
+                taskTag: form.querySelector('#modify-task-tag').value,
+                taskTagColor: form.querySelector('#modify-task-tag-color').value
+            };
+        });
+
+        console.log('Test Case:', testCase);
+        console.log('Form Values:', formValues);
+
+        // Assertions
+        if (
+            formValues.taskId === testCase.taskId &&
+            formValues.taskTitle === testCase.taskTitle &&
+            formValues.taskDescription === testCase.taskDescription &&
+            formValues.taskDeadline === testCase.taskDeadline &&
+            formValues.taskTag === testCase.taskTag &&
+            formValues.taskTagColor === testCase.taskTagColor
+        ) {
+            console.log('Test Passed');
+        } else {
+            console.error('Test Failed');
+        }
+        
+        console.log('---------------------------');
+    }
+
     await browser.close();
 })();
 
