@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 document.addEventListener("DOMContentLoaded", () => {
     const username = document.querySelector('#username');
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (placeholder === "Password") {
             const rules = {
-                length: password.value.length > 8,
+                length: password.value.length > 7,
                 uppercase: /[A-Z]/.test(password.value),
                 lowercase: /[a-z]/.test(password.value),
                 number: /\d/.test(password.value),
