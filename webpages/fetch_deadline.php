@@ -3,6 +3,7 @@ header('Content-Type: application/json');
 
 $config = require 'config.php';
 
+// Database configuration
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
@@ -20,6 +21,7 @@ error_reporting(E_ALL);
 
 session_start();
 
+// Checks if user is logged in
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'User not logged in']);
     exit;
@@ -27,6 +29,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
+// Gets all the tasks that are assigned to the user
 $taskQuery = $pdo->prepare("SELECT t.*
                                FROM task t 
                                JOIN user_task ut ON t.task_id = ut.task_id
@@ -34,6 +37,7 @@ $taskQuery = $pdo->prepare("SELECT t.*
 $taskQuery->execute(['user_id' => $user_id]);
 $tasks = $taskQuery->fetchAll(PDO::FETCH_ASSOC);
 
+// Gets other contributors of the tasks from taskQuery
 foreach ($tasks as &$task) {
     $userQuery = $pdo->prepare("SELECT u.email
                                 FROM user u
@@ -41,9 +45,10 @@ foreach ($tasks as &$task) {
                                 WHERE ut.task_id = :task_id");
     $userQuery->execute(['task_id' => $task['task_id']]);
     $users = $userQuery->fetchAll(PDO::FETCH_ASSOC);
-    $task['users'] = $users;  // Assign correct users list to each task
+    $task['users'] = $users;  
 }
-unset($task);  // Break the reference with the last element
+unset($task);  
 
+// Sends every data to front end
 echo json_encode(['tasks' => $tasks]);
 ?>

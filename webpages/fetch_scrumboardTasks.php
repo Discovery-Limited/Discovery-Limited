@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
+// Database configuration
 $config = require 'config.php';
-
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
@@ -17,7 +17,7 @@ try {
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-
+    // Gets scrumboard tasks data
     $scrumboardTaskQuery = $pdo->prepare("SELECT t.task_id, t.task_name, t.deadline, t.assignee_id, t.description, t.scrumboard_id 
                                    FROM task t
                                    JOIN scrumboard s ON s.scrumboard_id = t.scrumboard_id 

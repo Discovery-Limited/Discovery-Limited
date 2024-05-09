@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
+// Database configuration
 $config = require 'config.php';
-
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",

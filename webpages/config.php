@@ -1,4 +1,6 @@
 <?php
+// For security reasons, database configuration
+// kept in different file
 return [
     'db' => [
         'host' => '212.107.17.1',

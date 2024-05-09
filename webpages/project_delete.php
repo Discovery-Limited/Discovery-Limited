@@ -22,15 +22,18 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Get JSON input
+// Gets JSON input
 $input = json_decode(file_get_contents('php://input'), true);
 
+// Checks if the input has project id
 if (isset($input['project_id']) && !empty($input['project_id'])) {
     $project_id = $input['project_id'];
 
+    // Deletes project with the giving project id
     $projectDeleteQuery = $pdo->prepare("UPDATE project SET is_deleted = 1 WHERE project_id = :project_id");
     $projectDeleteQuery->execute(['project_id' => $project_id]);
 
+    // Checks if the database updated
     if ($projectDeleteQuery->rowCount() > 0) {
         echo json_encode(['success' => "Project successfully deleted."]);
     } else {
