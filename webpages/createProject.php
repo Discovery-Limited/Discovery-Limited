@@ -2,9 +2,15 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+function redirect($url) {
+    header("Location: $url");
+    exit;
+}
+
 // Load the configuration file
 $config = require 'config.php';
 
+// Database configuration
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
@@ -20,10 +26,10 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
+    redirect("login.php");
 }
 
+// Getting data from form
 $user_id = $_SESSION['user_id'];
 $project_name = $_POST['project_name'] ?? '';
 $email_addresses = isset($_POST['emails']) ? explode(',', $_POST['emails']) : [];
@@ -32,20 +38,20 @@ $email_addresses = isset($_POST['emails']) ? explode(',', $_POST['emails']) : []
 $pdo->beginTransaction();
 
 try {
-    // Insert new project
+    // Inserting a new project
     $stmt = $pdo->prepare("INSERT INTO project (project_name, admin_id) VALUES (:project_name, :user_id)");
     $stmt->bindParam(':project_name', $project_name);
     $stmt->bindParam(':user_id', $user_id);
     $stmt->execute();
     $project_id = $pdo->lastInsertId();
 
-    // Add creator to the user_project
+    // Adding creator to the project by user_project table
     $stmt = $pdo->prepare("INSERT INTO user_project (project_id, user_id) VALUES (:project_id, :user_id)");
     $stmt->bindParam(':project_id', $project_id);
     $stmt->bindParam(':user_id', $user_id);
     $stmt->execute();
 
-    // Add other users if emails were provided
+    // Adding other users if user emails were provided
     $contributors = 1;
     if (!empty($email_addresses)) {
         foreach ($email_addresses as $email) {
@@ -64,6 +70,7 @@ try {
         }
     }
 
+    // Updating contributor count according to the user emails
     $stmt = $pdo->prepare("UPDATE project SET contributors = :contributors WHERE project_id = :project_id");
     $stmt->bindParam(':contributors', $contributors);
     $stmt->bindParam(':project_id', $project_id);
@@ -71,7 +78,7 @@ try {
 
     // Commit the transaction
     $pdo->commit();
-    header('Location: user_view.php');
+    redirect('user_view.php');
 } catch (\PDOException $e) {
     // Rollback the transaction on error
     $pdo->rollBack();

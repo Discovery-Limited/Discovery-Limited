@@ -28,6 +28,7 @@ function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
+// Gets data from form by POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = test_input($_POST['email']);
     $password = test_input($_POST['password']);
@@ -36,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Invalid email format.");
     }
 
+    // Gets user data
     try {
         $stmt = $pdo->prepare("SELECT user_id, username, password FROM user WHERE email = :email");
         $stmt->execute(['email' => $email]);

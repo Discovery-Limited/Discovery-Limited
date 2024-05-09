@@ -3,8 +3,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+// Database configuration
 $config = require 'config.php';
-
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
@@ -16,6 +16,7 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
+// Destroy user session
 session_start();
 session_destroy();
 

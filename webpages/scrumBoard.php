@@ -1,10 +1,12 @@
 <?php
 session_start();
 
+// Gets session data and database configuration
 $currentUserId = $_SESSION['user_id'];
 $currentProjectId = $_SESSION['project_id'];
 $config = require 'config.php';
 
+// Connect to the database
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
@@ -16,6 +18,12 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
+// Check if the user is admin
+$isAdminStmt = $pdo->prepare("SELECT is_admin FROM user WHERE user_id = :user_id");
+$isAdminStmt->execute(['user_id' => $currentUserId]);
+$isAdmin = (bool)$isAdminStmt->fetchColumn();
+
+// Gets tasks
 $stmt = $pdo->prepare("
     SELECT t.* 
     FROM task t
@@ -27,6 +35,7 @@ $stmt = $pdo->prepare("
 $stmt->execute(['user_id' => $currentUserId, 'project_id' => $currentProjectId]);
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Gets emails of contributors
 $stmt = $pdo->prepare("
     SELECT u.email 
     FROM user u
@@ -42,6 +51,7 @@ $toDoTasks = [];
 $inProgressTasks = [];
 $doneTasks = [];
 
+// Puts every task into groups depending on status
 foreach ($tasks as $task) {
     switch ($task['status']) {
         case 'backlog':
@@ -62,15 +72,11 @@ foreach ($tasks as $task) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <script src="./src/static/handlebar.js"></script> -->
-    <!-- <script type="module" defer src="./src/static/scrumBoard.js?=1"></script> -->
-    <!-- <script src="scrumBoard.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./src/static/handlebar.js"></script>
     <script src="./src/static/scrumBoard.js?=29" defer></script>
