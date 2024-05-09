@@ -463,6 +463,6 @@ const { chromium } = require('playwright');
         console.log('---------------------------');
     }
 
-    await browser.close();
+    // await browser.close();
 })();
 
