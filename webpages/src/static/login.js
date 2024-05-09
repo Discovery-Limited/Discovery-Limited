@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if(email.value == '' && password.value == ''){
             button.style.cursor = 'not-allowed';
             button.style.opacity = (0.4);
-        } else if (password.value.length >= 8) {
+        } else if (password.value.length >= 8 && email.value != '' ) {
             button.style.opacity = (1);
             button.style.cursor = 'pointer';
         } else {
