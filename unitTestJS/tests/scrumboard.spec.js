@@ -182,6 +182,126 @@ const { chromium } = require('playwright');
         console.log('---------------------------');
     }
 
+    const testCases3 = [
+        {
+            formData: {
+                task_id: "",
+                task_title: "",
+                description: "",
+                deadline: "",
+                tag: "",
+                tag_color: ""
+            },
+            expected: {
+                title: "",
+                description: "",
+                deadline: "",
+                tag: "",
+                tagColor: ""
+            }
+        },   
+        {
+            formData: {
+                task_id: "123",
+                task_title: "Update UI Design",
+                description: "Revise UI design based on client feedback",
+                deadline: "2024-06-30",
+                tag: "Design",
+                tag_color: "blue"
+            },
+            expected: {
+                title: "Update UI Design",
+                description: "Revise UI design based on client feedback",
+                deadline: "2024-06-30",
+                tag: "Design",
+                tagColor: "blue"
+            }
+        },
+        {
+            formData: {
+                task_id: "456",
+                task_title: "Implement Backend Logic",
+                description: "Write backend logic to handle user authentication",
+                deadline: "2024-07-15",
+                tag: "Backend",
+                tag_color: "green"
+            },
+            expected: {
+                title: "Implement Backend Logic",
+                description: "Write backend logic to handle user authentication",
+                deadline: "2024-07-15",
+                tag: "Backend",
+                tagColor: "green"
+            }
+        }
+        // Add more test cases as needed
+    ];
+
+    for (const testCase of testCases3) {
+        // Mock the necessary HTML elements
+        await page.setContent(`
+            <div class="task">
+                <input type="hidden" value="${testCase.formData.task_id}">
+                <div class="task-title"></div>
+                <div class="additional-details"><p></p></div>
+                <div class="task-date"></div>
+                <div class="task-tag"></div>
+            </div>
+        `);
+
+        // Execute the function with the test data
+        await page.evaluate(formData => {
+            function updateTaskFrontend(formData) {
+                const taskId = formData.task_id;
+                const taskTitle = formData.task_title;
+                const taskDescription = formData.description;
+                const taskDeadline = formData.deadline;
+                const taskTag = formData.tag;
+                const taskTagColor = formData.tag_color;
+
+                const taskContainer = document
+                    .querySelector(`.task input[value="${taskId}"]`)
+                    .closest(".task");
+                taskContainer.querySelector(".task-title").textContent = taskTitle;
+                taskContainer.querySelector(
+                    ".additional-details p:first-child"
+                ).textContent = taskDescription;
+                taskContainer.querySelector(".task-date").textContent = taskDeadline;
+                const taskTagElement = taskContainer.querySelector(".task-tag");
+                taskTagElement.textContent = taskTag;
+                taskTagElement.classList = `task-tag ${taskTagColor}`;
+            }
+
+            updateTaskFrontend(formData);
+        }, testCase.formData);
+
+        // Validate the updated task details
+        const updatedTaskTitle = await page.textContent('.task-title');
+        const updatedTaskDescription = await page.textContent('.additional-details p:first-child');
+        const updatedTaskDeadline = await page.textContent('.task-date');
+        const updatedTaskTag = await page.textContent('.task-tag');
+        const updatedTaskTagColor = await page.$eval('.task-tag', el => el.className.includes('blue') ? 'blue' : el.className.includes('green') ? 'green' : 'other');
+
+        // Assert the expected values
+        console.log(`Test Case: Task ID=${testCase.formData.task_id}`);
+        console.log('Updated Task Title:', updatedTaskTitle);
+        console.log('Expected Title:', testCase.expected.title);
+        console.log('Updated Task Description:', updatedTaskDescription);
+        console.log('Expected Description:', testCase.expected.description);
+        console.log('Updated Task Deadline:', updatedTaskDeadline);
+        console.log('Expected Deadline:', testCase.expected.deadline);
+        console.log('Updated Task Tag:', updatedTaskTag);
+        console.log('Expected Tag:', testCase.expected.tag);
+        console.log('Updated Task Tag Color:', updatedTaskTagColor);
+        console.log('Expected Tag Color:', testCase.expected.tagColor);
+        console.log('Test Result:', updatedTaskTitle === testCase.expected.title &&
+            updatedTaskDescription === testCase.expected.description &&
+            updatedTaskDeadline === testCase.expected.deadline &&
+            updatedTaskTag === testCase.expected.tag &&
+            updatedTaskTagColor === testCase.expected.tagColor ? 'Pass' : 'Fail');
+        console.log('---------------------------');
+    }
+
     await browser.close();
 })();
 
