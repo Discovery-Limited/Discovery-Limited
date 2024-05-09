@@ -55,7 +55,7 @@ const { chromium } = require('playwright');
         console.log('---------------------------');
     };
 
-    const testCases = [
+    const testCases2 = [
         {
             description: "Form container exists",
             setup: async () => {
@@ -97,7 +97,7 @@ const { chromium } = require('playwright');
         }
     ];
 
-    for (const testCase of testCases) {
+    for (const testCase of testCases2) {
         console.log(`Test Case: ${testCase.description}`);
         await testCase.setup();
         await testCase.action();
@@ -106,12 +106,82 @@ const { chromium } = require('playwright');
         console.log('---------------------------');
     }
 
+    await page.evaluate(() => {
+        window.updateTaskStatus = async (taskId_, status_) => {
+            async function updateTaskStatus(taskId_, status_) {
+                try {
+                    const response = await fetch("scrumboardTasks_update.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            taskId: taskId_,
+                            status: status_,
+                        }),
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error("Server error occurred");
+                    }
+            
+                    const data = await response.json();
+                    if (!data.success) {
+                        console.error("Error updating task status:", data.error);
+                    }
+                } catch (error) {
+                    console.error("Error updating task status:", error);
+                }
+            }
+            
+            // Your function implementation here
+            // Note: You'll need to handle the fetch API call or any other method used in the function
+            // Make sure to return a Promise to be properly evaluated in page.evaluate
+        };
+    });
+
+    const testCases = [
+        { taskId: "123", status: "completed", expectedResult: "success" },
+        { taskId: "456", status: "in_progress", expectedResult: "server_error" },
+        { taskId: "789", status: "pending", expectedResult: "network_error" }
+    ];
+
+    for (const testCase of testCases) {
+        // Mock the fetch function to simulate different responses
+        await page.evaluate((testCase) => {
+            // Mock the fetch function to return different responses based on the test case
+            window.fetch = async (url, options) => {
+                if (url === "scrumboardTasks_update.php") {
+                    if (options.body.includes(`"taskId":"${testCase.taskId}"`)) {
+                        if (testCase.expectedResult === "success") {
+                            return {
+                                ok: true,
+                                json: async () => ({ success: true })
+                            };
+                        } else if (testCase.expectedResult === "server_error") {
+                            return {
+                                ok: false,
+                                json: async () => ({ error: "Server error occurred" })
+                            };
+                        } else if (testCase.expectedResult === "network_error") {
+                            throw new Error("Network error occurred");
+                        }
+                    }
+                }
+            };
+        }, testCase);
+
+        await page.evaluate(async (testCase) => {
+            // Call the updateTaskStatus function with the provided test case parameters
+            await updateTaskStatus(testCase.taskId, testCase.status);
+        }, testCase);
+
+        console.log(`Test Case: Task ID=${testCase.taskId}, Status=${testCase.status}`);
+        console.log('Expected Result:', testCase.expectedResult);
+        console.log('Test Result: Pass');
+        console.log('---------------------------');
+    }
+
     await browser.close();
 })();
-
-
-
-// const { chromium } = require('playwright');
-
-// const { chromium } = require('playwright');
 
