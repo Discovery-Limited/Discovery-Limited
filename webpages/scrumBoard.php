@@ -18,11 +18,6 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-// Check if the user is admin
-$isAdminStmt = $pdo->prepare("SELECT is_admin FROM user WHERE user_id = :user_id");
-$isAdminStmt->execute(['user_id' => $currentUserId]);
-$isAdmin = (bool)$isAdminStmt->fetchColumn();
-
 // Gets tasks
 $stmt = $pdo->prepare("
     SELECT t.* 

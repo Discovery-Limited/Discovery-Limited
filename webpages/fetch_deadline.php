@@ -33,7 +33,9 @@ $user_id = $_SESSION['user_id'];
 $taskQuery = $pdo->prepare("SELECT t.*
                                FROM task t 
                                JOIN user_task ut ON t.task_id = ut.task_id
-                               WHERE (t.status = 'inProgress' OR t.status = 'toDo') AND ut.user_id = :user_id");
+                               JOIN user u ON ut.user_id = u.user_id
+                               WHERE (t.status = 'inProgress' OR t.status = 'toDo') AND u.user_id = :user_id
+                               ORDER BY t.deadline ASC");
 $taskQuery->execute(['user_id' => $user_id]);
 $tasks = $taskQuery->fetchAll(PDO::FETCH_ASSOC);
 
