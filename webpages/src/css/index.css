@@ -66,10 +66,15 @@ header nav .logo img {
   object-fit: cover;
 }
 
-header nav .logo p {
+header nav .logo a {
+  text-decoration: none;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -1px;
+}
+
+.logo a:visited {
+  color: black;
 }
 
 header nav ul {
