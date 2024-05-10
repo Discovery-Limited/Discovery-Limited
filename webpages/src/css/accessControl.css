@@ -26,7 +26,7 @@ form {
 }
 
 #signupform {
-  height: 37.5vh;
+  min-height: 37.5vh;
 }
 
 form input {
@@ -37,6 +37,7 @@ form input {
   border-radius: 5px;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
+  height: 5vh;
 }
 
 form input[type="submit"] {
