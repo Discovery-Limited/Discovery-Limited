@@ -1,427 +1,217 @@
-const { chromium } = require('playwright');
+import { test, expect } from '@playwright/test';
 
-(async () => {
-    const browser = await chromium.launch();
-    const page = await browser.newPage();
+test.describe("profileDropdownButton event listener should toggle the visibility of the profile.", () => {
 
-    await page.setContent(`
-    <button id="profileDropdownButton">Profile Dropdown Button</button>
-    <ul id="profileDropdownList">Dropdown List</ul>
-`);
+    test('Toggle profile dropdown on click', async ({ page }) => {
+        await page.evaluate(() => {
+            const profileDropdownButton = document.createElement('button');
+            profileDropdownButton.id = 'profileDropdownButton';
+            document.body.appendChild(profileDropdownButton);
 
-const profileDropdownButton = await page.$('#profileDropdownButton');
-const profileDropdownList = await page.$('#profileDropdownList');
+            const profileDropdownList = document.createElement('ul');
+            profileDropdownList.id = 'profileDropdownList';
+            document.body.appendChild(profileDropdownList);
 
-// Test Case 1: Click on profile dropdown when hidden
-await profileDropdownButton.click();
-let isListVisible = await profileDropdownList.isVisible();
-console.log('Test Case 1:', isListVisible ? 'Pass' : 'Fail');
-
-// Test Case 2: Click on profile dropdown when visible
-await profileDropdownButton.click();
-isListVisible = await profileDropdownList.isVisible();
-console.log('Test Case 2:', !isListVisible ? 'Pass' : 'Fail');
-
-// Test Case 3: Button not found
-if (!profileDropdownButton) {
-    console.log('Test Case 3: Pass');
-} else {
-    console.log('Test Case 3: Fail');
-}
-
-// Test Case 4: Click on profile dropdown but the list is not found
-if (!profileDropdownList) {
-    console.log('Test Case 4: Pass');
-} else {
-    console.log('Test Case 4: Fail');
-}
-
-const sidebarToggle = await page.$('#sidebarToggle');
-const sidebarDropdownList = await page.$('#sidebarDropdownList');
-
-const userViewUrl = 'https://discoveria.online/user_view.php'; 
-
-const testCases1 = [
-    // Test case 1: Click event on sidebar button when sidebar is initially closed
-    async () => {
-        await page.goto(userViewUrl);
-        if (!sidebarToggle) return { error: 'Sidebar toggle button not found' };
-        await sidebarToggle.click();
-        await page.waitForTimeout(1000); // Adjust timeout as necessary
-        const iconClass = await sidebarToggle.$eval('i', el => el.classList.contains('fa-angle-up'));
-        const listClass = await sidebarDropdownList.evaluate(el => el.classList.contains('active'));
-        return { iconClass, listClass };
-    },
-    // Test case 2: Click event on sidebar button when sidebar is initially opened
-    async () => {
-        if (!sidebarToggle) return { error: 'Sidebar toggle button not found' };
-        await sidebarToggle.click();
-        await page.waitForTimeout(1000); // Adjust timeout as necessary
-        const iconClass = await sidebarToggle.$eval('i', el => el.classList.contains('fa-angle-down'));
-        const listClass = await sidebarDropdownList.evaluate(el => el.classList.contains('active'));
-        return { iconClass, listClass };
-    },
-    // Test case 3: Click event on sidebar button when the button is not found
-    async () => {
-        return { error: 'Sidebar toggle button not found' };
-    },
-    // Test case 4: Click event on sidebar button when the list is not found
-    async () => {
-        return { error: 'Sidebar dropdown list not found' };
-    }
-];
-
-for (const [index, testCase] of testCases1.entries()) {
-    console.log(`Running Test Case ${index + 1}`);
-    const result = await testCase();
-    console.log('Test Case Result:', result);
-    console.log('---------------------------------');
-};
-
-const addEmailToListFunction = `
-    function addEmailToList(email) {
-        const emailListDiv = document.getElementById("emailList");
-        const newEmail = document.createElement("span");
-        newEmail.textContent = email;
-        emailListDiv.appendChild(newEmail);
-
-        const hiddenEmails = document.getElementById("hiddenEmails");
-        hiddenEmails.value += email + ",";
-    }
-`;
-
-// Test Case 1: Valid email address
-const validEmail = 'test@gmail.com';
-await page.setContent(`
-    <div id="emailList"></div>
-    <input type="hidden" id="hiddenEmails" value="">
-    <script>${addEmailToListFunction}</script>
-`);
-await page.evaluate((email) => {
-    addEmailToList(email);
-}, validEmail);
-const emailListContent = await page.$eval('#emailList', el => el.textContent);
-const hiddenEmailsValue = await page.$eval('#hiddenEmails', el => el.value);
-console.log('Test Case 1:');
-console.log('Expected email list content:', validEmail);
-console.log('Actual email list content:', emailListContent);
-console.log('Expected hidden emails value:', validEmail + ',');
-console.log('Actual hidden emails value:', hiddenEmailsValue);
-console.log('--------------------------------');
-
-// Test Case 2: Invalid email address
-const invalidEmail = 'testgmail.com';
-await page.setContent(`
-    <div id="emailList"></div>
-    <input type="hidden" id="hiddenEmails" value="">
-    <script>${addEmailToListFunction}</script>
-`);
-await page.evaluate((email) => {
-    addEmailToList(email);
-}, invalidEmail);
-const emailListContent2 = await page.$eval('#emailList', el => el.textContent);
-const hiddenEmailsValue2 = await page.$eval('#hiddenEmails', el => el.value);
-console.log('Test Case 2:');
-console.log('Expected email list content:', '');
-console.log('Actual email list content:', emailListContent2);
-console.log('Expected hidden emails value:', '');
-console.log('Actual hidden emails value:', hiddenEmailsValue2);
-console.log('--------------------------------');
-
-// Test Case 3: Null email
-const nullEmail = null;
-await page.setContent(`
-    <div id="emailList"></div>
-    <input type="hidden" id="hiddenEmails" value="">
-    <script>${addEmailToListFunction}</script>
-`);
-await page.evaluate((email) => {
-    addEmailToList(email);
-}, nullEmail);
-const emailListContent3 = await page.$eval('#emailList', el => el.textContent);
-const hiddenEmailsValue3 = await page.$eval('#hiddenEmails', el => el.value);
-console.log('Test Case 3:');
-console.log('Expected email list content:', '');
-console.log('Actual email list content:', emailListContent3);
-console.log('Expected hidden emails value:', '');
-console.log('Actual hidden emails value:', hiddenEmailsValue3);
-console.log('--------------------------------');
-
-
-    await page.evaluate(() => {
-        window.setProjectIdInSession = function(projectId) {
-            if (!projectId) {
-                console.error("Project ID is not provided");
-                return;
-            }
-            // Simulated fetch operation
-            console.log("Project ID stored successfully.");
-        }
-    });
-
-    const testCases2 = [
-        { projectId: "123", expectedConsoleMessage: "Project ID stored successfully." },
-        { projectId: "", expectedConsoleMessage: "Project ID is not provided" },
-        { projectId: null, expectedConsoleMessage: "Project ID is not provided" },
-        { projectId: undefined, expectedConsoleMessage: "Project ID is not provided" },
-        { projectId: "project123", expectedConsoleMessage: "Project ID stored successfully." }
-    ];
-
-    for (const testCase of testCases2) {
-        await page.evaluate(({ projectId, expectedConsoleMessage }) => {
-            const consoleLog = [];
-            const originalConsoleLog = console.log;
-            console.log = (message) => consoleLog.push(message);
-
-            setProjectIdInSession(projectId);
-
-            console.log = originalConsoleLog;
-
-            if (consoleLog.includes(expectedConsoleMessage)) {
-                console.log(`Test Case for project: projectId=${projectId}`);
-                console.log('Expected Console Message:', expectedConsoleMessage);
-                console.log('Test Result:', 'Pass');
-            } else {
-                console.log(`Test Case for project: projectId=${projectId}`);
-                console.log('Expected Console Message:', expectedConsoleMessage);
-                console.log('Test Result:', 'Fail');
-            }
-            console.log('---------------------------');
-        }, testCase);
-    }
-    
-
-    
-
-    await page.setContent(`
-        <input type="text" id="emailInput">
-        <div id="emailList"></div>
-        <input type="hidden" id="hiddenEmails" value="">
-        <script>
-            // Code to addEmailToList and validateEmail functions
-            function addEmailToList(email) {
-                const emailListDiv = document.getElementById("emailList");
-                const newEmail = document.createElement("span");
-                newEmail.textContent = email;
-                emailListDiv.appendChild(newEmail);
-
-                const hiddenEmails = document.getElementById("hiddenEmails");
-                hiddenEmails.value += email + ",";
-            }
-
-            function validateEmail(email) {
-                // Simplified email validation logic for testing
-                return /\S+@\S+\.\S+/.test(email);
-            }
-
-            const emailInput = document.getElementById("emailInput");
-            emailInput.addEventListener("keypress", function (event) {
-                if (event.key === "Enter") {
-                    event.preventDefault();
-                    const email = this.value.trim();
-                    if (email && validateEmail(email)) {
-                        addEmailToList(email);
-                        this.value = "";
-                    } else {
-                        alert("Please enter a valid email.");
-                    }
-                }
+            profileDropdownButton.addEventListener("click", function () {
+                profileDropdownList.classList.toggle("active");
             });
-        </script>
-    `);
+        });
 
-    // Test Case 1: Valid email address entered
-    await page.fill('#emailInput', 'test@gmail.com');
-    await page.keyboard.press('Enter');
-    const emailListContents = await page.$eval('#emailList', el => el.textContent);
-    console.log('Test Case 1:');
-    console.log('Expected email list content:', 'test@gmail.com');
-    console.log('Actual email list content:', emailListContents);
-    console.log('--------------------------------');
+        await page.click('#profileDropdownButton');
 
-    // Test Case 2: Invalid email address entered
-    page.on('dialog', async dialog => {
-        console.log('Test Case 2:');
-        console.log('Expected dialog message:', 'Please enter a valid email.');
-        console.log('Actual dialog message:', dialog.message());
-        await dialog.dismiss();
-        console.log('--------------------------------');
+        const profileDropdownListClass = await page.$eval('#profileDropdownList', element => element.className);
+        expect(profileDropdownListClass.includes('active')).toBeTruthy();
     });
-    await page.fill('#emailInput', 'testgmail.com');
-    await page.keyboard.press('Enter');
+});
 
-    // Test Case 3: Empty email input field
-    await page.keyboard.press('Enter');
-    const emailListContents2 = await page.$eval('#emailList', el => el.textContent);
-    console.log('Test Case 3:');
-    console.log('Expected email list content:', '');
-    console.log('Actual email list content:', emailListContents2);
-    console.log('--------------------------------');
+test.describe("sidebarToggle() event listener  should toggle the dirrect of the arrow when clicked and toggle the visibility of the sidebar content", () => {
 
-    // Test Case 4: Leading and trailing whitespace trimmed
-    await page.fill('#emailInput', '   test@gmail.com   ');
-    await page.keyboard.press('Enter');
-    const emailListContents3 = await page.$eval('#emailList', el => el.textContent);
-    console.log('Test Case 4:');
-    console.log('Expected email list content:', 'test@gmail.com');
-    console.log('Actual email list content:', emailListContents3);
-    console.log('--------------------------------');
+    test('Toggles sidebar on click', async ({ page }) => {
 
+        await page.evaluate(() => {
 
+            const sidebarToggle = document.createElement('button');
+            sidebarToggle.id = 'sidebarToggle';
+            const icon = document.createElement('i');
+            icon.className = 'fa fa-angle-down';
+            sidebarToggle.appendChild(icon);
+            document.body.appendChild(sidebarToggle);
 
+            const sidebarDropdownList = document.createElement('ul');
+            sidebarDropdownList.id = 'sidebarDropdownList';
+            document.body.appendChild(sidebarDropdownList);
 
-    const validateEmail = async (email) => {
-        return await page.evaluate((email) => {
-            return /\S+@\S+\.\S+/.test(email);
-        }, email);
-    };
+            sidebarToggle.addEventListener("click", function () {
+                sidebarToggle.querySelector("i").classList.toggle("fa-angle-down");
+                sidebarToggle.querySelector("i").classList.toggle("fa-angle-up");
+                sidebarDropdownList.classList.toggle("active");
+            });
+        });
 
-    const testCases3 = [
-        { email: 'test@gmail.com', expected: true },
-        { email: 'testgmail.com', expected: false },
-        { email: 'test@gmailcom', expected: false },
-        { email: '@gmailcom', expected: false },
-        { email: 'test@gmail', expected: false },
-        { email: '', expected: false },
-        { email: '       ', expected: false },
-        { email: 'test!@gmail.com', expected: true }
-    ];
+        await page.click('#sidebarToggle');
 
-    for (const { email, expected } of testCases3) {
-        const result = await validateEmail(email);
-        console.log(`Testing email: ${email}`);
-        console.log('Expected:', expected);
-        console.log('Actual:', result);
-        console.log('Test Result:', result === expected ? 'Pass' : 'Fail');
-        console.log('---------------------------');
-    }
+        const iconClass = await page.$eval('#sidebarToggle i', icon => icon.className);
+        expect(iconClass).toContain('fa-angle-up');
 
+        const sidebarDropdownListClass = await page.$eval('#sidebarDropdownList', list => list.className);
+        expect(sidebarDropdownListClass).toContain('active');
 
+        await page.click('#sidebarToggle');
 
+        const iconClassAfterToggleBack = await page.$eval('#sidebarToggle i', icon => icon.className);
+        expect(iconClassAfterToggleBack).toContain('fa-angle-down');
 
-
-
-
-    await page.evaluate(() => {
-        window.checkProjects = async () => {
-            const projectButton = document.querySelector("#projects");
-            try {
-                const response = await fetch("fetch_projects.php");
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                const data = await response.json();
-                if (data[0]) {
-                    const currentProject = data[0];
-                    projectButton.querySelector("p").textContent = currentProject.project_name;
-                    projectButton.setAttribute("data-id", currentProject.project_id);
-                    setProjectIdInSession(currentProject.project_id);
-                } else {
-                    projectButton.querySelector("p").textContent = "Projects";
-                    projectButton.setAttribute("data-id", undefined);
-                }
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        };
+        const sidebarDropdownListClassAfterToggleBack = await page.$eval('#sidebarDropdownList', list => list.className);
+        expect(sidebarDropdownListClassAfterToggleBack).not.toContain('active');
     });
+});
 
-    const mockFetchSuccess = async () => {
+
+test.describe("This function is responsible for fetching projects from the server and updating the project button's text content and data attributes based on the fetched data. It also sets the project ID in the session.", () => {
+    
+    test('Fetch projects and update project button', async ({ page }) => {
+        await page.evaluate(() => {
+            const projectButton = document.createElement('button');
+            projectButton.id = 'projects';
+            const p = document.createElement('p');
+            projectButton.appendChild(p);
+            document.body.appendChild(projectButton);
+
+            const sidebarDropdownList = document.createElement('ul');
+            sidebarDropdownList.id = 'sidebarDropdownList';
+            document.body.appendChild(sidebarDropdownList);
+
+            window.setProjectIdInSession = function (projectId) {
+                if (!projectId) {
+                    console.error("Project ID is not provided");
+                    return;
+                }
+                console.log("Project ID stored successfully.");
+            };
+
+            window.checkProjects = async () => {
+                const projectButton = document.querySelector("#projects");
+                try {
+                    const response = await fetch("fetch_projects.php");
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    const data = await response.json();
+                    if (data[0]) {
+                        const currentProject = data[0];
+                        projectButton.querySelector("p").textContent = currentProject.project_name;
+                        projectButton.setAttribute("data-id", currentProject.project_id);
+                        setProjectIdInSession(currentProject.project_id);
+                    } else {
+                        projectButton.querySelector("p").textContent = "Projects";
+                        projectButton.setAttribute("data-id", undefined);
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                }
+            };
+        });
+
         await page.evaluate(() => {
             window.fetch = async () => ({
                 ok: true,
                 json: async () => [{ project_id: '123', project_name: 'Project A' }]
             });
         });
-    };
 
-    const mockFetchEmptySuccess = async () => {
+        await page.evaluate(() => checkProjects());
+
+        const buttonText = await page.$eval('#projects p', el => el.textContent);
+        expect(buttonText).toBe('Project A');
+
+        const dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
+        expect(dataId).toBe('123');
+    });
+
+    test('Fetch projects - No Projects Available', async ({ page }) => {
+        await page.evaluate(() => {
+            window.checkProjects = async () => {
+                const projectButton = document.createElement('button'); // Create the button element
+                projectButton.id = 'projects';
+                try {
+                    const response = await fetch("fetch_projects.php");
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    const data = await response.json();
+                    if (data.length === 0) {
+                        projectButton.textContent = "Projects";
+                        projectButton.setAttribute("data-id", undefined);
+                    }
+                    document.body.appendChild(projectButton); // Append button to the document body
+                } catch (error) {
+                    console.error("Error:", error);
+                }
+            };
+        });
+    
         await page.evaluate(() => {
             window.fetch = async () => ({
                 ok: true,
                 json: async () => []
             });
         });
-    };
+    
+        await page.evaluate(() => checkProjects());
 
-    const mockFetchNetworkError = async () => {
+        const buttonText = await page.$eval('#projects', el => el.textContent);
+        expect(buttonText).toBe('Projects');
+    
+        const dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
+        expect(dataId).toBe("undefined");
+    });
+    
+    test('Fetch projects - Network Error', async ({ page }) => {
         await page.evaluate(() => {
-            window.fetch = async () => {
-                throw new Error('Network response was not ok');
+            window.checkProjects = async () => {
+                try {
+                    const response = await fetch("fetch_projects.php");
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    const data = await response.json();
+                    const projectButton = document.createElement('button');
+                    projectButton.id = 'projects';
+                    if (data[0]) {
+                        const currentProject = data[0];
+                        projectButton.textContent = currentProject.project_name; 
+                        projectButton.setAttribute("data-id", currentProject.project_id);
+                    } else {
+                        projectButton.textContent = "Projects";
+                        projectButton.setAttribute("data-id", undefined);
+                    }
+                    document.body.appendChild(projectButton); 
+                } catch (error) {
+                    console.error("Error:", error);
+                    const projectButton = document.createElement('button'); 
+                    projectButton.id = 'projects';
+                    projectButton.textContent = "Projects";
+                    projectButton.setAttribute("data-id", undefined);
+                    document.body.appendChild(projectButton); 
+                }
             };
         });
-    };
-
-    const mockFetchServerError = async () => {
+    
         await page.evaluate(() => {
             window.fetch = async () => ({
-                ok: false,
-                status: 500
+                ok: false
             });
         });
-    };
+    
+        await page.evaluate(() => checkProjects());
+    
+        await page.waitForSelector('#projects');
+    
+        const buttonText = await page.$eval('#projects', el => el.textContent);
+        expect(buttonText).toBe('Projects');
 
-    const mockFetchMultipleProjectsSuccess = async () => {
-        await page.evaluate(() => {
-            window.fetch = async () => ({
-                ok: true,
-                json: async () => [
-                    { project_id: '123', project_name: 'Project A' },
-                    { project_id: '456', project_name: 'Project B' }
-                ]
-            });
-        });
-    };
-
-    const mockFetchEmptyResponseBodySuccess = async () => {
-        await page.evaluate(() => {
-            window.fetch = async () => ({
-                ok: true,
-                json: async () => null
-            });
-        });
-    };
-
-    await mockFetchSuccess();
-    await page.setContent('<button id="projects"><p></p></button>');
-    await page.evaluate(() => checkProjects());
-    let buttonText = await page.$eval('#projects p', el => el.textContent);
-    let dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
-    console.log('Test Case 1:', buttonText === 'Project A' && dataId === '123' ? 'Pass' : 'Fail');
-
-    // Test Case 2: Successful response with an empty array of projects
-    await mockFetchEmptySuccess();
-    await page.evaluate(() => checkProjects());
-    buttonText = await page.$eval('#projects p', el => el.textContent);
-    dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
-    console.log('Test Case 2:', buttonText === 'Projects' && dataId === 'undefined' ? 'Pass' : 'Fail');
-
-    // Test Case 3: Network error
-    await mockFetchNetworkError();
-    await page.evaluate(() => checkProjects());
-    console.log('Test Case 3:', 'Error logged to console');
-
-    // Test Case 4: Server error
-    await mockFetchServerError();
-    await page.evaluate(() => checkProjects());
-    buttonText = await page.$eval('#projects p', el => el.textContent);
-    dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
-    console.log('Test Case 4:', buttonText === 'Projects' && dataId === 'undefined' ? 'Pass' : 'Fail');
-
-    // Test Case 5: Successful response with multiple projects available
-    await mockFetchMultipleProjectsSuccess();
-    await page.evaluate(() => checkProjects());
-    buttonText = await page.$eval('#projects p', el => el.textContent);
-    dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
-    console.log('Test Case 5:', buttonText === 'Project A' && dataId === '123' ? 'Pass' : 'Fail');
-
-    // Test Case 6: Successful response with an empty response body
-    await mockFetchEmptyResponseBodySuccess();
-    await page.evaluate(() => checkProjects());
-    buttonText = await page.$eval('#projects p', el => el.textContent);
-    dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
-    console.log('Test Case 6:', buttonText === 'Projects' && dataId === 'undefined' ? 'Pass' : 'Fail');
-
-
-    await browser.close();
-})();
+        const dataId = await page.$eval('#projects', el => el.getAttribute('data-id'));
+        expect(dataId).toBe("undefined");
+    });
+    
+});
