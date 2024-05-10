@@ -81,6 +81,38 @@ test.describe('check email is valid and should occur in real time', () => {
     test('checks that the function correctly identifies an invalid email', async () => {
         await emailInput.pressSequentially('testgmail.com');
         expect(emailFeedback).toBe('Invalid email.');
+    });   
+});
+
+test.describe('username should not have bspecial characters and must be at least 5 characters long', () => {
+    let usernameInput;
+    // let usernameFeedback;
+
+    test.beforeEach(async ({ page }) => {
+        await page.goto('https://discoveria.online/register.html');
+
+        usernameInput = page.locator('#username');
+        // usernameFeedback = await page.locator('#username-feedback').textContent();
+    });
+
+    test('checks that the function correctly identifies a valid username', async ({ page }) => {
+        await usernameInput.pressSequentially('test1');
+        await expect(page.locator('#username-feedback')).toContainText('Username must be longer than 4 characters.');
+    });
+
+    test('checks that the function correctly identifies an invalid username', async ({ page }) => {
+        await usernameInput.pressSequentially('test');
+        await expect(page.locator('#username-feedback')).toContainText('Username must be longer than 4 characters.');
+    });
+
+    test('checks when username has special characters and is > 5', async ({ page }) => {
+        await usernameInput.pressSequentially('t@st1');
+        await expect(page.locator('#username-feedback')).toContainText('Username must not contain special character.');
+    });
+
+    test('checks when username is < 5 and has special charaters', async ({ page }) => {
+        await usernameInput.pressSequentially('t@st');
+        await expect(page.locator('#username-feedback')).toContainText('Username must not contain special character.');
     });
 });
 
