@@ -334,17 +334,13 @@ a:visited {
 }
 
 #project-form {
-  display: none;
-}
-
-#project-form.active {
   display: grid;
   grid-template-columns: 1fr;
   position: absolute;
   z-index: 3;
   left: 25%;
   top: 25%;
-  background-color: var(--quaternary);
+  background-color:#d6d9de;
   width: 50%;
   height: fit-content;
   border: var(--quinary) 2px solid;
@@ -415,4 +411,23 @@ input[type="submit"] {
   font-weight: bold;
   font-size: 30px;
   text-decoration: none;
+}
+
+.form-container {
+  z-index: 9999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #00000090;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hide {
+  display: none;
 }

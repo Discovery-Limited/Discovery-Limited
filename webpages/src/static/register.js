@@ -58,11 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (placeholder === "Password") {
             const rules = {
-                length: password.value.length > 8,
+                length: password.value.length > 7,
                 uppercase: /[A-Z]/.test(password.value),
                 lowercase: /[a-z]/.test(password.value),
                 number: /\d/.test(password.value),
-                specialChar: /[!@#$%^&*(),.?";':{}|<>]/.test(password.value)
+                specialChar: /[£~`!@#$%^&*(),.?";':{}|<>]/.test(password.value)
             };
             
             const messages = [];
@@ -110,4 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
         submitForm.classList.remove("active");
         submitForm.disabled = true;
     }
+
+    process.on('unhandledRejection', (reason, promise) => {
+        console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+        // Handle or log the error here
+        // You can also terminate the process if needed
+        process.exit(1); // Exit with non-zero status code to indicate failure
+    });
 });

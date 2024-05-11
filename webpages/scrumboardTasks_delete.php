@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
+// Database configuration
 $config = require 'config.php';
-
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
@@ -16,13 +16,16 @@ try {
 
 session_start();
 
+// Gets POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
     $taskId = $data['task_id'];
 
+    // deletes task
     $stmt = $pdo->prepare("DELETE FROM task WHERE task_id = :task_id");
     $stmt->execute(['task_id' => $taskId]);
 
+    // checks for changes
     if ($stmt->rowCount() > 0) {
         echo json_encode(['success' => true]);
         exit;

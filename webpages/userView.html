@@ -8,8 +8,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="./src/css/userView.css?v=2" />
-    <script src="./src/static/userView.js?v=30"></script>
+    <link rel="stylesheet" href="./src/css/userView.css?v=6" />
+    <script src="./src/static/userView.js?v=31"></script>
     <title>Dashboard</title>
   </head>
   <body>
@@ -111,32 +111,35 @@
             src=""
             frameborder="0"
           ></iframe>
-          <form id="project-form" action="createProject.php" method="post">
-            <a href="#" class="close-popup">&times;</a>
-            <h2>Create Project</h2>
-            <label for="projectName">Project Name:</label>
-            <input
-              type="text"
-              id="projectName"
-              name="project_name"
-              required
-            /><br /><br />
-
-            <label for="emailInput">Add User Emails:</label>
-            <div id="emailList"></div>
-            <input
-              type="text"
-              id="emailInput"
-              placeholder="Enter email and press Enter"
-            />
-            <input type="hidden" name="emails" id="hiddenEmails" />
-
-            <button type="submit" id="create-project-submit-btn">
-              Create Project
-            </button>
-          </form>
         </main>
       </div>
+    </div>
+    <div class="form-container hide">
+      <form id="project-form" action="createProject.php" method="post">
+        <a href="#" class="close-popup">&times;</a>
+        <h2>Create Project</h2>
+        <label for="projectName">Project Name:</label>
+        <input
+          type="text"
+          id="projectName"
+          name="project_name"
+          required
+        /><br /><br />
+
+        <label for="emailInput">Add User Emails:</label>
+        <div id="emailList"></div>
+        <input
+          type="text"
+          id="emailInput"
+          placeholder="Enter email and press Enter"
+        />
+        <input type="hidden" name="emails" id="hiddenEmails" />
+
+        <button type="submit" id="create-project-submit-btn">
+          Create Project
+        </button>
+      </form>
+
     </div>
   </body>
 </html>

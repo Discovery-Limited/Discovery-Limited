@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const sidebarToggle = document.querySelector(".sidebar-toggle");
   const sidebarDropdownList = document.querySelector(".sidebar-dropdown-list");
   const createProject = document.querySelector("#create-project");
-  const projectForm = document.querySelector("#project-form");
+  const projectForm = document.querySelector(".form-container");
   const closeProjectPopup = document.querySelector(".close-popup");
   const projectButton = document.querySelector("#projects");
 
@@ -28,11 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
         li.addEventListener("click", () => {
           const projectId = li.getAttribute("data-id");
           setProjectIdInSession(projectId);
-          
+
           projectButton.querySelector("p").textContent = li.querySelector("a").textContent;
           projectButton.setAttribute("data-id", projectId);
           projectButton.classList.toggle("active");
-          
+
           sidebarToggle.querySelector("i").classList.toggle("fa-angle-down");
           sidebarToggle.querySelector("i").classList.toggle("fa-angle-up");
           sidebarDropdownList.classList.toggle("active");
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
               );
               if (projectLi) {
                 projectButton.querySelector("p").textContent =
-                projectLi.textContent.trim();
+                  projectLi.textContent.trim();
               } else {
                 console.error("Project li not found for ID:", data.projectID);
               }
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error:", error);
     });
 
-    function setProjectIdInSession(projectId) {
+  function setProjectIdInSession(projectId) {
     if (!projectId) {
       console.error("Project ID is not provided");
       return;
@@ -147,11 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   createProject.addEventListener("click", function () {
-    projectForm.classList.toggle("active");
+    projectForm.classList.remove("hide");
   });
 
   closeProjectPopup.addEventListener("click", function () {
-    projectForm.classList.toggle("active");
+    projectForm.classList.add("hide");
   });
 
   const emailInput = document.getElementById("emailInput");
@@ -200,17 +200,17 @@ document.addEventListener("DOMContentLoaded", function () {
       toggle.classList.add("active");
     });
   });
-  
+
   window.addEventListener("message", (event) => {
     // Check the origin for security reasons
     if (event.origin !== "https://discoveria.online") {
       console.error("Unauthorized attempt to communicate from:", event.origin);
       return;
     }
-    
+
     // Handle the incoming data
-    const data = event.data.message; 
-  
+    const data = event.data.message;
+
     if (data.projectId) {
       const projectSelector = `.project[data-id="${data.projectId}"]`;
       const projectElement = document.querySelector(projectSelector);
@@ -220,34 +220,34 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }, false);
-  
+
   function checkProjects() {
     const projectButton = document.querySelector("#projects");
     fetch("fetch_projects.php")
-                  .then((response) => {
-                    if (!response.ok) {
-                      throw new Error("Network response was not ok");
-                    }
-                    return response.json();
-                  })
-                  .then((data) => {
-                    if (data[0]) {
-                      const currentProject = data[0];
-  
-                      projectButton.querySelector("p").textContent =
-                        currentProject.project_name;
-                      projectButton.setAttribute(
-                        "data-id",
-                        currentProject.project_id
-                      );
-                      setProjectIdInSession(currentProject.project_id);
-                    } else {
-                      projectButton.querySelector("p").textContent = "Projects";
-                      projectButton.setAttribute("data-id", undefined);
-                    }
-                  })
-                  .catch((error) => {
-                    console.error("Error:", error);
-                  });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data[0]) {
+          const currentProject = data[0];
+
+          projectButton.querySelector("p").textContent =
+            currentProject.project_name;
+          projectButton.setAttribute(
+            "data-id",
+            currentProject.project_id
+          );
+          setProjectIdInSession(currentProject.project_id);
+        } else {
+          projectButton.querySelector("p").textContent = "Projects";
+          projectButton.setAttribute("data-id", undefined);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 });

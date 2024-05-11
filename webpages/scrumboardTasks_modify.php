@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
+// Database Configuration
 $config = require 'config.php';
-
 try {
     $pdo = new PDO(
         "mysql:host={$config['db']['host']};dbname={$config['db']['dbname']};charset={$config['db']['charset']}",
@@ -16,6 +16,7 @@ try {
 
 session_start();
 
+// Checks if the POST request exist
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SESSION['user_id'])) {
         $taskId = $_POST['task_id'];
@@ -25,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tag = $_POST['tag']; 
         $tagColor = $_POST['tag_color']; 
         
+        // updates task by given data from front end
         $stmt = $pdo->prepare("UPDATE task SET task_name = :task_name, description = :description, deadline = :deadline, tag = :tag, tag_color = :tag_color WHERE task_id = :task_id");
         $stmt->bindValue(':task_name', $taskTitle);
         $stmt->bindValue(':description', $description);
